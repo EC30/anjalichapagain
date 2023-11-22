@@ -1,0 +1,129 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    width: 1384px;
+    margin: auto;
+    background-color: #343D33;
+    display: flex;
+    flex-flow: row wrap;
+    padding: 96px 179px 96px 181px;
+    color: #fff;
+}
+
+body>* {
+    flex: 1 1 40%;
+}
+
+img {
+    width: 100%;
+    object-fit: cover;
+    object-position: 50% 75%;
+}
+
+p {
+    font-family: "Roboto Light", serif;
+}
+
+.div2 {
+    padding-top: 17px;
+    margin-left: 89px;
+    margin-bottom: 80px;
+}
+
+/* .div3 {
+    margin-top: 20px;
+    background-color: black;
+    height: auto; 
+} */
+
+.title {
+    color: var(--white, #FFF);
+    font-family: Libre Baskerville;
+    font-size: 45px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 110%;
+    text-transform: capitalize;
+}
+
+.titledesc {
+    color: var(--white, #FFF);
+    font-family: Roboto;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 150%;
+}
+
+.button {
+    display: inline-flex;
+    padding: 20px 40px;
+    align-items: center;
+    gap: 10px;
+    border: 2px solid var(--white, #FFF);
+    font-family: Roboto;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    letter-spacing: 2.1px;
+    text-transform: uppercase;
+}
+
+@media only screen and (max-width: 1024px) {
+    body {
+        flex-direction: column;
+        width: 745px;
+        padding: 96px 106px 0px 105px;
+    }
+
+    .div3 {
+        margin-top: 20px;
+        background-color: black;
+        height: auto; 
+    }
+    .image2{
+        margin-top: 20px;
+        margin-bottom: 60px;
+    }
+
+    body div:nth-child(2) {
+        order: 2;
+    }
+
+    .div2 {
+        margin-left: 0px;
+        float: left;
+        padding-top: 0px;
+    }
+}
+
+@media only screen and (max-width: 575px) {
+    body {
+        flex-direction: column;
+        width: 376px;
+        padding: 56px 16px 0 16px;
+    }
+
+    body div:nth-child(2) {
+        order: 2;
+        margin-bottom: 0; 
+    }
+
+    .div2 {
+        margin-left: 0px;
+        float: left;
+        padding-top: 0px;
+    }
+
+    body .title,
+    body .titledesc
+    {
+        text-align: center;
+    }
+.button span {
+    text-align: center !important;
+}
+}
