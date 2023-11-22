@@ -18,8 +18,8 @@ body>* {
 
 img {
     width: 100%;
-    object-fit: cover;
-    object-position: 50% 75%;
+    object-fit: contain;
+    object-position: left top;
 }
 
 p {
@@ -37,7 +37,10 @@ p {
     background-color: black;
     height: auto; 
 } */
-
+/* .image2{
+    width: 100%;
+    height: auto;
+} */
 .title {
     color: var(--white, #FFF);
     font-family: Libre Baskerville;
@@ -74,15 +77,9 @@ p {
 
 @media only screen and (max-width: 1024px) {
     body {
-        flex-direction: column;
+        display: inline-flex;
         width: 745px;
         padding: 96px 106px 0px 105px;
-    }
-
-    .div3 {
-        margin-top: 20px;
-        background-color: black;
-        height: auto; 
     }
     .image2{
         margin-top: 20px;
@@ -102,28 +99,41 @@ p {
 
 @media only screen and (max-width: 575px) {
     body {
-        flex-direction: column;
+        display: inline-flex;
         width: 376px;
         padding: 56px 16px 0 16px;
     }
 
-    body div:nth-child(2) {
-        order: 2;
+    body:nth-child(2) {
+        order: 0;
         margin-bottom: 0; 
+        
     }
-
     .div2 {
         margin-left: 0px;
         float: left;
         padding-top: 0px;
     }
+    .image2{
+        margin-top: 20px;
+        padding: 0px;
+        background-color: aqua;
+        line-height: 0;
+        vertical-align: bottom;
+    }
 
     body .title,
     body .titledesc
     {
-        text-align: center;
+        text-align: center !important;;
     }
-.button span {
-    text-align: center !important;
-}
+    .button {
+        text-align: center !important;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    span{
+        display: table;
+        margin: auto;
+    }
 }
