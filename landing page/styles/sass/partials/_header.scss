@@ -1,0 +1,31 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  position: fixed;
+  top:0;
+  left:0;
+  right: 0;
+  &__logo {
+    margin: 0;
+  }
+  &__nav {
+    display: flex;
+    list-style-type: none;
+    gap: 32px;
+  }
+  &__nav{
+    display: none;
+    @media screen and (min-width: 768px) {
+      display: flex;
+    }
+  }
+
+  } 
+header{
+  background-color: $primary-color;
+}
+.toggle_button{
+    @media screen and (min-width: 768px) {
+      display: none;
+    }
+}

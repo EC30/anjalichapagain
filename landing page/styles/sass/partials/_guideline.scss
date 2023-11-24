@@ -1,0 +1,80 @@
+
+.guideline{
+    background-color: $primary-color;
+    top:0;
+    left:0;
+    right: 0;
+    padding-bottom: 232px;
+    padding-top: 3%;
+    &__title {
+      color:$link-color;
+      font-size: 40px;
+      font-weight: 700;
+      flex-shrink: 1;
+    }
+    &__gtitle{
+        display: flex;
+    }
+    &__heading, &__title {
+        flex-basis: 100%;
+    }
+
+    &__middle{
+        display: flex;
+        flex-wrap: wrap;
+        gap:32px;
+        justify-content: space-around;
+        padding-top: 172px;
+      
+    }
+    &__end{
+        display: flex;
+        flex-wrap: wrap;
+        gap:32px;
+        justify-content: space-around;
+        padding-top: 86px;
+      
+    }
+
+
+    &__wrapper {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+
+        @media screen and (min-width:$small)  {
+            flex-direction: row;
+        }
+    }
+
+    &__content {
+      display: flex;
+      flex-wrap: wrap;
+      flex-direction: column;
+      border-radius: 8px;
+      position: relative;
+      border: 2px solid rgba(255, 255, 255, 0.10);
+      padding: 2% 2% 2% 2%;
+      gap:2%;
+
+    }
+    &__icon{
+        display: flex;
+        gap:20px;
+       
+    }
+
+    &__text{
+        color:$link-color;
+        font-size: 18px;
+        font-weight: 400;
+        font-style: normal;
+    }
+    &__button{
+        height: 20px;
+        padding: 24px 32px;
+        background: #FFF;
+        color: #110C64;
+        border-radius: 8px;
+    }
+}

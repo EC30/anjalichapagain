@@ -1,0 +1,67 @@
+.image{
+    padding-top: 113px;
+    &__card {
+        border-radius: 8px;
+        background: $link-color;
+        box-shadow: 0px 24px 64px -12px rgba(26, 24, 65, 0.06);
+        display: flex;
+        align-items: flex-start;
+        width: 100%;
+        gap:24px;
+        flex-direction: column;
+    //     @media screen and (max-width: $small) {
+    //          width: 370px;
+    //     }
+     }
+     &__icon{
+        width:100%;
+     }
+
+}
+@media screen and (min-width:$medium){
+    .image__container {
+        position: relative;
+        width: 100%;
+        padding-bottom: 200px;
+    }
+    .image__icon{
+        width: 100%;
+    }
+    .image__card {
+        position: absolute;
+        max-width: 528px;
+        padding: 36px 36px 36px 36px;
+        top: 400px;
+        right: -200px;
+        z-index: 1; 
+    }
+}
+@media screen and (min-width:$large){
+    .image__container {
+        position: relative;
+    }
+    .image__card {
+        position: absolute;
+        max-width: 688px;
+        padding: 52px 52px 52px 52px;
+        top: 86px;
+        right: -200px;
+        z-index: 1; 
+    }
+}
+
+// @media screen and (max-width: $small) {
+//     .image__card, .image__icon{
+//         width: 100%;
+//         height: auto;
+//         flex-shrink: 0;
+//     }
+// }
+// @media screen and (max-width: $medium) {
+//     .image__container{
+//         width: 100%;
+//         height: auto;
+//         flex-shrink: 0;
+//     }
+// }
+

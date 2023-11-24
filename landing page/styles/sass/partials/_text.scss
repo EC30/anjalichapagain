@@ -1,0 +1,131 @@
+.title {
+    color: var(--Text, #1D1C31);
+    font-family: $font-family;
+    font-size: 40px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 52px;
+    letter-spacing: -0.8px;
+
+    &.large {
+        color: $link-color;
+        font-size: 56px;
+        letter-spacing: -1.12px;
+        margin: 0;
+        // @media screen and (max-width: 600px) {
+        //     font-size: 24px;
+        //     line-height: 38px;
+        // } 
+    }
+    &.desc{
+        color: #B6B3EB;
+        font-size: 18px;
+        font-weight: 400;
+        line-height: normal;
+    }
+    &.descSmall{
+        color: $text-color;
+        font-size: 16px;
+        font-weight: 400;
+        line-height: normal;
+        line-height: 28px;
+    }
+    &.special{
+        color: #FFF;
+        font-size: 32px;
+        font-weight: 600;
+        line-height: normal;
+    }
+    &.cardTitle{
+        font-size: 20px;
+        font-weight: 700;
+    }
+    &.cardDesc{
+        color: rgba(29, 28, 49, 0.60);
+        font-size: 16px;
+        line-height: 28px;
+        align-items: flex-start;
+    }
+    &.footer{
+        color: var(--ffffff, #FFF);
+        font-size: 20px;
+        font-weight: 700;
+        line-height: normal;
+    }
+    &.footercontent{
+        color: rgba(255, 255, 255, 0.60);
+        font-size: 14px;
+        font-weight: 400;
+        line-height: normal;
+    }
+    &.footeremail{
+        color: var(--ffffff, #FFF);
+        font-size: 16px;
+        font-weight: 400;
+        line-height: normal;
+    }
+    &.footermenu{
+        font-size: 20px;
+        font-weight: 700;
+        line-height: normal;
+    }
+  }
+  @media screen and (max-width:$small){
+    .title{
+        font-size: 20px;
+        text-align: center;
+    &.large {
+        font-size: 24px;
+        line-height: 38px;
+    }
+    &.desc{
+        font-size: 14px;
+    }
+    &.special{
+        font-size: 20px;
+    }
+    &.cardTitle{
+        font-size: 16px;
+    }
+    &.cardDesc{
+        font-size: 14px;
+    }
+    &.footer{
+        color: var(--1-d-1-c-31, #1D1C31);
+    }
+    &.footercontent{
+        color: var(--1-d-1-c-31, #1D1C31);
+    }
+    &.footeremail{
+        color: rgba(29, 28, 49, 0.50);
+    }
+    &.footermenu{
+        font-size: 20px;
+        font-weight: 700;
+        line-height: normal;
+    }
+    }
+  }
+
+  @media screen and (max-width:$medium){
+    .title{
+        font-size: 20px;
+    &.large {
+        font-size: 36px;
+        line-height: 50px;
+    }
+    &.desc{
+        font-size: 14px;
+    }
+    &.special{
+        font-size: 20px;
+    }
+    &.cardTitle{
+        font-size: 16px;
+    }
+    &.cardDesc{
+        font-size: 14px;
+    }
+    }
+  }
+    

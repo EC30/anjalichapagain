@@ -1,0 +1,22 @@
+$font-family: "Plus Jakarta Sans", sans-serif;
+
+// font sizes
+$base-font-size: 16px;
+$heading-font-size: 40px;
+$card-title-font-size: 20px;
+
+// colors
+$primary-color: #5d55ff;
+$black: #1d1c31;
+$body-text-color: transparentize($black, 0.6);
+$white: #ffffff;
+$link-color: #FFF;
+$text-color:rgba(255, 255, 255, 0.60);
+
+// spacings
+$title-margin-bottom: 40px;
+$card-items-spacing: 32px;
+
+$small: 575px;
+$medium: 992px;
+$large:1200px;

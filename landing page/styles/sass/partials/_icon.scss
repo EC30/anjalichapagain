@@ -1,0 +1,14 @@
+.icon{
+    display:flex;
+    top:0;
+    left:0;
+    right: 0;
+    padding-top: 1%;
+    padding-bottom: 1%;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    @media screen and (max-width: 600px) {
+        display: none;
+    }
+}
