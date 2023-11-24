@@ -1,15 +1,13 @@
 .container {
     padding:0 24px;
 
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: $medium) {
     padding: 0 36px;
   }
-  @media screen and (min-width: 1440px) {
+  @media screen and (min-width: $large) {
     padding: 0;
     max-width: 1400px;
     margin: 0 auto;
-
-    
   }
 }
 
@@ -17,5 +15,8 @@
   background-color: $primary-color;
 }
 .bg-secondary{
-  background-color:  #5F58D6;;
+  background-color:  #5F58D6;
+}
+.bg-main{
+  background-color: $link-color;
 }

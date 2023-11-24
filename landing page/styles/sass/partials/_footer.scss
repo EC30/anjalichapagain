@@ -11,7 +11,7 @@
         padding: 1% 1% 1% 1%;
 
         @media screen and (max-width:$small){
-            background: $link-color;
+            background: #EFEEFF;
             width: 100%;
         }
     }
@@ -44,6 +44,7 @@
         display: flex;
         justify-content: space-between;
         flex-wrap: wrap;
+        padding-bottom: 77px;
     }
     &__menu{
         display: flex;
@@ -54,12 +55,12 @@
         display: flex;
         justify-content: space-between;
         flex-wrap: wrap;
+        // padding-top: 77px;
 
     }
     &__icon{
         display: flex;
-        flex-direction: column;
-        gap:2rem;
+        gap:1rem;
         @media  screen and (max-width:$small) {
             order:1;
         }
@@ -67,4 +68,11 @@
 }
 footer{
     padding-top: 3%;
+    padding-bottom: 3%;
+    background-color: #EFEEFF;
+}
+hr{
+    @media  screen and (max-width:$small) {
+        display: none;
+    }
 }

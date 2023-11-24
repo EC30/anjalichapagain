@@ -9,23 +9,28 @@
         width: 100%;
         gap:24px;
         flex-direction: column;
-    //     @media screen and (max-width: $small) {
-    //          width: 370px;
-    //     }
      }
      &__icon{
         width:100%;
+        // @media screen and (min-width:$medium){
+        //     width:100%;
+        // }
      }
 
+    
 }
-@media screen and (min-width:$medium){
+
+@media screen and (max-width: $large) and (min-width: $medium) {
+
     .image__container {
         position: relative;
         width: 100%;
         padding-bottom: 200px;
+       
     }
     .image__icon{
         width: 100%;
+       
     }
     .image__card {
         position: absolute;
@@ -39,6 +44,9 @@
 @media screen and (min-width:$large){
     .image__container {
         position: relative;
+    }
+    .image__icon{
+        width: 100%;
     }
     .image__card {
         position: absolute;
