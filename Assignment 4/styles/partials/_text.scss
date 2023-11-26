@@ -1,0 +1,309 @@
+.text{
+    color: rgba(255, 255, 255, 0.50);
+    font-size: $base-font-size;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    margin: 0;
+
+    &.active{
+        color: $link-color;
+        font-weight: 700;
+    }
+    &.title{
+        color: $link-color;
+        font-size: $heading-font-size;
+        font-weight: 800;
+    }
+    &.title--quote{
+        color: $link-color;
+        font-size: 48px;
+        font-weight: 800;
+        padding-top: 70px;
+    }
+    &.titledesc{
+        color: $secondary_color;
+        font-weight: 700;
+    }
+    &.content{
+        color: rgba(255, 255, 255, 0.70);
+        font-weight: 700;
+    }
+    &.blue{
+        color: $secondary_color;
+        font-size: 48px;
+        font-weight: 800;
+    }
+    &.small{
+        font-size: 19.958px;
+        font-weight: 400;
+    }
+    &.info--text{
+        color: $link-color;
+        font-size: 17.963px;
+        font-weight: 500;
+    }
+    &.card1--readmore{
+        color:$secondary_color;
+        font-size: 17.963px;
+        font-weight: 700;
+    }
+    &.card2--readmore{
+        color: rgba(255, 255, 255, 0.50);
+        font-size: 17.963px;
+        font-weight: 700;
+    }
+    &.title2{
+        font-size: $heading-font-size;
+        color: #000;
+        font-weight: 700;
+    }
+
+    &.name{
+        color: #000;
+        font-weight: 700;
+    }
+    &.note{
+        font-size: 20px;
+    }
+    &.feedback--text{
+        color: rgba(0, 0, 0, 0.50);
+        text-align: center;
+        width: 60%;
+        margin: auto;
+    }
+    &.feedback--address{
+        color: rgba(0, 0, 0, 0.50);
+        text-align: left;
+        font-size: 14px;
+        font-weight: 700;
+    }
+    &.feedback--address--card2{
+        color: $link-color;
+        text-align: left;
+        font-size: 14px;
+        font-weight: 700;
+    }
+    &.feedback--client{
+        color: rgba(0, 0, 0, 0.60);
+        text-align: center;
+        font-size: 18px;
+    }
+    &.feedback--client--card2{
+        color: rgba(255, 255, 255, 0.75);
+        text-align: center;
+        font-size: 18px;
+    }
+    &.quote--text{
+        color: #FFF;
+        text-align: center;
+        font-size: 24px;
+    }
+
+}
+
+@media screen and (max-width:$medium){
+    .text{
+        color: rgba(255, 255, 255, 0.50);
+        font-size: 18px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: normal;
+        margin: 0;
+    
+        &.active{
+            color: $link-color;
+            font-weight: 700;
+        }
+        &.title{
+            color: $link-color;
+            font-size: 36px;
+            font-weight: 800;
+        }
+        &.title--quote{
+            color: $link-color;
+            font-size: 36px;
+            font-weight: 800;
+            padding-top: 16px;
+        }
+        &.titledesc{
+            color: $secondary_color;
+            font-weight: 700;
+        }
+        &.content{
+            color: rgba(255, 255, 255, 0.70);
+            font-weight: 700;
+        }
+        &.blue{
+            color: $secondary_color;
+            font-size: 36px;
+            font-weight: 1000;
+        }
+        &.small{
+            font-size: 19.958px;
+            font-weight: 400;
+        }
+        &.info--text{
+            color: $link-color;
+            font-size: 17.963px;
+            font-weight: 500;
+        }
+        &.card1--readmore{
+            color:$secondary_color;
+            font-size: 14px;
+            font-weight: 700;
+        }
+        &.card2--readmore{
+            color: rgba(255, 255, 255, 0.50);
+            font-size: 14px;
+            font-weight: 700;
+        }
+        &.title2{
+            font-size: 36px;
+            color: #000;
+            font-weight: 700;
+        }
+        &.name{
+            color: #000;
+            font-weight: 700;
+        }
+        &.note{
+            font-size: 20px;
+        }
+        &.feedback--text{
+            color: rgba(0, 0, 0, 0.50);
+            text-align: center;
+           
+        }
+        &.feedback--address{
+            color: rgba(0, 0, 0, 0.50);
+            text-align: left;
+            font-size: 14px;
+            font-weight: 700;
+        }
+        &.feedback--address--card2{
+            color: $link-color;
+            text-align: left;
+            font-size: 14px;
+            font-weight: 700;
+        }
+        &.feedback--client{
+            color: rgba(0, 0, 0, 0.60);
+            text-align: center;
+            font-size: 18px;
+        }
+        &.feedback--client--card2{
+            color: rgba(255, 255, 255, 0.75);
+            text-align: center;
+            font-size: 18px;
+        }
+        &.quote--text{
+            color: #FFF;
+            text-align: center;
+            font-size: 20px;
+        }
+    }
+}
+
+
+@media screen and (max-width:$small){
+    .text{
+        color: rgba(255, 255, 255, 0.50);
+        font-size: $small-base-font-size;
+        font-style: normal;
+        font-weight: 500;
+        line-height: normal;
+        margin: 0;
+    
+        &.active{
+            color: $link-color;
+            font-weight: 700;
+        }
+        &.title{
+            color: $link-color;
+            font-size: $base-font-size;
+            font-weight: 800;
+        }
+        &.title--quote{
+            color: $link-color;
+            font-size: 18px;
+            font-weight: 800;
+            padding-top: 16px;
+        }
+        &.titledesc{
+            color: $secondary_color;
+            font-weight: 700;
+        }
+        &.content{
+            color: rgba(255, 255, 255, 0.70);
+            font-weight: 700;
+        }
+        &.blue{
+            color: $secondary_color;
+            font-size: $base-font-size;
+            font-weight: 800;
+        }
+        &.small{
+            font-size: 14px;
+            font-weight: 400;
+        }
+        &.info--text{
+            color: $link-color;
+            font-size: 12px;
+            font-weight: 500;
+        }
+        &.card1--readmore{
+            color:$secondary_color;
+            font-size: 14px;
+            font-weight: 700;
+        }
+        &.card2--readmore{
+            color: rgba(255, 255, 255, 0.50);
+            font-size: 14px;
+            font-weight: 700;
+        }
+        &.title2{
+            font-size: $base-font-size;
+            color: #000;
+            font-weight: 700;
+        }
+        &.name{
+            color: #000;
+            font-weight: 700;
+        }
+        &.note{
+            font-size: 14px;
+        }
+        &.feedback--text{
+            color: rgba(0, 0, 0, 0.50);
+            text-align: center;
+        }
+        &.feedback--address{
+            color: rgba(0, 0, 0, 0.50);
+            text-align: left;
+            font-size: 9px;
+            font-weight: 700;
+        }
+        &.feedback--address--card2{
+            color: $link-color;
+            text-align: left;
+            font-size: 9px;
+            font-weight: 700;
+        }
+        &.feedback--client{
+            color: rgba(0, 0, 0, 0.60);
+            text-align: center;
+            font-size: 12.195px;
+        }
+        &.feedback--client--card2{
+            color: rgba(255, 255, 255, 0.75);
+            text-align: center;
+            font-size: 12.195px;
+        }
+        &.quote--text{
+            color: #FFF;
+            text-align: center;
+            font-size: 10px;
+        }
+    }
+}

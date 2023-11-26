@@ -1,0 +1,39 @@
+// @import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville&family=Montserrat:wght@700&family=Poppins:wght@200;500&family=Roboto:wght@100;300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville&family=Montserrat:ital,wght@0,200;0,700;1,800&family=Poppins:wght@200;500&family=Roboto:wght@100;300&display=swap');
+body {
+  font-family:'Montserrat', sans-serif;
+  font-size: 24x;
+  line-height: 1.75;
+  box-sizing: border-box;
+  background-image: url("../images/headerback.png");
+  background-size: cover;
+}
+
+.container{
+  padding-left: 4.86%;
+  padding-right: 4.86%;
+
+  @media screen and (max-width:575px){
+    padding-left: 6.5%;
+    padding-right: 6.5%;
+  }
+  @media screen and (max-width:992px){
+    padding-left: 9.33%;
+    padding-right: 9.33%;
+  }
+
+}
+.header__logo,.footer__logo{
+  @media screen and (max-width:575px){
+    width:142px;
+    height: 25px;
+  }
+  @media screen and (max-width:992px){
+    width:200px;
+    height: 35px;
+  }
+  @media screen and (max-width:1024px){
+    width:200px;
+    height: 35px;
+  }
+}

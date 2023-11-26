@@ -1,0 +1,88 @@
+.info{
+    padding-top: 10%;
+    padding-bottom: 10%;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    &__title{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        @media screen and (max-width:$medium){
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+    }
+
+    &__card0 {
+        display: flex;
+        flex-basis: 40%;
+        @media screen and (max-width:$medium){
+            width: 100%;
+        }
+    }
+
+    &__container{
+        display:flex;
+        justify-content: space-between;
+        flex-direction: column;
+        align-items: flex-end;
+        gap: 4rem;
+        height: fit-content;
+        @media screen and (min-width:$medium){
+            flex-direction: row;
+            justify-content: space-between;
+        }
+    }
+    .card1{
+        border-radius: 49.896px 149.688px 49.896px 49.896px;
+        background: rgba(196, 196, 196, 0.20);
+        @media screen and (min-width:$medium){
+            // width: 35%;
+        }
+
+    }
+    &__card{
+        display: flex;
+        flex-basis: 100%;
+        border-radius: 49.896px;
+        border: 2.994px solid rgba(255, 255, 255, 0.50);
+        flex-direction: column;
+        gap: 3rem;
+        align-items: flex-start;
+        padding: 2rem;
+
+        figure {
+            margin: 0;
+            width: 3.5rem;
+            height: 3.5rem;
+            padding: 0.5rem;
+            background: rgba(196, 196, 196, 0.10);
+            border-radius: 1.25rem;
+            display: flex;
+            place-items: center;
+
+            img {
+                width: 100%;
+            }
+        }
+    }
+    &__seperator{
+        display: flex;
+        gap: 4rem;
+        flex-basis: 60%;
+        @media screen and (max-width:$small){
+            flex-direction: column;
+        }
+  
+    }
+
+}
+
+
+.text.small {
+    @media screen and (min-width:$large){
+        max-width: 37.22%;
+    }
+}

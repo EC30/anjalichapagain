@@ -1,0 +1,83 @@
+.schedule{
+    display:flex;
+    gap:20px;
+    flex-direction: column;
+
+    &__start{
+        display:flex;
+        gap:14px;
+
+    }
+
+    &__middle{
+        border-radius: 20px 20px 0px 0px;
+        background: rgba(196, 196, 196, 0.05);
+        padding-top: 56px;
+        padding-bottom: 46px;
+        padding-left: 11.5px;
+        display:flex;
+        flex-direction: column;
+        gap:50px;
+        justify-content: space-between;
+        flex-wrap: wrap;
+
+        @media screen and (min-width:$large){
+            flex-direction:row;
+            padding-right: 39.86px;
+            //justify-content: space-around;
+        }
+        @media screen and (max-width:$small){
+            padding-top: 20px;
+            padding-bottom: 10px;
+        }
+
+        &__first{
+            display: flex;
+            flex-direction: row;
+            gap:50px;
+
+            @media screen and (min-width:$large){
+                flex-direction:row;
+                gap:250px;
+            }
+            @media screen and (max-width:$small){
+                flex-direction: column;
+                gap:14px;
+            }
+        }
+        &__second{
+            display: flex;
+            flex-direction: row;
+            gap:130px;
+
+            @media screen and (min-width:$large){
+                flex-direction:row;
+                gap:250px;
+            }
+            @media screen and (max-width:$small){
+                flex-direction: column;
+                gap:14px;
+                width: fit-content;
+            }
+        }
+        @media screen and (max-width:$small){
+            flex-direction: column;
+            gap:14px;
+        }
+    }
+    &__content{
+        display:flex;
+        gap:14px;
+    }
+    &__icon{
+        display: flex;
+        flex-direction: column;
+    }
+
+    &__image{
+        border-radius: 10px;
+        background: rgba(196, 196, 196, 0.10);
+        width: 29.977px;
+        height: 30px;
+    }
+}

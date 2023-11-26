@@ -1,0 +1,33 @@
+header{
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 56px;
+}
+.header__nav{
+    display: flex;
+    list-style-type: none;
+    justify-content: space-around;
+    gap:2rem;
+
+    @media  only screen and (max-width:992px) {
+      display: none;
+    }
+}
+.header__status{
+    @media  only screen and (max-width:992px) {
+      display: none;
+    }
+}
+.header__button{
+    display: flex;
+}
+
+.toggle_button{
+    @media screen and (min-width:1200px) {
+      display: none;
+    }
+    @media screen and (min-width:992px) {
+        display: none;
+      }
+}

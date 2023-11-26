@@ -1,0 +1,30 @@
+.hero{
+    display:flex;
+    justify-content: space-between;
+    flex-direction: row;
+    padding-top: 8%;
+    flex-wrap: wrap;
+    gap: 40px;
+
+
+    &__left{
+        display: flex;
+        flex-direction: column;
+        gap: 50px;
+        @media screen and (min-width:$large) {
+            max-width: 33%;
+        }
+    }
+    &__buttons{
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        gap:2rem;
+    }
+    &__covid{
+        @media screen and (max-width:$medium) {
+            max-width: 100%;
+        }
+    }
+}
+

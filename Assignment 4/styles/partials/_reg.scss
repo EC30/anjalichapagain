@@ -1,0 +1,82 @@
+.rr{
+    padding-left: 4.86%;
+    padding-right: 4.86%;
+    padding-bottom: 2%;
+    background-image: url("../images/bb.png");
+    padding-top: 4%;
+    display:flex;
+    gap:20px;
+    flex-direction: column;
+
+    &__content{
+        display: flex;
+        justify-content: space-between;
+        overflow: hidden;
+
+        @media screen and (max-width:$medium) {
+            flex-direction: column;
+        }
+}
+
+    &__left{
+        display: flex;
+        flex-direction: column;
+        gap:40px;
+        flex-wrap: wrap;
+        @media screen and (min-width:$large) {
+            width:40%;
+        }
+        @media screen and (max-width:$medium) {
+            order: 2;
+        }
+    }
+    &__input{
+        display: flex;
+        flex-direction: column;
+        gap:10px;
+        @media screen and (max-width:$large) {
+            width:80%
+        }
+    }
+    &__buttons{
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        gap:2rem;
+        @media screen and (max-width:$small) {
+            flex-direction: column;
+        }
+    }
+    &__verify{
+        @media screen and (max-width:$small) {
+            width: fit-content;
+        }
+    }
+    &__name{
+        border-radius: 20px;
+        background: rgba(11, 21, 60, 0.15);
+        width:100%;
+        height: 70px;
+        @media screen and (max-width:$small) {
+            height: 50px;
+        }
+    }
+    &__submit{
+        border-radius: $border-radius;
+        background: $secondary_color;
+        text-align: center;
+        color: #fff; 
+    }
+    &__text{
+        display: flex;
+        gap:20px;
+        flex-wrap: nowrap;
+
+    }
+
+    &__covid{
+        @media screen and (max-width:$medium) {
+            max-width: 100%;
+        }
+    }
+}

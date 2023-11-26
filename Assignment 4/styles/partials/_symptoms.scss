@@ -1,0 +1,97 @@
+.symptoms{
+    @media screen and (max-width:$medium) {
+        width: 100%;
+        //overflow: hidden;
+    }
+
+    &__title{
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        justify-content: center;
+        gap:2.5rem;
+        padding-top: 4%;
+        padding-bottom: 4%;
+    }
+    &__paragraph{
+            width: 60%;
+            margin: auto;
+        }
+
+    &__container {
+        text-align: center;
+        position: relative;
+
+        @media screen and (max-width:$medium){
+            display: none;
+        }
+        &__image {
+            position: absolute;
+            bottom: 0;
+        }
+    }
+    &__image{
+        @media screen and (min-width:$large){
+            display: none;
+        }
+    }
+
+    
+    &__cards {
+        position: absolute;
+        bottom: 32px;
+        display: flex;
+        flex-direction: column;
+        place-items: center;
+        gap: 32px;
+        width: 100%;
+        color: #fff;
+    }
+
+    &__row {
+        position: initial;
+        display: flex;
+        width: 90%;
+        justify-content: space-between;
+
+        @media screen and (max-width:$small){
+            width:50%;
+        }
+
+        &:nth-child(1) {
+            width: 70%;
+        }
+
+        &:nth-child(2) {
+            width: 80%;
+        }
+    }
+
+
+    &__card {
+        position: relative;
+
+        &__title {
+            background: rgba(196, 196, 196, 0.20);
+            color: #17C2EC;
+            padding: 23px 18px;
+            border-radius: 10px;
+            width: 300px;
+            font-size: 20px;
+        }
+
+        img {
+            position: absolute;
+            left: -50px;
+            top: 30px;
+
+            @media screen and (max-width:$small){
+                width: 31.608px;
+                height: 31.608px;
+                flex-shrink: 0;
+            }
+
+            
+        }
+    }
+}
