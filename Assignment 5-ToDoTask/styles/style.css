@@ -23,6 +23,11 @@ a {
   margin: 0 auto;
   width: 60%;
 }
+@media only screen and (max-width: 552px) {
+  .container {
+    width: 100%;
+  }
+}
 
 header {
   display: flex;
@@ -33,12 +38,13 @@ header {
   box-shadow: 2px 2px 2px #888888;
   padding-left: 20%;
   padding-right: 20%;
+  flex-wrap: nowrap;
 }
 @media only screen and (max-width: 552px) {
   header {
+    display: inline-block;
     flex-direction: column;
     padding-left: 0%;
-    padding-right: 0%;
   }
 }
 
@@ -47,11 +53,12 @@ header {
   list-style-type: none;
   justify-content: space-around;
   gap: 2rem;
+  font-size: 20px;
+  font-weight: bold;
 }
-@media only screen and (max-width: 552px) {
-  .header__nav {
-    flex-direction: column;
-  }
+
+.header__nav a:hover {
+  color: red;
 }
 
 .tabcontent {
@@ -78,6 +85,11 @@ header {
   font-size: 16px;
   height: 60px;
   background: #fff;
+}
+@media only screen and (max-width: 552px) {
+  .searchTerm, .text-bar {
+    height: 30px;
+  }
 }
 
 .searchButton, .addButton {
