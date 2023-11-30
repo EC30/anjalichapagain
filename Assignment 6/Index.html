@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Set the character set to UTF-8 -->
+    <meta charset="UTF-8">
+    <!-- Configure viewport for responsive design -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Link to an external stylesheet named "style.css" -->
+    <link rel="stylesheet" href="style.css">
+    <title>Image Carousel</title>
+</head>
+<body>
+    <!-- Container for the entire image carousel -->
+    <div class="carousel-container">
+        <!-- The actual carousel element -->
+        <div id="carousel" class="carousel">
+            <img src="images/image1.jpg" alt="Image 1">
+            <img src="images/image2.jpg" alt="Image 2">
+            <img src="images/image3.jpg" alt="Image 3">
+            <img src="images/image4.jpg" alt="Image 4">
+        </div>
+        <!-- Button to navigate to the previous slide -->
+        <button id="prevBtn" onclick="changeSlide(PREVIOUS)">❮</button>
+        <!-- Button to navigate to the next slide -->
+        <button id="nextBtn" onclick="changeSlide(NEXT)">❯</button>
+        <!-- Container for the navigation dots -->
+        <div id="dotContainer" class="dot-container"></div>
+    </div>
+    <!-- Link to an external JavaScript file named "index.js" -->
+    <script src="index.js"></script>
+</body>
+</html>
