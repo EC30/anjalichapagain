@@ -137,10 +137,10 @@ function handleTouchMove(event) {
     // Adjust the character's horizontal speed based on the distance moved
     speedX = deltaX / 10; //
 
-    if(event.touches[0].clientX< touchstartx){
-        doodler.img = doodlerRightImg;
-    }else{
+    if(event.touches[0].clientX< touchStartX){
         doodler.img = doodlerLeftImg;
+    }else{
+        doodler.img = doodlerRightImg;
     }
 }
 
