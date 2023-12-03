@@ -123,6 +123,7 @@ function handleTouchStart(event) {
     touchStartX = event.touches[0].clientX;
 }
 
+let doodlerDirection = 'right';
 /**
  * Function to handle touch move event
  * @param {TouchEvent} event - The touch event object.
@@ -130,10 +131,15 @@ function handleTouchStart(event) {
 function handleTouchMove(event) {
     // Prevent default behavior to avoid scrolling
     event.preventDefault();
+
     // Calculate the horizontal distance moved
     const deltaX = event.touches[0].clientX - touchStartX;
+
     // Adjust the character's horizontal speed based on the distance moved
     speedX = deltaX / 10; // You may need to adjust the division factor based on your game's responsiveness
+
+    // Update the doodler's direction based on the horizontal movement
+    doodlerDirection = speedX > 0 ? 'right' : 'left';
 }
 
 /**
@@ -225,27 +231,30 @@ function update() {
         ctx.fillText("Your score is " + score, CANVAS_HEIGHT / 7, CANVAS_HEIGHT * 7 / 8 + 50);
     }
 }
-
-/** Function to handle keyboard input and control player movement
+/**
+ * Function to handle keyboard input and control player movement
  * Handles animation based on user input.
  * @param {KeyboardEvent} e - The keyboard event object.
  */
 function animate(e) {
     // Check if the right arrow key or 'D' key is pressed
-    if (e.code == "ArrowRight" || e.code == "KeyD") { 
+    if (e.code == "ArrowRight" || e.code == "KeyD") {
         speedX = 4; // Set horizontal speed to move right
-        doodler.img = doodlerRightImg; // Set the doodler's image to face right
-    } 
+        doodlerDirection = 'right'; // Set the doodler's direction to face right
+    }
     // Check if the left arrow key or 'A' key is pressed
-    else if (e.code == "ArrowLeft" || e.code == "KeyA") { 
+    else if (e.code == "ArrowLeft" || e.code == "KeyA") {
         speedX = -4; // Set horizontal speed to move left
-        doodler.img = doodlerLeftImg; // Set the doodler's image to face left
-    } 
+        doodlerDirection = 'left'; // Set the doodler's direction to face left
+    }
     // Check if the 'Enter' key is pressed and the game is over
     else if (e.code == "Enter" && gameOver) {
         // Reset the game state and restart the game
         restartGame();
     }
+
+    // Set the doodler's image based on the direction
+    doodler.img = doodlerDirection === 'right' ? doodlerRightImg : doodlerLeftImg;
 }
 
 /**
