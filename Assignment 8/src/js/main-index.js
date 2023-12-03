@@ -123,7 +123,6 @@ function handleTouchStart(event) {
     touchStartX = event.touches[0].clientX;
 }
 
-let doodlerDirection = 'right';
 /**
  * Function to handle touch move event
  * @param {TouchEvent} event - The touch event object.
@@ -138,8 +137,11 @@ function handleTouchMove(event) {
     // Adjust the character's horizontal speed based on the distance moved
     speedX = deltaX / 10; //
 
-    // Update the doodler's direction based on the horizontal movement
-    doodlerDirection = speedX > 0 ? 'right' : 'left';
+    if(event.touches[0].clientX< touchstartx){
+        doodler.img = doodlerRightImg;
+    }else{
+        doodler.img = doodlerLeftImg;
+    }
 }
 
 /**
@@ -240,12 +242,12 @@ function animate(e) {
     // Check if the right arrow key or 'D' key is pressed
     if (e.code == "ArrowRight" || e.code == "KeyD") {
         speedX = 4; // Set horizontal speed to move right
-        doodlerDirection = 'right'; // Set the doodler's direction to face right
+        doodler.img = doodlerRightImg;// Set the doodler's direction to face right
     }
     // Check if the left arrow key or 'A' key is pressed
     else if (e.code == "ArrowLeft" || e.code == "KeyA") {
         speedX = -4; // Set horizontal speed to move left
-        doodlerDirection = 'left'; // Set the doodler's direction to face left
+        doodler.img = doodlerLeftImg; // Set the doodler's direction to face left
     }
     // Check if the 'Enter' key is pressed and the game is over
     else if (e.code == "Enter" && gameOver) {
@@ -253,8 +255,8 @@ function animate(e) {
         restartGame();
     }
 
-    // Set the doodler's image based on the direction
-    doodler.img = doodlerDirection === 'right' ? doodlerRightImg : doodlerLeftImg;
+    // // Set the doodler's image based on the direction
+    // doodler.img = doodlerDirection === 'right' ? doodlerRightImg : doodlerLeftImg;
 }
 
 /**
