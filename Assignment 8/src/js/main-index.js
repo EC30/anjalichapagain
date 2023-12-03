@@ -9,9 +9,11 @@ if (canvas) {
 canvas.height = CANVAS_HEIGHT;
 canvas.width = CANVAS_WIDTH;
 
-
 // Get the 2D rendering context for the canvas
 var ctx = canvas.getContext('2d');
+
+// Add a variable to track touch start position
+let touchStartX = 0;
 
 // Initial horizontal speed of the player
 let speedX = 0;
@@ -72,6 +74,43 @@ canvas.addEventListener('touchmove', handleTouchMove, false);
 
 // Listen for touch end event
 canvas.addEventListener('touchend', handleTouchEnd, false);
+
+// Listen for touch tap event
+canvas.addEventListener('touchstart', handleTouchTap, false);
+
+/**
+ * Function to handle touch tap event
+ * @param {TouchEvent} event - The touch event object.
+ */
+function handleTouchTap(event) {
+    // If the game is over, restart the game on tap
+    if (gameOver) {
+        restartGame();
+    }
+}
+
+/**
+ * Function to restart the game
+ */
+function restartGame() {
+    // Reset the game state and restart the game
+    doodler = new Character(
+        doodlerRightImg,
+        CANVAS_WIDTH / 2 - DOODLE_WIDTH / 2,
+        CANVAS_HEIGHT * 7 / 8 - DOODLE_HEIGHT,
+        DOODLE_WIDTH,
+        DOODLE_HEIGHT
+    );
+
+    speedX = 0; // Reset horizontal speed
+    speedY = initialspeedY; // Reset vertical speed
+    score = 0; // Reset the score
+    maxScore = 0; // Reset the maximum score
+    gameOver = false; // Reset the game over flag
+    platformCount = 0; // Reset the platform count
+    scoredPlatform = []; // Clear the list of scored platforms
+    loadTiles(); // Load the initial set of platforms
+}
 
 /**
  * Function to handle touch start event
@@ -182,11 +221,10 @@ function update() {
 
     // Display game over messages and final score if the game is over
     if (gameOver) {
-        ctx.fillText("Game Over: Press 'Enter' to Restart.", CANVAS_WIDTH / 7, CANVAS_HEIGHT * 7 / 8);
+        ctx.fillText("Game Over: Tap to Restart.", CANVAS_WIDTH / 7, CANVAS_HEIGHT * 7 / 8);
         ctx.fillText("Your score is " + score, CANVAS_HEIGHT / 7, CANVAS_HEIGHT * 7 / 8 + 50);
     }
 }
-
 
 /** Function to handle keyboard input and control player movement
  * Handles animation based on user input.
@@ -206,22 +244,7 @@ function animate(e) {
     // Check if the 'Enter' key is pressed and the game is over
     else if (e.code == "Enter" && gameOver) {
         // Reset the game state and restart the game
-        doodler = new Character(
-            doodlerRightImg, 
-            CANVAS_WIDTH / 2 - DOODLE_WIDTH / 2, 
-            CANVAS_HEIGHT * 7 / 8 - DOODLE_HEIGHT, 
-            DOODLE_WIDTH, 
-            DOODLE_HEIGHT
-        );
-
-        speedX = 0; // Reset horizontal speed
-        speedY = initialspeedY; // Reset vertical speed
-        score = 0; // Reset the score
-        maxScore = 0; // Reset the maximum score
-        gameOver = false; // Reset the game over flag
-        platformCount = 0; // Reset the platform count
-        scoredPlatform = []; // Clear the list of scored platforms
-        loadTiles(); // Load the initial set of platforms
+        restartGame();
     }
 }
 
@@ -262,6 +285,7 @@ function loadTiles() {
         tilesArray.push(newTile);
     }
 }
+
 /**
  * Function to create a new platform tile and add it to the tilesArray
  */
@@ -297,7 +321,6 @@ function detectCollision(a, b) {
            a.y + a.height > b.y;
 }
 
-
 /**
  * Function to update the player's score based on vertical speed (speedY)
  */
@@ -315,5 +338,3 @@ function updateScore() {
         maxScore -= points; // Decrement the maximum score for downward movement (falling)
     }
 }
-
-
