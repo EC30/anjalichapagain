@@ -136,7 +136,7 @@ function handleTouchMove(event) {
     const deltaX = event.touches[0].clientX - touchStartX;
 
     // Adjust the character's horizontal speed based on the distance moved
-    speedX = deltaX / 10; // You may need to adjust the division factor based on your game's responsiveness
+    speedX = deltaX / 10; //
 
     // Update the doodler's direction based on the horizontal movement
     doodlerDirection = speedX > 0 ? 'right' : 'left';
