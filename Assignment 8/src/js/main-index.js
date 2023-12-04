@@ -22,7 +22,7 @@ let speedX = 0;
 let speedY = 0;
 
 // Initial vertical speed when jumping
-let initialspeedY = -8;
+let initialspeedY = -7;
 
 // Acceleration due to gravity
 let gravity = 0.4;
@@ -225,12 +225,12 @@ function update() {
     // Display the current score on the canvas
     ctx.fillStyle = "black";
     ctx.font = "16px Arial";
-    ctx.fillText(score, 5, 20);
+    ctx.fillText(score, 10, 40);
 
     // Display game over messages and final score if the game is over
     if (gameOver) {
-        ctx.fillText("Game Over: Tap to Restart.", CANVAS_WIDTH / 7, CANVAS_HEIGHT * 7 / 8);
-        ctx.fillText("Your score is " + score, CANVAS_HEIGHT / 7, CANVAS_HEIGHT * 7 / 8 + 50);
+        ctx.fillText("Game Over: Tap to Restart.", CANVAS_WIDTH /5, CANVAS_HEIGHT * 8 / 12);
+        ctx.fillText("Your score is " + score, CANVAS_WIDTH/5, CANVAS_HEIGHT * 7/12);
     }
 }
 /**
@@ -254,9 +254,6 @@ function animate(e) {
         // Reset the game state and restart the game
         restartGame();
     }
-
-    // // Set the doodler's image based on the direction
-    // doodler.img = doodlerDirection === 'right' ? doodlerRightImg : doodlerLeftImg;
 }
 
 /**
