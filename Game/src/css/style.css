@@ -1,0 +1,19 @@
+body{
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+    width:40%;
+    margin:auto;
+    
+}
+.canvas{
+    background-color: aqua;
+    border: 1px solid black;
+    max-width: 100%;
+    max-height:100%;
+   
+    
+}
+#layer1,#layer2,#layer3,#layer4,#player,#angler1,#angler2,#lucky,#enemy2,#projectile,#boss,#drone,#smoke,#fire{
+    display: none;
+}
