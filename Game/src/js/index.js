@@ -1,18 +1,25 @@
 window.addEventListener('load', function () {
     const canvas = this.document.getElementById('canvas');
     const ctx = canvas.getContext('2d');
-    canvas.width = 800;
-    canvas.height = 500;
-    // canvas.width = window.innerWidth;
-    // canvas.height = window.innerHeight;
+    canvas.width=this.window.innerWidth;
+    canvas.height=this.window.innerHeight;
+    
+    console.log(canvas.width);
+    console.log(canvas.height);
+
 
     class InputHandler {
         constructor(game) {
             this.game = game;
+            
             window.addEventListener('keydown', e => {
+
+                // console.log(e.key);
+                console.log(this.game.keys);
+
                 if(( (e.key ==='ArrowUp') || (e.key === 'ArrowDown') ) && this.game.keys.indexOf(e.key)=== -1){
                     this.game.keys.push(e.key);
-                }else if(e.key==='Enter'){
+                }else if(e.key==='Control'){
                     this.game.player.shootTop();
                 } else if(e.key==='d'){
                     this.game.debug =!this.game.debug;
@@ -30,25 +37,51 @@ window.addEventListener('load', function () {
 
     class Projectile {
         constructor(game, x, y) {
-            this.game=game;
+            this.game = game;
             this.x = x;
             this.y = y;
             this.width = 10;
             this.height = 3;
-            this.speed = 3; 
-            this.markedForDeletion=false;
-            this.image=document.getElementById('projectile');
+            this.speed = 3;
+            this.markedForDeletion = false;
+            this.image = document.getElementById('projectile'); 
         }
+    
         update() {
             this.x += this.speed;
-            if(this.x > this.game.width * 0.8){
+            if (this.x > this.game.width * 0.8) {
                 this.markedForDeletion = true;
             }
         }
+    
         draw(context) {
             context.drawImage(this.image, this.x, this.y);
         }
     }
+    class EnemyProjectile {
+        constructor(game, x, y, speed) {
+            this.game = game;
+            this.x = x;
+            this.y = y;
+            this.width = 10;
+            this.height = 3;
+            this.speed = -speed; // Set the initial speed to a negative value for right-to-left movement
+            this.markedForDeletion = false;
+            this.image = document.getElementById('projectile');
+        }
+    
+        update() {
+            this.x += this.speed;
+            if (this.x < 0) {
+                this.markedForDeletion = true;
+            }
+        }
+    
+        draw(context) {
+            context.drawImage(this.image, this.x, this.y);
+        }
+    }
+    
 
     class Explosion{
         constructor(game, x, y) {
@@ -64,9 +97,23 @@ window.addEventListener('load', function () {
         }
         update(deltaTime){
             this.frameX++;
+            if(this.frameX >this.maxFrame){
+                this.markedForDeletion=true;
+            }
         }
         draw(context){
-            context.drawImage(this.image, this.x, this.y);
+            //context.drawImage(this.image, this.x, this.y);
+            context.drawImage(
+                this.image,
+                this.frameX * this.spritewidth,
+                0,
+                this.spritewidth,
+                this.spriteheight,
+                this.x,
+                this.y,
+                this.width,
+                this.height
+            );
         }
     }
 
@@ -185,6 +232,7 @@ window.addEventListener('load', function () {
         shootButtom() {
             if(this.game.ammo > 0) {
                 this.Projectiles.push(new Projectile(this.game, this.x + 80, this.y + 175));
+                // this.Projectiles.push(new Projectile(this.game, this.x + 80, this.y + 175, 'player'));
                 this.game.ammo--;
             }
         }
@@ -206,6 +254,7 @@ window.addEventListener('load', function () {
             this.frameX=0;
             this.frameY=0;
             this.maxFrame=37;
+            this.enemyProjectiles = [];
         }
         update(){
             this.x +=this.speedX-this.game.speed;
@@ -214,6 +263,13 @@ window.addEventListener('load', function () {
                 this.frameX++;
             }else{
                 this.frameX=0;
+            }
+        }
+        throwProjectile() {
+            if (Math.random() < 0.02) {
+                const projectileX = this.x + this.width; 
+                this.enemyProjectiles.push(new EnemyProjectile(this.game, projectileX, this.y + this.height / 2, -3));
+                console.log(this.enemyProjectiles);
             }
         }
         draw(context){
@@ -236,8 +292,12 @@ window.addEventListener('load', function () {
                 context.font='20px Helvetica';
                 context.fillText(this.lives, this.x,this.y);
             }
+            this.enemyProjectiles.forEach(projectile => {
+                projectile.draw(context);
+            });
         }
     }
+
     class Angler1 extends Enemy {
          constructor(game){
             super(game);
@@ -253,13 +313,13 @@ window.addEventListener('load', function () {
     class Angler2 extends Enemy {
         constructor(game) {
             super(game);
-            this.width = 230;
-            this.height = 165;
+            this.width = 228;
+            this.height = 169;
             this.lives = 3;
             this.score = this.lives;
             this.y = Math.random() * (this.game.height * 0.9 - this.height);
             this.image = document.getElementById('angler1');
-            this.frameY = Math.floor(Math.random() * 2);
+            this.frameY = Math.floor(Math.random() * 3);
         }
     }
     class lucky extends Enemy {
@@ -312,6 +372,7 @@ window.addEventListener('load', function () {
             this.image2 = document.getElementById('layer2');
             this.image3 = document.getElementById('layer3');
             this.image4 = document.getElementById('layer4');
+            
             this.layer1 = new Layer(this.game, this.image1, 0.2);
             this.layer2 = new Layer(this.game, this.image2, 0.4);
             this.layer3 = new Layer(this.game, this.image3, 1);
@@ -333,8 +394,8 @@ window.addEventListener('load', function () {
             this.game = game;
             this.image = image;
             this.speedModifier = speedModifier;
-            this.width = 1768;
-            this.height = 1000;
+            this.width = canvas.width;
+            this.height = canvas.height;
             this.x = 0;
             this.y = 0;
         }
@@ -345,8 +406,9 @@ window.addEventListener('load', function () {
         }
     
         draw(context) {
-            context.drawImage(this.image, this.x, this.y);
-            context.drawImage(this.image, this.x+this.width, this.y);
+            // context.drawImage(this.image, this.x, this.y);
+            context.drawImage(this.image, this.x, this.y, canvas.width, canvas.height);
+            context.drawImage(this.image, this.x+this.width, this.y, canvas.width, canvas.height);
         }
     }
     
@@ -409,6 +471,7 @@ window.addEventListener('load', function () {
             this.keys = [];
             this.enemies=[];
             this.explosions=[];
+            this.enemiesProjectiles = [];
             this.ammo = 20;
             this.maxAmmo = 50;
             this.ammoTimer = 0;
@@ -416,17 +479,55 @@ window.addEventListener('load', function () {
             this.gameOver=false;
             this.score=0;
             this.lives=10;
-            this.winingscore=30;
-            this.gameTime=0;
-            this.timeLimit=30000;
+            this.winingscore=60;
+            // this.gameTime=0;
+            // this.timeLimit=30000;
             this.speed=1;
             this.debug=false;
+            this.currentLevel = 1;
+            this.levelDurations = [60000, 90000, 120000];
+            this.levelTimer = 0;
+            this.levelStarted = false;
         }
 
         update(deltaTime) {
+            // Code for Game Over
             if (this.gameOver) {
                 return;
             }
+
+            if (!this.levelStarted) {
+                this.levelStarted = true;
+                this.enemyTimer = 0;
+                this.levelTimer = 0;
+            }
+    
+            // Update level timer
+            this.levelTimer += deltaTime;
+    
+            // Check if the current level has ended
+            if (this.levelTimer >= this.levelDurations[this.currentLevel - 1]) {
+                this.levelStarted = false;
+                this.levelTimer = 0;
+    
+                // Move to the next level
+                this.currentLevel++;
+    
+                // Check if all levels are completed
+                if (this.currentLevel > this.levelDurations.length) {
+                    this.gameOver = true; 
+                    return;
+                }
+            }
+
+            if (this.enemyTimer > this.enemyInterval && !this.gameOver && this.levelStarted) {
+                this.addEnemy();
+                this.enemyTimer = 0;
+            } else {
+                this.enemyTimer += deltaTime;
+            }
+
+
             if(!this.gameOver) this.gameTime +=deltaTime;
             if(this.gameTime > this.timeLimit) this.gameOver=true;
             this.background.update();
@@ -444,22 +545,37 @@ window.addEventListener('load', function () {
 
             this.enemies.forEach(enemy=>{
                 enemy.update();
+                //enemy.throwProjectile();
                 if(this.checkCollision(this.player,enemy)){
                     enemy.markedForDeletion=true;
                     this.addExplosion(enemy);
-                    this.lives--;
+                    // this.lives--;
                     if(enemy.type ==='lucky'){
                         this.player.enterPowerUp();
+                    }else{
+                        this.lives--;
                     }
                 }
+
+                this.enemiesProjectiles.forEach(projectile => {
+                    projectile.update();
+                    if (this.checkCollision(this.player, projectile)) {
+                        projectile.markedForDeletion = true;
+                        this.lives--;
+                    }
+                });
+        
+                // Remove projectiles that are marked for deletion
+                this.enemiesProjectiles = this.enemiesProjectiles.filter(projectile => !projectile.markedForDeletion);
+
                 this.player.Projectiles.forEach(Projectile=>{
-                    if(this.checkCollision(Projectile,enemy)){
+                    if(this.checkCollision(Projectile,enemy,"projectile")){
                         enemy.lives--;
                         Projectile.markedForDeletion=true;
                         this.addExplosion(enemy);
                         if(enemy.lives <=0){
                             enemy.markedForDeletion=true;
-                            if(enemy.type==='boss'){
+                            if(enemy.type === 'boss'){
                                 for(let i=0;i<5;i++){
                                     this.enemies.push(new Drone(this,
                                         enemy.x+Math.random()*enemy.width,
@@ -514,15 +630,17 @@ window.addEventListener('load', function () {
             if(random_explosion < 1){
                 this.explosions.push(new Smoke(this,enemy.x,enemy.y));
             }
-            // }else{
-            //     this.explosions.push(new Fire(this));
-            // }
         }
-        checkCollision(a,b){
+        checkCollision(a,b,c="other"){
+            // console.log(c);
+            if(b.type === "lucky" && c=="projectile"){
+                return false;
+            }
             return (a.x <b.x+b.width &&
             a.x + a.width > b.x &&
             a.y <b.y+b.height &&
             a.height +a.y>b.y)
+            
         }
     }
 
