@@ -15,7 +15,9 @@ class Enemy{
         this.y = 0;
         this.reachedMiddle = false;
     }
-    update(){   
+    update(){  
+        // this.x +=this.speedX;
+
         this.enemyProjectiles.forEach(enemyProjectile=> {
             enemyProjectile.update();
         });
@@ -64,15 +66,14 @@ class Enemy{
 
             //console.log(this.y);
         }
-
         
 
         if(this.x+this.width<0)this.markedForDeletion=true;
-        // if(this.frameX < this.maxFrame){
-        //     this.frameX++;
-        // }else{
-        //     this.frameX=0;
-        // }
+        if(this.frameX < this.maxFrame){
+            this.frameX++;
+        }else{
+            this.frameX=0;
+        }
     }
     throwProjectile() {
         if (Math.random() < 0.019 && this.type == "boss") {

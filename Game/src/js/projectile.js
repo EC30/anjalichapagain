@@ -29,7 +29,7 @@ class EnemyProjectile {
         this.y = y;
         this.width = 10;
         this.height = 3;
-        this.speed = -speed; // Set the initial speed to a negative value for right-to-left movement
+        this.speed = -speed;
         this.markedForDeletion = false;
         this.image = document.getElementById('projectile');
     }

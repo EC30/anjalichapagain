@@ -56,17 +56,17 @@ class UI {
     draw(context) {
         context.save();
         context.fillStyle = this.color;
-        context.font=this.fontSize +'px'+this.fontFamily;
-        context.fillText('Score:' +this.game.score,20,40);
+        context.font = this.fontSize + 'px ' + this.fontFamily;
+        context.fillText('Score: ' + this.game.score,20,40);
         if (this.game.lives > 0) {
-            context.fillText('Lives: ' + this.game.lives, 100, 40);
+            context.fillText('Lives: ' + this.game.lives, 140, 40);
         } else {
-            context.fillText('Out of Lives',this.game.width*0.5,this.game.height*0.5-40);
+            popup.style.display = "flex";
             this.game.gameOver = true;
             return;
         }
 
-        context.fillText('Level:' +this.game.currentLevel,200,40);
+        context.fillText('Level: ' +this.game.currentLevel,280,40);
         
         for(let i = 0; i < this.game.ammo; i++) {
             context.fillRect(20 + 5 * i, 50, 3, 20);

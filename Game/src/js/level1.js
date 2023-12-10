@@ -1,12 +1,5 @@
 window.addEventListener('load', function () {
-    const canvas = this.document.getElementById('canvas');
-    const ctx = canvas.getContext('2d');
-    canvas.width=this.window.innerWidth;
-    canvas.height=this.window.innerHeight;
     
-    console.log(canvas.width);
-    console.log(canvas.height);
-
     class Game {
         constructor(width, height) {
             this.width = width;
@@ -21,7 +14,6 @@ window.addEventListener('load', function () {
             this.enemies=[];
             this.enemiesNumber=10;
             this.explosions=[];
-            //this.enemiesProjectiles = [];
             this.ammo = 20;
             this.maxAmmo = 50;
             this.ammoTimer = 0;
@@ -30,14 +22,14 @@ window.addEventListener('load', function () {
             this.score=0;
             this.lives=10;
             this.winingscore=60;
+            this.levels = [
+                { enemiesNumber: 10, enemyInterval: 1000, winingscore: 40 },
+                { enemiesNumber: 20, enemyInterval: 2000, winingscore: 50 },
+            ];
             this.bossAdded=false;
-            // this.gameTime=0;
-            // this.timeLimit=30000;
             this.speed=1;
             this.debug=false;
             this.currentLevel = 1;
-            // this.levelDurations = [60000, 90000, 120000];
-            // this.levelTimer = 0;
             this.levelStarted = false;
         }
 
@@ -47,40 +39,13 @@ window.addEventListener('load', function () {
                 return;
             }
 
-            // if (!this.levelStarted) {
-            //     this.levelStarted = true;
-            //     this.enemyTimer = 0;
-            //     this.levelTimer = 0;
-            // }
-    
-            // // Update level timer
-            // this.levelTimer += deltaTime;
-    
-            // // Check if the current level has ended
-            // if (this.levelTimer >= this.levelDurations[this.currentLevel - 1]) {
-            //     this.levelStarted = false;
-            //     this.levelTimer = 0;
-    
-            //     // Move to the next level
-            //     this.currentLevel++;
-    
-            //     // Check if all levels are completed
-            //     if (this.currentLevel > this.levelDurations.length) {
-            //         this.gameOver = true; 
-            //         return;
-            //     }
-            // }
-
-            // if (this.enemyTimer > this.enemyInterval && !this.gameOver && this.levelStarted) {
-            //     this.addEnemy();
-            //     this.enemyTimer = 0;
-            // } else {
-            //     this.enemyTimer += deltaTime;
-            // }
-
+            if (!this.levelStarted) {
+                this.startLevel();
+                this.levelStarted = true;
+            }
 
             if(!this.gameOver) this.gameTime +=deltaTime;
-            if(this.gameTime > this.timeLimit) this.gameOver=true;
+            //if(this.gameTime > this.timeLimit) this.gameOver=true;
             this.background.update();
             this.background.layer4.update();
             this.player.update(deltaTime);
@@ -116,29 +81,10 @@ window.addEventListener('load', function () {
                     //projectile.update();
                     if (this.checkCollision(projectile, this.player, "player")) {
                         projectile.markedForDeletion = true;
-                        // console.log(projectile);
-                        // console.log(this.player);
-                        // console.log(player);
-                        // let a = projectile;
-                        // let b = this.player;
-                        // console.log(a.x <b.x+b.width);
-                        // console.log(a.x + a.width > b.x);
-                        // console.log(a.y <b.y+b.height);
-                        // console.log(a.height +a.y>b.y);
-
                         this.lives--;
-                        console.log(this.lives);
                     }
                 });
-        
-                // Remove projectiles that are marked for deletion
                 enemy.enemyProjectiles = enemy.enemyProjectiles.filter(projectile => !projectile.markedForDeletion);
-
-                //
-                //
-                //
-                ///
-                //
 
                 this.player.Projectiles.forEach(Projectile=>{
                     if(this.checkCollision(Projectile,enemy,"projectile")){
@@ -162,6 +108,7 @@ window.addEventListener('load', function () {
                     }
                 })
             });
+            
 
             this.enemies=this.enemies.filter(enemy=>!enemy.markedForDeletion);
             if(this.enemyTimer > this.enemyInterval && !this.gameOver) {
@@ -171,6 +118,22 @@ window.addEventListener('load', function () {
                 this.enemyTimer += deltaTime;
             }
             //console.log(this.enemies);
+        }
+        startLevel() {
+            console.log("Start Level:", this.currentLevel);
+            
+            if (this.levels && this.levels.length > this.currentLevel) {
+                const levelProperties = this.levels[this.currentLevel];
+                console.log("Level Properties:", levelProperties);
+        
+                this.enemiesNumber = levelProperties.enemiesNumber;
+                this.enemyInterval = levelProperties.enemyInterval;
+                this.winingscore = levelProperties.winingscore;
+        
+                // Reset any other level-specific properties here...
+            } else {
+                console.error("Invalid level or levels array is not defined.");
+            }
         }
 
         draw(context) {
@@ -199,7 +162,6 @@ window.addEventListener('load', function () {
                     this.enemies.push(new lucky(this));
                 }
             }
-            
             // Only add the boss enemy if it hasn't been added before
             if (!this.bossAdded && this.score > 1) {
                 this.enemies.push(new Boss(this));
@@ -208,17 +170,21 @@ window.addEventListener('load', function () {
             // If Boss Defeated Level Up
             if (this.bossAdded && this.enemies.length == 0) {
                 //Level Up Code
-                this.currentLevel++;
-                showLevelCompletionPopup(game.currentLevel - 1);
+                // this.currentLevel++;
                 this.bossAdded = false;
+                //stop animation
+                stopAnimation();
+                //display Level Completed
+                overlay.style.display = "flex";
+                
             }
-
-
         }
         addExplosion(enemy){
             const random_explosion=Math.random();
-            if(random_explosion < 1){
+            if(random_explosion < 0.5){
                 this.explosions.push(new Smoke(this,enemy.x,enemy.y));
+            } else{
+                this.explosions.push(new Fire(this,enemy.x,enemy.y)); 
             }
         }
         checkCollision(a,b,c="other"){
@@ -240,18 +206,10 @@ window.addEventListener('load', function () {
             
         }
     }
-
-    const game = new Game(canvas.width, canvas.height);
-    let lastTime = 0;
-
-    function animate(timeStamp) {
-        const deltaTime = timeStamp - lastTime;
-        lastTime = timeStamp;
-        ctx.clearRect(0,0,canvas.width,canvas.height);
-        game.draw(ctx);
-        game.update(deltaTime);
-        requestAnimationFrame(animate);
-    }
+    
+    game = new Game(canvas.width, canvas.height);
+    
+    
 
     animate(0);
 });
