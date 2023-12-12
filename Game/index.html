@@ -15,20 +15,22 @@
   <div id="overlay">
     <img id="image" src="./src/images/tick.png">
     <h2>Congratulations!</h2>
-    <h2>You have completed Level</h2>
+    <h3>You have completed Level</h3>
     <button id="next-level">Play Next Level</button>
   </div>
 
   <div id="popup">
-    <h2>Sorry</h2>
-    <h2>Out of Lives</h2>
-    <button id="next-level">Play Again</button>
+    <h2>Sorry, Out of Lives</h2>
+    <button id="play">Play Again</button>
   </div>
 
   <div id="pause">
     <h2>Your game is paused</h2>
     <button id="continue" onclick="">Continue</button>
   </div>
+
+
+  <audio id="enemyDeathSound" preload="auto" src="https://s3.amazonaws.com/nuclearlaunchdetected/mp3/Marine_Death01.mp3"></audio>
 
   <img id="player" src="./src/images/anime.png">
   <!-- <img id="player" src="./src/images/aa.png"> -->
@@ -52,6 +54,7 @@
   <script src="./src/js/explosion.js"></script>
   <script src="./src/js/enemy.js"></script>
   <script src="./src/js/projectile.js"></script>
+  <script src="./src/js/game.js"></script>
   <script src="./src/js/level1.js"></script>
 </body>
 </html>

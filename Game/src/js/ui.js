@@ -66,29 +66,29 @@ class UI {
             return;
         }
 
-        context.fillText('Level: ' +this.game.currentLevel,280,40);
+        context.fillText('Level: ' + (parseInt(this.game.currentLevel) + 1), 280, 40);
         
         for(let i = 0; i < this.game.ammo; i++) {
             context.fillRect(20 + 5 * i, 50, 3, 20);
         }
-        const formattedTime =(this.game.gameTime*0.001).toFixed(1);
-        context.fillText('Timer: '+formattedTime,20,100);
+        // const formattedTime =(this.game.gameTime*0.001).toFixed(1);
+        // context.fillText('Timer: '+formattedTime,20,100);
         context.restore();
         if(this.game.gameOver){
-            context.textAlign='center';
-            let message1;
-            let message2;
-            if(this.game.score>this.game.winingscore){
-                message1='You Win!';
-                message2='Well done';
-            }else{
-                message1='You lose!';
-                message2='Try again next time!';
-            }
-            context.font ='50px' +this.fontFamily;
-            context.fillText(message1,this.game.width*0.5,this.game.height*0.5-40);
-            context.font ='25px' +this.fontFamily;
-            context.fillText(message2,this.game.width*0.5,this.game.height*0.5+40);
+            // context.textAlign='center';
+            // let message1;
+            // let message2;
+            // if(this.game.score>this.game.winingscore){
+            //     message1='You Win!';
+            //     message2='Well done';
+            // }else{
+            //     message1='You lose!';
+            //     message2='Try again next time!';
+            // }
+            // context.font ='50px' +this.fontFamily;
+            // context.fillText(message1,this.game.width*0.5,this.game.height*0.5-40);
+            // context.font ='25px' +this.fontFamily;
+            // context.fillText(message2,this.game.width*0.5,this.game.height*0.5+40);
         }
     }
 }

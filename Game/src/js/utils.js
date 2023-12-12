@@ -1,6 +1,43 @@
 const canvas = this.document.getElementById('canvas');
 const ctx = canvas.getContext('2d');
 let game;
+let levelCompleteScore = 0;
+let startLevel = 0;
+let runningLevel = startLevel;
+
+var levels = [
+    { 
+        enemiesNumber: 10,
+        enemyInterval: 1000,
+        ammo : 20,
+        maxAmmo : 50,
+        ammoInterval : 500,
+        lives : 10,
+        winingscore : 60,
+        speed : 1,
+            
+    },
+    { 
+        enemiesNumber: 20, 
+        enemyInterval: 500,
+        ammo : 20,
+        maxAmmo : 50,
+        ammoInterval : 500,
+        lives : 20,
+        winingscore : 160,
+        speed : 2,
+    },
+    { 
+        enemiesNumber: 30, 
+        enemyInterval: 200,
+        ammo : 20,
+        maxAmmo : 50,
+        ammoInterval : 500,
+        lives : 30,
+        winingscore : 260,
+        speed : 3,
+    },
+];
 
 const overlay = document.getElementById("overlay")
 
@@ -13,11 +50,18 @@ var animation;
 var isAnimating = true;
 
 document.getElementById("next-level").addEventListener("click", function () {
-    game.currentLevel++; 
+    runningLevel++;
+    overlay.style.display = "none";
     // game.bossAdded = false; 
     // game.levelStarted = true;
-    // game.startLevel(); 
-    overlay.style.display = "none";
+    //game.startLevel(); 
+    if(runningLevel >= levels.length){
+        //Code for game Over 
+        alert("Game Over");
+        runningLevel = startLevel;
+    }
+
+    startNewGame(runningLevel);
     
     //remove projectiles
     game.player.Projectiles = [];
@@ -25,9 +69,17 @@ document.getElementById("next-level").addEventListener("click", function () {
     //start Animation
     startAnimation();
 });
+
+document.getElementById("play").addEventListener("click", function () {
+    game.resetGame();
+    startAnimation();
+    popup.style.display = "none";
+});
+
 document.getElementById("continue").addEventListener("click", function () {
     pause.style.display = "none";
     startAnimation();
+    
 });
 
 function animate(timeStamp) {
@@ -60,4 +112,8 @@ function getRandomInteger(min, max) {
 
 function moveToNextLevel() {
     console.log("MOVE TO NEXT LEVEL")
+}
+
+function startNewGame(level){
+    game = new Game(canvas.width, canvas.height, level);
 }
