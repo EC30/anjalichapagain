@@ -18,7 +18,10 @@ class Projectile {
     }
 
     draw(context) {
-        context.drawImage(this.image, this.x, this.y);
+        const imageWidth = 30; 
+        const imageHeight = 20; 
+    
+        context.drawImage(this.image, this.x, this.y, imageWidth, imageHeight);
     }
 }
 
@@ -31,7 +34,7 @@ class EnemyProjectile {
         this.height = 3;
         this.speed = -speed;
         this.markedForDeletion = false;
-        this.image = document.getElementById('projectile');
+        this.image = document.getElementById('bullet');
     }
 
     update() {
@@ -42,6 +45,9 @@ class EnemyProjectile {
     }
 
     draw(context) {
-        context.drawImage(this.image, this.x, this.y);
+        const imageWidth = 60; 
+        const imageHeight = 60; 
+    
+        context.drawImage(this.image, this.x, this.y, imageWidth, imageHeight);
     }
 }

@@ -79,7 +79,6 @@ class Enemy{
         if (Math.random() < 0.019 && this.type == "boss") {
             this.throwProjectile2();
         }
-
         if (Math.random() < 0.004 && this.type == "drone") {
             this.throwProjectile2();
         }

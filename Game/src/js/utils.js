@@ -7,7 +7,7 @@ let runningLevel = startLevel;
 
 var levels = [
     { 
-        enemiesNumber: 10,
+        enemiesNumber: 1,
         enemyInterval: 1000,
         ammo : 20,
         maxAmmo : 50,
@@ -15,10 +15,11 @@ var levels = [
         lives : 10,
         winingscore : 60,
         speed : 1,
+        backgroundImage: document.getElementById('layer1'),
             
     },
     { 
-        enemiesNumber: 20, 
+        enemiesNumber: 2, 
         enemyInterval: 500,
         ammo : 20,
         maxAmmo : 50,
@@ -26,9 +27,10 @@ var levels = [
         lives : 20,
         winingscore : 160,
         speed : 2,
+        backgroundImage: document.getElementById('layer2'),
     },
     { 
-        enemiesNumber: 30, 
+        enemiesNumber: 3, 
         enemyInterval: 200,
         ammo : 20,
         maxAmmo : 50,
@@ -36,6 +38,19 @@ var levels = [
         lives : 30,
         winingscore : 260,
         speed : 3,
+        backgroundImage: document.getElementById('layer3'),
+    },
+    { 
+        enemiesNumber: 4, 
+        enemyInterval: 200,
+        ammo : 20,
+        maxAmmo : 50,
+        ammoInterval : 500,
+        lives : 20,
+        winingscore : 260,
+        timer:120000,
+        speed : 3,
+        backgroundImage: document.getElementById('layer3'),
     },
 ];
 
@@ -116,4 +131,5 @@ function moveToNextLevel() {
 
 function startNewGame(level){
     game = new Game(canvas.width, canvas.height, level);
+
 }

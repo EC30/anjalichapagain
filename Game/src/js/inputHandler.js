@@ -18,9 +18,8 @@ class InputHandler {
                     pause.style.display = "flex";
                     stopAnimation();
                 }else{
-                    
-                        startAnimation();
-                        pause.style.display = "none";
+                    startAnimation();
+                    pause.style.display = "none";
                 }
             } 
         });

@@ -1,20 +1,19 @@
 class Background {
     constructor(game) {
         this.game = game;
-        this.image1 = document.getElementById('layer1');
-        this.image2 = document.getElementById('layer2');
-        this.image3 = document.getElementById('layer3');
-        this.image4 = document.getElementById('layer4');
-        
-        this.layer1 = new Layer(this.game, this.image1, 0.2);
-        this.layer2 = new Layer(this.game, this.image2, 0.4);
-        this.layer3 = new Layer(this.game, this.image3, 1);
-        this.layer4 = new Layer(this.game, this.image4, 1.5);
-        this.layers = [this.layer1,this.layer2,this.layer3];
+        this.images = [
+            document.getElementById('layer1'),
+            document.getElementById('layer2'),
+            document.getElementById('layer3'),
+            document.getElementById('layer4')
+        ];
+        this.layers = this.images.map((image, index) => new Layer(this.game, image, 0.2 * (index + 1)));
     }
 
-    update() {
+    update(level) {
+        // Update the background image based on the current level
         this.layers.forEach(layer => layer.update());
+        this.layers.forEach(layer => layer.image = levels[level].backgroundImage);
     }
 
     draw(context) {
@@ -39,11 +38,11 @@ class Layer {
     }
 
     draw(context) {
-        // context.drawImage(this.image, this.x, this.y);
         context.drawImage(this.image, this.x, this.y, canvas.width, canvas.height);
-        context.drawImage(this.image, this.x+this.width, this.y, canvas.width, canvas.height);
+        context.drawImage(this.image, this.x + this.width, this.y, canvas.width, canvas.height);
     }
 }
+
 
 class UI {
     constructor(game) {
@@ -74,21 +73,5 @@ class UI {
         // const formattedTime =(this.game.gameTime*0.001).toFixed(1);
         // context.fillText('Timer: '+formattedTime,20,100);
         context.restore();
-        if(this.game.gameOver){
-            // context.textAlign='center';
-            // let message1;
-            // let message2;
-            // if(this.game.score>this.game.winingscore){
-            //     message1='You Win!';
-            //     message2='Well done';
-            // }else{
-            //     message1='You lose!';
-            //     message2='Try again next time!';
-            // }
-            // context.font ='50px' +this.fontFamily;
-            // context.fillText(message1,this.game.width*0.5,this.game.height*0.5-40);
-            // context.font ='25px' +this.fontFamily;
-            // context.fillText(message2,this.game.width*0.5,this.game.height*0.5+40);
-        }
     }
 }

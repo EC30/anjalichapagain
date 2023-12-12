@@ -55,6 +55,6 @@
     box-shadow: 0 5px 5px rgba(0,0,0,0.2);
 }
 
-#layer1,#layer2,#layer3,#layer4,#player,#angler1,#angler2,#lucky,#enemy2,#projectile,#boss,#drone,#smoke,#fire{
+#layer1,#layer2,#layer3,#layer4,#player,#angler1,#angler2,#lucky,#enemy2,#projectile,#boss,#drone,#smoke,#fire,#fires,#bullet{
     display: none;
 }
