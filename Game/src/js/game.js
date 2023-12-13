@@ -18,6 +18,8 @@ class Game {
         this.levelStarted = false;
         this.timer=300000;
         this.score=0;
+        this.totalTime=0;
+        this.gameTime=0;
 
         this.backgroundImage = levels[level].backgroundImage;
         this.background = new Background(this, this.backgroundImage);
@@ -36,14 +38,35 @@ class Game {
 
     update(deltaTime) {
         const currentLevel = levels[this.currentLevel];
+        if(currentLevel.level===4){
+            const bonusPopup = document.getElementById("bonusPopup")
+            const bonusLoserPopup = document.getElementById("bonusLoserPopup")
+            const timeLimit = 20000;
+            this.score=0;
+            const winingscore =currentLevel.winingscore;
+            this.gameTime += deltaTime;
+            console.log(this.gameTime);
+            if (this.gameTime > timeLimit && this.score >= winingscore) {
+                bonusPopup.style.display="flex";
+                stopAnimation();
+                document.getElementById("bonus_btn").addEventListener("click", function () {
+
+                });
+                
+            }else if(this.gameTime > timeLimit && this.score < winingscore){
+               bonusLoserPopup.style.display="flex";
+               stopAnimation();
+               document.getElementById("bonus_loser_btn").addEventListener("click", function () {
+            });
+            }
+        }
+        
+
         // Code for Game Over
         if (this.gameOver) {
             return;
         }
         if(!this.gameOver) this.gameTime +=deltaTime;
-        //if(this.gameTime > this.timeLimit) this.gameOver=true;
-        // this.background.update();
-        //this.background.layer4.update();
         this.background.update(this.currentLevel);
 
 
@@ -95,7 +118,7 @@ class Game {
                         enemy.markedForDeletion=true;
                         if(enemy.type === 'boss'){
                             for(let i=0;i<5;i++){
-                                this.enemies.push(new Drone(this,
+                                this.enemies.push(new smallEnemy(this,
                                     getRandomInteger(this.width/2,this.width),
                                     getRandomInteger(0,canvas.height-200)));                                        
                             }
@@ -106,6 +129,7 @@ class Game {
                 }
             })
         });
+
         
 
         this.enemies=this.enemies.filter(enemy=>!enemy.markedForDeletion);
@@ -115,7 +139,6 @@ class Game {
         } else {
             this.enemyTimer += deltaTime;
         }
-        //console.log(this.enemies);
     }
     resetGame() {
         // Reset all game variables to their initial state
@@ -144,53 +167,22 @@ class Game {
         this.explosions.forEach(explosion=>{
             explosion.draw(context);
         });
-        //this.background.layer4.draw(context);
     }
-    // addEnemy(){
-    //     if(this.enemies.length < 5 && !this.bossAdded){
-    //         const random_enemy=Math.random();
-    //         if(random_enemy < 0.45){
-    //             this.enemies.push(new Angler1(this));
-    //         }else if(random_enemy <0.9){
-    //             this.enemies.push(new Angler2(this));
-    //         }else{
-    //             this.enemies.push(new lucky(this));
-    //         }
-    //     }
-    //     // // Only add the boss enemy if it hasn't been added before
-    //     if (!this.bossAdded && this.score > 1) {
-    //         this.enemies.push(new Boss(this));
-    //         this.bossAdded = true; 
-    //     }
-    //     // If Boss Defeated Level Up
 
-    //     if (this.bossAdded && this.enemies.length == 0) {
-    //         //Level Up Code
-    //         // this.currentLevel++;
-    //         this.bossAdded = false;
-    //         //stop animation
-    //         stopAnimation();
-    //         //Update Level Complete Score
-    //         levelCompleteScore += this.score;
-            
-    //         //display Level Completed
-    //         overlay.style.display = "flex";
-            
-    //     }
-    // }
 
     addEnemy() {
         const currentLevel = levels[this.currentLevel];
+        
         console.log(currentLevel.enemiesNumber);
         // Only add regular enemies if there are remaining enemies to add
         if(this.enemies.length < 5 && !this.bossAdded){
             const random_enemy=Math.random();
             if(random_enemy < 0.45){
-                this.enemies.push(new Angler1(this));
+                this.enemies.push(new firstEnemy(this));
             }else if(random_enemy <0.9){
-                this.enemies.push(new Angler2(this));
+                this.enemies.push(new secondEnemy(this));
             }else{
-                this.enemies.push(new lucky(this));
+                this.enemies.push(new thirdEnemy(this));
             }
         }
         // Check if all regular enemies are added and boss hasn't been added yet
@@ -210,7 +202,12 @@ class Game {
             levelCompleteScore += this.score;
     
             // Display Level Completed
-            overlay.style.display = "flex";
+            if(currentLevel.level===3){
+                completionPopup.style.display='flex';
+            }else{
+                overlay.style.display = "flex";
+            }
+            
         }
     }
     

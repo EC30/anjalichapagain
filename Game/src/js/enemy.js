@@ -6,7 +6,6 @@ class Enemy{
         this.markedForDeletion=false;
         this.frameX=0;
         this.frameY=0;
-        this.maxFrame=37;
         this.enemyProjectiles = [];
         this.type = "";
         this.height = 0;
@@ -16,7 +15,6 @@ class Enemy{
         this.reachedMiddle = false;
     }
     update(){  
-        // this.x +=this.speedX;
 
         this.enemyProjectiles.forEach(enemyProjectile=> {
             enemyProjectile.update();
@@ -79,6 +77,7 @@ class Enemy{
         if (Math.random() < 0.019 && this.type == "boss") {
             this.throwProjectile2();
         }
+
         if (Math.random() < 0.004 && this.type == "drone") {
             this.throwProjectile2();
         }
@@ -86,7 +85,7 @@ class Enemy{
 
     throwProjectile2() {
         const projectileX = this.x; 
-        this.enemyProjectiles.push(new EnemyProjectile(this.game, projectileX, this.y + this.height / 2, 3));
+        this.enemyProjectiles.push(new EnemyProjectile(this.game, projectileX, this.y + this.height / 2, this.game.speed*3));
         //console.log(this.enemyProjectiles);
     }
 
@@ -116,36 +115,39 @@ class Enemy{
     }
 }
 
-class Angler1 extends Enemy {
+class firstEnemy extends Enemy {
     constructor(game){
        super(game);
        this.width=228;
        this.height=169;
        this.lives=2;
+       this.maxFrame=35;
        this.score=this.lives;
        this.y=Math.random()*(this.game.height*0.9-this.height);
        this.image=document.getElementById('angler1');
        this.frameY=Math.floor(Math.random()*3);
     }
 }
-class Angler2 extends Enemy {
+class secondEnemy extends Enemy {
    constructor(game) {
        super(game);
-       this.width = 228;
-       this.height = 169;
+       this.width = 270;
+       this.height = 210;
        this.lives = 3;
+       this.maxFrame=39;
        this.score = this.lives;
        this.y = Math.random() * (this.game.height * 0.9 - this.height);
-       this.image = document.getElementById('angler1');
-       this.frameY = Math.floor(Math.random() * 3);
+       this.image = document.getElementById('angler2');
+       this.frameY = Math.floor(Math.random() * 2);
    }
 }
-class lucky extends Enemy {
+class thirdEnemy extends Enemy {
    constructor(game) {
        super(game);
        this.width = 99;
        this.height = 95;
        this.lives = 5;
+       this.maxFrame=39;
        this.score = this.lives;
        this.y = Math.random() * (this.game.height * 0.9 - this.height);
        this.image = document.getElementById('lucky');
@@ -159,6 +161,7 @@ class Boss extends Enemy {
        this.width = 400;
        this.height = 227;
        this.lives = 10;
+       this.maxFrame=35;
        this.score = this.lives;
        this.y = Math.random() * (this.game.height * 0.95 - this.height);
        this.image = document.getElementById('boss');
@@ -167,7 +170,7 @@ class Boss extends Enemy {
        this.type='boss';
    }
 }
-class Drone extends Enemy {
+class smallEnemy extends Enemy {
    constructor(game,x,y) {
        super(game);
        this.width = 115;

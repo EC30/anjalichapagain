@@ -11,7 +11,6 @@ class Background {
     }
 
     update(level) {
-        // Update the background image based on the current level
         this.layers.forEach(layer => layer.update());
         this.layers.forEach(layer => layer.image = levels[level].backgroundImage);
     }
