@@ -17,6 +17,7 @@ class Character {
         this.powerUpLimit=10000;
 
     }
+
     update(deltaTime) {
         if(this.game.keys.includes('ArrowUp')){
             this.speedY = -this.maxSpeed;   

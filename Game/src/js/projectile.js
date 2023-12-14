@@ -7,7 +7,7 @@ class Projectile {
         this.height = 20;
         this.frameX=0;
         this.maxFrame=3;
-        this.speed = Math.random()*0.2+2.8;
+        this.speed = this.game.playerProjectileSpeed;
         this.markedForDeletion = false;
         this.image = document.getElementById('fireball');
     }

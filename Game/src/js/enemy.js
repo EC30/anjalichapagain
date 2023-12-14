@@ -15,6 +15,7 @@ class Enemy{
         this.reachedMiddle = false;
     }
     update(){  
+        // this.x +=this.speedX;
 
         this.enemyProjectiles.forEach(enemyProjectile=> {
             enemyProjectile.update();
@@ -73,6 +74,7 @@ class Enemy{
             this.frameX=0;
         }
     }
+
     throwProjectile() {
         if (Math.random() < 0.019 && this.type == "boss") {
             this.throwProjectile2();
@@ -81,11 +83,17 @@ class Enemy{
         if (Math.random() < 0.004 && this.type == "drone") {
             this.throwProjectile2();
         }
+
+        // console.log(this.type);
+        // console.log(this.game.projectileEnemies.includes(this.type))
+        if(this.game.projectileEnemies.includes(this.type) && Math.random() < 0.009){
+            this.throwProjectile2();
+        }
     }
 
     throwProjectile2() {
         const projectileX = this.x; 
-        this.enemyProjectiles.push(new EnemyProjectile(this.game, projectileX, this.y + this.height / 2, this.game.speed*3));
+        this.enemyProjectiles.push(new EnemyProjectile(this.game, projectileX, this.y + this.height / 2, this.game.enemyProjectileSpeed));
         //console.log(this.enemyProjectiles);
     }
 
@@ -107,7 +115,7 @@ class Enemy{
         if(this.game.debug){
             context.fillStyle='black';
             context.font='20px Helvetica';
-            context.fillText(this.lives, this.x,this.y);
+            context.fillText(this.type+":"+this.lives, this.x,this.y);
         }
         this.enemyProjectiles.forEach(projectile => {
             projectile.draw(context);
@@ -115,33 +123,35 @@ class Enemy{
     }
 }
 
-class firstEnemy extends Enemy {
+class Angler1 extends Enemy {
     constructor(game){
        super(game);
        this.width=228;
        this.height=169;
-       this.lives=2;
        this.maxFrame=35;
+       this.lives=game.enemyLife.angler1Life ?? 2;
        this.score=this.lives;
        this.y=Math.random()*(this.game.height*0.9-this.height);
        this.image=document.getElementById('angler1');
        this.frameY=Math.floor(Math.random()*3);
+       this.type='angler1';
     }
 }
-class secondEnemy extends Enemy {
+class Angler2 extends Enemy {
    constructor(game) {
        super(game);
        this.width = 270;
        this.height = 210;
-       this.lives = 3;
        this.maxFrame=39;
+       this.lives = game.enemyLife.angler2Life ?? 3;
        this.score = this.lives;
        this.y = Math.random() * (this.game.height * 0.9 - this.height);
        this.image = document.getElementById('angler2');
-       this.frameY = Math.floor(Math.random() * 2);
+       this.frameY = Math.floor(Math.random() * 3);
+       this.type='angler2';
    }
 }
-class thirdEnemy extends Enemy {
+class lucky extends Enemy {
    constructor(game) {
        super(game);
        this.width = 99;
@@ -160,8 +170,8 @@ class Boss extends Enemy {
        super(game);
        this.width = 400;
        this.height = 227;
-       this.lives = 10;
        this.maxFrame=35;
+       this.lives = game.enemyLife.bossLife ?? 10;
        this.score = this.lives;
        this.y = Math.random() * (this.game.height * 0.95 - this.height);
        this.image = document.getElementById('boss');
@@ -170,12 +180,12 @@ class Boss extends Enemy {
        this.type='boss';
    }
 }
-class smallEnemy extends Enemy {
+class Drone extends Enemy {
    constructor(game,x,y) {
        super(game);
        this.width = 115;
        this.height = 95;
-       this.lives = 2;
+       this.lives = game.enemyLife.droneLife ?? 2;
        this.score = this.lives;
        this.x=x;
        this.y=y;

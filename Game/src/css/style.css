@@ -40,7 +40,7 @@
     
 }
 
-#overlay button, #play, #continue, #bonus_btn, #bonus_loser_btn, #completion_btn, #completion_map_btn {
+#overlay button, #play_again, #continue, #bonus_btn, #bonus_loser_btn, #completion_btn, #completion_map_btn, #continue_next {
     padding: 1rem 2rem;
     border-radius: 0.5rem;
     border: 4px solid gray;
@@ -55,6 +55,6 @@
     box-shadow: 0 5px 5px rgba(0,0,0,0.2);
 }
 
-#layer1,#layer2,#layer3,#layer4,#layer5,#player,#angler1,#angler2,#lucky,#enemy2,#projectile,#boss,#drone,#smoke,#fire,#fires,#bullet,#fireball,#bossprojectile{
+#layer1,#layer2,#layer3a,#layer3b,#bonusLayer, #layerBelow,#player,#angler1,#angler2,#lucky,#enemy2,#projectile,#boss,#drone,#smoke,#fire,#fires,#bullet,#fireball,#bossprojectile{
     display: none;
 }
