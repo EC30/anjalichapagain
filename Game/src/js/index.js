@@ -1,6 +1,8 @@
 window.addEventListener('load', function () {
-    game = new Game(canvas.width, canvas.height);
-    startAnimation();
+    this.window.addEventListener('mousemove',function(){
+        playBackgroundSound();
+    });
+    goToMainMenu();
 });
 
 

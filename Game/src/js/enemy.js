@@ -154,21 +154,43 @@ class Angler1 extends Enemy {
        this.type='angler1';
     }
 }
+// class Angler2 extends Enemy {
+//    constructor(game) {
+//        super(game);
+//        this.width = 270;
+//        this.height = 210;
+//        this.maxFrame=35;
+//        this.lives = game.enemyLife.angler2Life ?? 3;
+//        this.healthCount =game.enemyLife.angler2Life ?? 3;
+//        this.score = this.lives;
+//        this.y = Math.random() * (this.game.height * 0.95 - this.height);
+//        this.image = document.getElementById('angler2');
+//        this.frameY = Math.floor(Math.random() * 3);
+//        this.type='angler2';
+
+//        console.log(this.y);
+//     //    console.log(this.frameY);
+//    }
+// }
+
 class Angler2 extends Enemy {
-   constructor(game) {
-       super(game);
-       this.width = 270;
-       this.height = 210;
-       this.maxFrame=35;
-       this.lives = game.enemyLife.angler2Life ?? 3;
-       this.healthCount =game.enemyLife.angler2Life ?? 3;
-       this.score = this.lives;
-       this.y = Math.random() * (this.game.height * 0.9 - this.height);
-       this.image = document.getElementById('angler2');
-       this.frameY = Math.floor(Math.random() * 3);
-       this.type='angler2';
-   }
-}
+    constructor(game) {
+        super(game);
+        this.width = 213;
+        this.height = 165;
+        this.maxFrame=35;
+        this.lives = game.enemyLife.angler2Life ?? 3;
+        this.healthCount =game.enemyLife.angler2Life ?? 3;
+        this.score = this.lives;
+        this.y = Math.random() * (this.game.height * 0.9 - this.height);
+        this.image = document.getElementById('angler2');
+        this.frameY = Math.floor(Math.random() * 2);
+        this.type='angler2';
+ 
+        console.log(this.y);
+     //    console.log(this.frameY);
+    }
+ }
 class lucky extends Enemy {
    constructor(game) {
        super(game);

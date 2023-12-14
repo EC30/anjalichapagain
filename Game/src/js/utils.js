@@ -9,6 +9,9 @@ let maxSaves = 10;
 let bonusLevelNumber = 0;
 let playingBonusLevel=false;
 
+let isGameRunning = false;
+
+
 var levels = [
     { 
         level:1,
@@ -153,6 +156,8 @@ var bonusLevels = [
 
 const overlay = document.getElementById("overlay");
 const completionPopup=document.getElementById('completionPopup');
+const out_of_life_popup=document.getElementById('popup');
+const pause=document.getElementById('pause');
 const bonusPopup=document.getElementById('bonusPopup');
 const bonusLoserPopup=document.getElementById('bonusLoserPopup');
 
@@ -220,6 +225,7 @@ document.getElementById("bonus_continue").addEventListener("click", function () 
     moveToNextLevel();
 
 });
+
 document.getElementById("bonus_loser_continue").addEventListener("click", function () {
     bonusLoserPopup.style.display='none';
     levelCompleteScore+=game.score;
@@ -227,6 +233,12 @@ document.getElementById("bonus_loser_continue").addEventListener("click", functi
     moveToNextLevel();
 
 });
+
+//   document.getElementById("bonusLevel").addEventListener("click", function () {
+//     playingBonusLevel=true;
+//     game.updateVariableValuesForLevelChange();
+//     startAnimation();
+//   });
 
 function resetAndRestartGame(resetLevel){
     levelCompleteScore = 0;
@@ -271,22 +283,23 @@ function getRandomInteger(min, max) {
 }
 
 function moveToNextLevel() {
-    //console.log("MOVE TO NEXT LEVEL")
     popupShown = false;
     //remove projectiles
     game.player.Projectiles = [];
     
     if(runningLevel >= levels.length){
         //Code for game Over 
-        alert("Game Over");
+        //alert("Game Over");
         runningLevel = 0;
+        // overlay.querySelector('h3').innerHTML = "aaaa";
+        overlay.querySelector('h3').innerHTML = "You Have Completed Level";
+        overlay.querySelector('button').textContent = "Play Next Level";
+
+        game.gameOver=true;
     }
 
     //Update Values Specific to Each level
     game.updateVariableValuesForLevelChange();
-
-    
-
     console.log("Next Level");
     
     //start Animation
@@ -354,3 +367,48 @@ function deleteSaveGame(saveVariable){
     //remove saved Data of Variable
     localStorage.removeItem(saveVariable);
 }
+
+function startNewGame(level){
+    isGameRunning = true;
+    runningLevel = level;
+    game = new Game(canvas.width, canvas.height);
+    startAnimation();
+}
+
+const backgroundImage = this.document.getElementById('background_image');
+const main_menu_container = this.document.getElementById('container');
+
+function goToMainMenu(){
+    isGameRunning = false;
+    popupShown = false;
+
+    main_menu_container.style.height = canvas.height;
+    main_menu_container.style.display = 'flex';
+    
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    ctx.drawImage(backgroundImage, 0, 0, canvas.width, canvas.height);
+}
+
+function resizeCanvas() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    // Redraw background image when resizing
+    if (backgroundImage.complete) {
+        ctx.drawImage(backgroundImage, 0, 0, canvas.width, canvas.height);
+    }
+}
+
+
+window.addEventListener('resize', resizeCanvas);
+
+
+//   backgroundImage.onload = function() {
+//     resizeCanvas();
+//   };
+
+document.getElementById("startNewGame").addEventListener("click", function () {
+    main_menu_container.style.display = 'none';
+    game = null;
+    startNewGame(startLevel);    
+});

@@ -46,6 +46,7 @@ class Character {
             if(this.powerUpTimer>this.powerUpLimit){
                 this.powerUpTimer=0;
                 this.powerUp=false;
+                playPowerDownSound();
             }else{
                 this.powerUpTimer +=deltaTime;
                 this.frameY=1;
@@ -96,5 +97,7 @@ class Character {
         this.powerUp=true;
         if(this.game.ammo < this.game.maxAmmo)
         this.game.ammo=this.game.maxAmmo;
+        playPowerSound();
+        
     }
 }

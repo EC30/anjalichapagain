@@ -5,6 +5,10 @@ class InputHandler {
         
         window.addEventListener('keydown', e => {
 
+            if(!isGameRunning){
+                return;
+            }
+
             if(( (e.key ==='ArrowUp') || (e.key === 'ArrowDown') ) && this.game.keys.indexOf(e.key)=== -1){
                 this.game.keys.push(e.key);
             }else if(e.key==='Control'){
@@ -15,7 +19,7 @@ class InputHandler {
                 // this.sound.play();
             } else if(e.key==='d'){
                 this.game.debug =!this.game.debug;
-            } else if(e.key==='p'&& !popupShown){
+            } else if(e.key==='p' && !popupShown){
                 // console.log("P pressed");
                 if(isAnimating){
                     // console.log("Animating");

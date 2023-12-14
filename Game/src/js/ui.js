@@ -76,7 +76,9 @@ class UI {
             context.fillRect(20 + 5 * i, 50, 3, 20);
         }
         context.restore();
-        if(this.game.gameOver){
-        }
+       
+        // if(this.game.gameOver){
+
+        // }
     }
 }

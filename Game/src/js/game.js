@@ -3,7 +3,6 @@ class Game {
         this.currentLevel = runningLevel;
         this.width = width;
         this.height = height;
-        this.inputHandler = new InputHandler(this);
         this.UI = new UI(this);
         this.keys = [];
         this.enemies=[];
@@ -32,7 +31,8 @@ class Game {
         
 
         this.background=new Background(this,levelArray[levelNumber].background,levelArray[levelNumber].backgroundSpeed);
-        
+        this.inputHandler = new InputHandler(this);
+
         this.player = new Character(this); 
         
         this.score=0;
@@ -58,11 +58,21 @@ class Game {
     }
 
     update(deltaTime) {
+        if (this.gameOver) {
+            //return to main menu
+            stopAnimation();
+            game = null;
+            console.log(game);
+            goToMainMenu();
+            return;
+        }
+
         // console.log(this.regularEnemyKills);
         if(this.regularEnemyKills >=10){
             this.isPowerUp = true;
             this.regularEnemyKills = 0;
             //power up code   
+            
         }
 
          if(playingBonusLevel){
@@ -86,9 +96,7 @@ class Game {
         }
         
 
-        if (this.gameOver) {
-            return;
-        }
+        
 
         if(!this.gameOver) this.gameTime +=deltaTime;
         //if(this.gameTime > this.timeLimit) this.gameOver=true;
@@ -134,11 +142,11 @@ class Game {
 
             this.player.Projectiles.forEach(Projectile=>{
                 if(this.checkCollision(Projectile,enemy,"projectile")){
-                   
                     enemy.lives--;
                     Projectile.markedForDeletion=true;
                     this.addExplosion(enemy);
                     if(enemy.lives <=0){
+                        playExplosionSound();
                         enemy.markedForDeletion=true;
                         if(enemy.type === 'boss'){
                             for(let i=0;i<this.droneCount;i++){
@@ -168,7 +176,7 @@ class Game {
         } else {
             this.enemyTimer += deltaTime;
         }
-        //console.log(this.enemies);
+        // console.log(this.sound.explosionSound());
     }
 
     draw(context) {
@@ -212,8 +220,12 @@ class Game {
             stopAnimation();
             if(this.playBonusLevel){
                 completionPopup.style.display='flex';
-            }else{
+            } else {
                 overlay.style.display = "flex";
+                if(runningLevel >= levels.length-1){
+                    overlay.querySelector('h3').innerHTML = "You Have Completed All Levels";
+                    overlay.querySelector('button').textContent = "Go To Main Menu";
+                }
             }
             //Level Up Code
             runningLevel++;
@@ -228,13 +240,12 @@ class Game {
     
     addExplosion(enemy){
         const random_explosion=Math.random();
-        const explosionSound = document.getElementById("enemyDeathSound");
+        // const explosionSound = document.getElementById("explosionSound");
         if(random_explosion < 0.5){
             this.explosions.push(new Smoke(this,enemy.x,enemy.y));
         } else{
             this.explosions.push(new Fire(this,enemy.x,enemy.y)); 
         }
-        //explosionSound.play();
     }
     checkCollision(a,b,c="other"){
         // a is projectile for most case excepy player enemy collision in which a is player

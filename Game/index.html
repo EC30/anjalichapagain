@@ -9,13 +9,30 @@
 </head>
 <body>
 
-  <!-- Container for the visual representation of balls -->
-  <canvas id="canvas" class="canvas"></canvas>
+  <div id="canvas-container">
+    <!-- Container for the visual representation of balls -->
+    <canvas id="canvas" class="canvas"></canvas>
+
+    <div class="container" id="container">
+      <audio id="buttonHoverSound">
+        <source src="./src/sound/smb_fireball.wav" type="audio/mp3">
+      </audio>
+        <img src="./src/images/logo.png">
+        <!-- <a href="index.html"> -->
+          <button class="big-button" id="startNewGame" onmouseover="playClickSound()">Start New game</button>
+        <!-- </a> -->
+        
+      <!-- <a href="#"> -->
+        <button class="big-button" onmouseover="playClickSound()"> View Saved games</button>
+      <!-- </a> -->
+    </div>
+  </div>
+
 
   <div id="overlay">
     <img id="image" src="./src/images/tick.png">
     <h2>Congratulations!</h2>
-    <h3>You have completed Level</h3>
+    <h3>You Have Completed Level</h3>
     <button id="next-level">Play Next Level</button>
   </div>
 
@@ -47,11 +64,33 @@
     <button id="bonus_loser_continue" onclick="">Continue to next level</button>
   </div>
 
+  <audio id="backgroundSound" loop>
+    <source src="src/sound/backgroundSound.wav" type="audio/mp3"  autoplay="true"
+    muted="muted">
+  </audio>
+
+  <audio id="clickSound">
+    <source src="src/sound/smb_fireball.wav" type="audio/mp3">
+  </audio>
+  
+  <audio id="explosionSound">
+    <source src="src/sound/explosion.wav" type="audio/mp3">
+  </audio>
+  <audio id="powerSound">
+    <source src="src/sound/powerup.wav" type="audio/mp3">
+  </audio>
+  <audio id="powerDownSound">
+    <source src="src/sound/powerdown.wav" type="audio/mp3">
+  </audio>
+  <audio id="collisionSound">
+    <source src="src/sound/hit.wav" type="audio/mp3">
+  </audio>
 
   <img id="player" src="./src/images/anime.png">
 
   <img id="angler1" src="./src/images/angler1.png">
-  <img id="angler2" src="./src/images/33.1 bulbwhale.png">
+  <!-- <img id="angler2" src="./src/images/33.1 bulbwhale.png"> -->
+  <img id="angler2" src="./src/images/angler2.png">
   <img id="lucky" src="./src/images/lucky.png">  
   <img id="boss" src="./src/images/28.1 hivewhale.png">
   <img id="drone" src="./src/images/drone.png">
@@ -60,7 +99,7 @@
   <img id="smoke" src="./src/images/smoke.png">
   <img id="fire" src="./src/images/fire.png">
   <img id="fireball" src="./src/images/37.1 fireball.png">
-  <img id="bossprojectile" src="./src/images/enemyfire.png">
+  <!-- <img id="bossprojectile" src="./src/images/enemyfire.png"> -->
   
   <img id="layer1" src="./src/images/layer1final.png">
   <img id="layer2" src="./src/images/layer2final.png">
@@ -69,8 +108,9 @@
   <img id="bonusLayer" src="./src/images/bonuslayer.jpg">
   <img id="layerBelow" src="./src/images/layerBelow.png">
 
+  <img id="background_image" src="./src/images/bg.jpg">
 
-
+  <script src="./src/js/audio.js"></script>
   <script src="./src/js/utils.js"></script>
   <script src="./src/js/ui.js"></script>
   <script src="./src/js/inputHandler.js"></script>

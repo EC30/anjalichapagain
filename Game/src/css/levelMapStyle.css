@@ -48,18 +48,18 @@ body {
       1px -8px 0 grey, 5px -13px 15px black, 5px -13px 25px #808080;
   }
 
-.button--piyo{
+.button--level1{
     --main_color : #f4cf47 ;
     --base_color : #000 ;
     --border_radius1 : 60px 60px 40px 40px / 48px 48px 30px 30px ;
 }
-.button--hoo{
+.button--level2{
     --main_color : #4993ff ;
 
     --base_color : #FFF ;
     --border_radius1 : 50px 50px 50px 50px / 40px 40px 40px 40px ; 
 }
-.button--pen{
+.button--level3{
     --main_color : #4d4d4d ;
     --base_color : #e9b800 ;
     --border_radius1 : 60px 60px 40px 40px / 48px 48px 30px 30px ;
