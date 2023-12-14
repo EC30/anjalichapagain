@@ -29,27 +29,7 @@ class Game {
             levelNumber=bonusLevelNumber
         }
         console.log(levelArray[levelNumber].enemyInterval);
-        // this.background=new Background(this,levels[runningLevel].background,levels[runningLevel].backgroundSpeed);
         
-        // this.player = new Character(this); 
-        
-        // this.score=0;
-        // this.gameTime=0;
-        // this.enemyInterval = levels[runningLevel].enemyInterval;
-        // this.enemiesNumber = levels[runningLevel].enemiesNumber;
-        // this.playerProjectileSpeed = levels[runningLevel].playerProjectileSpeed;
-        // this.enemyProjectileSpeed = levels[runningLevel].enemyProjectileSpeed;
-        // this.maxEnemyPerScreen = levels[runningLevel].maxEnemyPerScreen;
-        // this.ammo = levels[runningLevel].ammo;
-        // this.ammoInterval = levels[runningLevel].ammoInterval;
-        // this.maxAmmo = levels[runningLevel].maxAmmo;
-        // this.lives = levels[runningLevel].lives;
-        // this.winingscore = levels[runningLevel].winingscore;
-        // this.speed = levels[runningLevel].speed;
-        // this.droneCount = levels[runningLevel].droneCount;
-        // this.enemyLife = levels[runningLevel].enemyLife;
-        // this.projectileEnemies = levels[runningLevel].projectileEnemies ?? [];
-        // this.playBonusLevel = levels[runningLevel].playBonusLevel ?? false;
 
         this.background=new Background(this,levelArray[levelNumber].background,levelArray[levelNumber].backgroundSpeed);
         
@@ -73,27 +53,37 @@ class Game {
         this.projectileEnemies = levelArray[levelNumber].projectileEnemies ?? [];
         this.playBonusLevel = levelArray[levelNumber].playBonusLevel ?? false;
 
-        
+        this.regularEnemyKills = 0;
+        this.isPowerUp = false;
     }
 
     update(deltaTime) {
-        
-        //  if(runningLevel===3){
-        //     const bonusPopup = document.getElementById("bonusPopup")
-        //     const bonusLoserPopup = document.getElementById("bonusLoserPopup")
-        //     const timeLimit = 20000;
-        //     this.gameTime += deltaTime;
-        //     //console.log(this.gameTime);
-        //     if (this.gameTime > timeLimit && this.score >= this.winingscore) {
-        //         bonusPopup.style.display="flex";
-        //         stopAnimation();
+        // console.log(this.regularEnemyKills);
+        if(this.regularEnemyKills >=10){
+            this.isPowerUp = true;
+            this.regularEnemyKills = 0;
+            //power up code   
+        }
 
-                   
-        //     }else if(this.gameTime > timeLimit && this.score < winingscore){
-        //        bonusLoserPopup.style.display="flex";
-        //        stopAnimation();
-        //     }
-        // }
+         if(playingBonusLevel){
+
+            console.log(this.winingscore);
+            const bonusPopup = document.getElementById("bonusPopup")
+            const bonusLoserPopup = document.getElementById("bonusLoserPopup")
+            
+            const timeLimit = 20000;
+            this.gameTime += deltaTime;
+            // console.log(this.gameTime);
+            if (this.gameTime > timeLimit && this.score >= this.winingscore) {
+                bonusPopup.style.display="flex";
+                popupShown=true;
+                stopAnimation();                   
+            }else if(this.gameTime > timeLimit && this.score < this.winingscore){
+               bonusLoserPopup.style.display="flex";
+               popupShown=true;
+               stopAnimation();
+            }
+        }
         
 
         if (this.gameOver) {
@@ -144,6 +134,7 @@ class Game {
 
             this.player.Projectiles.forEach(Projectile=>{
                 if(this.checkCollision(Projectile,enemy,"projectile")){
+                   
                     enemy.lives--;
                     Projectile.markedForDeletion=true;
                     this.addExplosion(enemy);
@@ -157,6 +148,10 @@ class Game {
                                     // enemy.x+Math.random()*enemy.width,
                                     // enemy.y+Math.random()*enemy.height*0.5));
                             }
+                        }
+
+                        if(!this.isPowerUp){
+                            this.regularEnemyKills++;
                         }
                         if(!this.gameOver) this.score +=enemy.score;
                         // if(this.score >this.winingscore) this.gameOver=true;
@@ -195,7 +190,9 @@ class Game {
         
         if(this.enemies.length < this.maxEnemyPerScreen  && !this.bossAdded){
             const random_enemy=Math.random();
-            if(random_enemy < 0.45){
+            if(random_enemy < 0.20 && playingBonusLevel){
+                this.enemies.push(new Boss(this));
+            }else if(random_enemy < 0.45){
                 this.enemies.push(new Angler1(this));
             }else if(random_enemy <0.9){
                 this.enemies.push(new Angler2(this));
@@ -203,8 +200,8 @@ class Game {
                 this.enemies.push(new lucky(this));
             }
         }
-        // // Only add the boss enemy if it hasn't been added before
-        if (!this.bossAdded && this.score > this.winingscore) {
+        // Only add the boss enemy if it hasn't been added before
+        if (!this.bossAdded && this.score > this.winingscore && !playingBonusLevel) {
             this.enemies.push(new Boss(this));
             this.bossAdded = true; 
         }
@@ -214,7 +211,6 @@ class Game {
             this.bossAdded = false;
             stopAnimation();
             if(this.playBonusLevel){
-                playingBonusLevel=true;
                 completionPopup.style.display='flex';
             }else{
                 overlay.style.display = "flex";

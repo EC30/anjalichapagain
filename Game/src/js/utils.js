@@ -2,7 +2,7 @@ const canvas = this.document.getElementById('canvas');
 const ctx = canvas.getContext('2d');
 let game;
 let levelCompleteScore = 0;
-let startLevel = 1;
+let startLevel = 0;
 let runningLevel = startLevel;
 let popupShown = false;
 let maxSaves = 10;
@@ -59,7 +59,7 @@ var levels = [
         playerProjectileSpeed : 3,
         enemyProjectileSpeed : 6,
         background : [
-            layer2,
+            layer1,
             layerBelow,
         ],
         backgroundSpeed : [
@@ -153,6 +153,8 @@ var bonusLevels = [
 
 const overlay = document.getElementById("overlay");
 const completionPopup=document.getElementById('completionPopup');
+const bonusPopup=document.getElementById('bonusPopup');
+const bonusLoserPopup=document.getElementById('bonusLoserPopup');
 
 canvas.width=this.window.innerWidth;
 canvas.height=this.window.innerHeight;
@@ -181,11 +183,12 @@ document.getElementById("continue").addEventListener("click", function () {
 document.getElementById("completion_btn").addEventListener("click", function () {
     popupShown = false;
     //runningLevel =3;
-
+    playingBonusLevel=true;
     completionPopup.style.display = "none";
     game.updateVariableValuesForLevelChange();
     startAnimation();
 });
+
 document.getElementById("continue_next").addEventListener("click", function () {
     completionPopup.style.display="none";
     moveToNextLevel();
@@ -193,10 +196,35 @@ document.getElementById("continue_next").addEventListener("click", function () {
 
 
 document.getElementById("bonus_btn").addEventListener("click", function () {
-
+    bonusPopup.style.display='none';
+    popupShown = false;
+    //runningLevel =3;
+    playingBonusLevel=true;
+    game.updateVariableValuesForLevelChange();
+    startAnimation();
 });
 
 document.getElementById("bonus_loser_btn").addEventListener("click", function () {
+    bonusLoserPopup.style.display='none';
+    popupShown = false;
+    //runningLevel =3;
+    playingBonusLevel=true;
+    game.updateVariableValuesForLevelChange();
+    startAnimation();
+
+});
+document.getElementById("bonus_continue").addEventListener("click", function () {
+    bonusPopup.style.display='none';
+    levelCompleteScore+=game.score;
+    playingBonusLevel=false;
+    moveToNextLevel();
+
+});
+document.getElementById("bonus_loser_continue").addEventListener("click", function () {
+    bonusLoserPopup.style.display='none';
+    levelCompleteScore+=game.score;
+    playingBonusLevel=false;
+    moveToNextLevel();
 
 });
 

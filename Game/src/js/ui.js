@@ -52,11 +52,16 @@ class UI {
         context.save();
         context.fillStyle = this.color;
         context.font = this.fontSize + 'px ' + this.fontFamily;
-        let totalScore = parseInt(levelCompleteScore)+parseInt(this.game.score);
-        context.fillText('Score: ' + totalScore ,20,40);
         
-
-        context.fillText('Level: ' + (parseInt(runningLevel) + 1), 280, 40);
+        if(playingBonusLevel){
+            context.fillText('Score: ' + this.game.score ,20,40);
+            context.fillText('Level: Bonus Level' + (parseInt(bonusLevelNumber) + 1), 280, 40);
+        } else {
+            let totalScore = parseInt(levelCompleteScore)+parseInt(this.game.score);
+            context.fillText('Score: ' + totalScore ,20,40);
+        
+            context.fillText('Level: ' + (parseInt(runningLevel) + 1), 280, 40);
+        }
         
         if (this.game.lives > 0) {
             context.fillText('Lives: ' + this.game.lives, 140, 40);

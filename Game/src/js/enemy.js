@@ -67,7 +67,11 @@ class Enemy{
         }
         
 
-        if(this.x+this.width<0)this.markedForDeletion=true;
+        if(this.x+this.width<0){
+            this.game.regularEnemyKills = 0;
+            this.markedForDeletion=true;
+        }
+        
         if(this.frameX < this.maxFrame){
             this.frameX++;
         }else{
@@ -120,6 +124,18 @@ class Enemy{
         this.enemyProjectiles.forEach(projectile => {
             projectile.draw(context);
         });
+
+        //health bars
+                let individual_length = this.width/this.healthCount;
+                let gap_length = individual_length/10;
+                let health_length = individual_length-gap_length/2;
+                let initial_x = this.x;
+        
+                for (let i=0; i< this.lives; i++){
+                    context.fillStyle='red';
+                    context.fillRect(initial_x, this.y, health_length, 4);
+                    initial_x +=health_length+gap_length;
+                }
     }
 }
 
@@ -130,6 +146,7 @@ class Angler1 extends Enemy {
        this.height=169;
        this.maxFrame=35;
        this.lives=game.enemyLife.angler1Life ?? 2;
+       this.healthCount = game.enemyLife.angler1Life ?? 2;
        this.score=this.lives;
        this.y=Math.random()*(this.game.height*0.9-this.height);
        this.image=document.getElementById('angler1');
@@ -142,8 +159,9 @@ class Angler2 extends Enemy {
        super(game);
        this.width = 270;
        this.height = 210;
-       this.maxFrame=39;
+       this.maxFrame=35;
        this.lives = game.enemyLife.angler2Life ?? 3;
+       this.healthCount =game.enemyLife.angler2Life ?? 3;
        this.score = this.lives;
        this.y = Math.random() * (this.game.height * 0.9 - this.height);
        this.image = document.getElementById('angler2');
@@ -156,7 +174,7 @@ class lucky extends Enemy {
        super(game);
        this.width = 99;
        this.height = 95;
-       this.lives = 5;
+       //this.lives = 5;
        this.maxFrame=39;
        this.score = this.lives;
        this.y = Math.random() * (this.game.height * 0.9 - this.height);
@@ -172,6 +190,7 @@ class Boss extends Enemy {
        this.height = 227;
        this.maxFrame=35;
        this.lives = game.enemyLife.bossLife ?? 10;
+       this.healthCount =game.enemyLife.bossLife ?? 10;
        this.score = this.lives;
        this.y = Math.random() * (this.game.height * 0.95 - this.height);
        this.image = document.getElementById('boss');
@@ -186,6 +205,7 @@ class Drone extends Enemy {
        this.width = 115;
        this.height = 95;
        this.lives = game.enemyLife.droneLife ?? 2;
+       this.healthCount =game.enemyLife.droneLife ?? 2;
        this.score = this.lives;
        this.x=x;
        this.y=y;

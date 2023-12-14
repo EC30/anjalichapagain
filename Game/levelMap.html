@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Level Map- Game</title>
+  <link rel="stylesheet" href="./src/css/levelMapStyle.css" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css ">
+</head>
+<body>
+  <audio id="buttonHoverSound">
+    <source src="./src/sound/smb_fireball.wav" type="audio/mp3">
+  </audio>
+  <div class="box">
+    <div class="threeD">
+      CHOOSE YOUR LEVEL
+    </div>
+  
+    <div class="container">
+  
+      <a href="#" class="button button--piyo">
+          <div class="button__wrapper" onmouseover="playButtonHoverSound()">
+              <span class="button__text">Level 1</span>
+          </div>
+      </a>
+  
+      <a href="#" class="button button--hoo">
+          <div class="button__wrapper" onmouseover="playButtonHoverSound()">
+              <span class="button__text">Level 2</span>
+          </div>
+      </a>
+  
+      <a href="#" class="button button--pen">
+          <div class="button__wrapper"  onmouseover="playButtonHoverSound()">
+              <span class="button__text">Level 3</span>
+          </div>
+      </a>
+  
+      <a href="#" class="button button--bonus">
+        <div class="button__wrapper"  onmouseover="playButtonHoverSound()">
+            <span class="button__text">Bonus Level</span>
+        </div>
+      </a>
+  
+    </div>
+  </div>
+
+     <script src="./src/js/audio.js"></script>
+</body>
+</html>
