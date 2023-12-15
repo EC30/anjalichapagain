@@ -53,6 +53,8 @@ class UI {
         context.fillStyle = this.color;
         context.font = this.fontSize + 'px ' + this.fontFamily;
         
+        backButtonGame.style.display = 'flex';
+
         if(playingBonusLevel){
             context.fillText('Score: ' + this.game.score ,20,40);
             context.fillText('Level: Bonus Level' + (parseInt(bonusLevelNumber) + 1), 280, 40);

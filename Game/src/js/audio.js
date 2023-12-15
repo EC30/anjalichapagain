@@ -8,6 +8,11 @@ const backgroundsoundElement=document.getElementById('backgroundSound');
 function playBackgroundSound(){
     backgroundsoundElement.play();
 }
+
+function playShootSound(){
+    collisionSoundElement.play();
+}
+
 function playClickSound(){
     clicksoundElement.play();
 }

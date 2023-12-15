@@ -15,6 +15,8 @@ class Character {
         this.powerUp=false;
         this.powerUpTimer=0;
         this.powerUpLimit=10000;
+        this.fireballPowerUpTimer=0;
+        this.fireballPowerUpLimit=12000;
 
     }
 
@@ -53,6 +55,18 @@ class Character {
                 this.game.ammo +=0.1;
             }
         }
+        if(this.game.isPowerUp){
+            if(this.fireballPowerUpTimer>this.fireballPowerUpLimit){
+                this.fireballPowerUpTimer=0;
+                this.game.isPowerUp=false;
+                this.game.regularEnemyKills = 0;
+                playPowerDownSound();
+            }else{
+                this.fireballPowerUpTimer +=deltaTime;
+                this.frameY=1;
+                // this.game.ammo +=0.1;
+            }
+        }
     }
 
     draw(context) {
@@ -83,13 +97,21 @@ class Character {
         if(this.powerUp){
             this.shootButtom();
         }
+
+        if(this.game.isPowerUp){
+            this.shootSlide();
+        }
     }
     shootButtom() {
-        if(this.game.ammo > 0) {
+        if(this.game.ammo > 0 && !this.game.isPowerUp) {
             this.Projectiles.push(new Projectile(this.game, this.x + 80, this.y + 175));
-            // this.Projectiles.push(new Projectile(this.game, this.x + 80, this.y + 175, 'player'));
             this.game.ammo--;
         }
+    }
+
+    shootSlide(){
+        this.Projectiles.push(new Projectile(this.game, this.x + 80, this.y + 30, "up"));
+        this.Projectiles.push(new Projectile(this.game, this.x + 80, this.y + 30, "down"));
     }
 
     enterPowerUp(){
@@ -99,5 +121,10 @@ class Character {
         this.game.ammo=this.game.maxAmmo;
         playPowerSound();
         
+    }
+    fireballPowerUp(){
+        this.powerUpTimer=0;
+        
+        playPowerSound();
     }
 }

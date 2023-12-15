@@ -67,7 +67,7 @@ class Enemy{
         }
         
 
-        if(this.x+this.width<0){
+        if(this.x+this.width<0 && this.type !='lucky'){
             this.game.regularEnemyKills = 0;
             this.markedForDeletion=true;
         }
@@ -97,7 +97,9 @@ class Enemy{
 
     throwProjectile2() {
         const projectileX = this.x; 
-        this.enemyProjectiles.push(new EnemyProjectile(this.game, projectileX, this.y + this.height / 2, this.game.enemyProjectileSpeed));
+        const projectileDirection = ["up","down","straight"];
+        // getRandomInteger(0,2)
+        this.enemyProjectiles.push(new EnemyProjectile(this.game, projectileX, this.y + this.height / 2, this.game.enemyProjectileSpeed, projectileDirection[getRandomInteger(0,2)]));
         //console.log(this.enemyProjectiles);
     }
 

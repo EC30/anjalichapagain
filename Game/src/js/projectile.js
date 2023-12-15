@@ -1,5 +1,5 @@
 class Projectile {
-    constructor(game, x, y) {
+    constructor(game, x, y, direction="straight") {
         this.game = game;
         this.x = x;
         this.y = y;
@@ -10,17 +10,34 @@ class Projectile {
         this.speed = this.game.playerProjectileSpeed;
         this.markedForDeletion = false;
         this.image = document.getElementById('fireball');
+        this.direction = direction;
     }
 
     update() {
-        this.x += this.speed;
-        if (this.x > this.game.width * 0.8) {
-            this.markedForDeletion = true;
+        // if(!this.game.isPowerUp){
+            this.x += this.speed;
+            if (this.x > this.game.width * 0.8) {
+                this.markedForDeletion = true;
+            }
+            if(this.frameX < this.maxFrame){
+                this.frameX++;
+            }else{
+                this.frameX=0;
+            }
+        // }
+
+        if(this.direction == "up"){
+            this.y -= this.speed;
+            if(this.y < 0){
+                this.markedForDeletion = true;
+            }
         }
-        if(this.frameX < this.maxFrame){
-            this.frameX++;
-        }else{
-            this.frameX=0;
+
+        if(this.direction == "down"){
+            this.y += this.speed;
+            if(this.y > this.game.height){
+                this.markedForDeletion = true;
+            }
         }
     }
 
@@ -41,7 +58,7 @@ class Projectile {
 }
 
 class EnemyProjectile {
-    constructor(game, x, y, speed) {
+    constructor(game, x, y, speed, direction="straight") {
         this.game = game;
         this.x = x;
         this.y = y;
@@ -50,6 +67,7 @@ class EnemyProjectile {
         this.speed = -speed;
         this.markedForDeletion = false;
         this.image = document.getElementById('projectile');
+        this.direction = direction;
     }
 
     update() {
@@ -57,54 +75,23 @@ class EnemyProjectile {
         if (this.x < 0) {
             this.markedForDeletion = true;
         }
+
+        if(this.direction == "up"){
+            this.y -= 1;
+            if(this.y < 0){
+                this.markedForDeletion = true;
+            }
+        }
+
+        if(this.direction == "down"){
+            this.y += 1;
+            if(this.y > this.game.height){
+                this.markedForDeletion = true;
+            }
+        }
     }
 
     draw(context) {    
         context.drawImage(this.image, this.x, this.y);
     }
 }
-
-// class EnemyProjectile {
-//     constructor(game, x, y, speed) {
-//         this.game = game;
-//         this.x = x,
-//         this.y = y,
-//         this.width = 100;
-//         this.height = 100;
-//         this.frameX=0;
-//         this.frameY=0;
-//         this.speed = -speed;
-//         this.markedForDeletion = false;
-//         this.maxFrame=7;
-//         this.image = document.getElementById('bossprojectile');
-//     }
-
-//     update() {
-//         this.x += this.speed;
-//         if (this.x < 0) {
-//             this.markedForDeletion = true;
-//         }
-//         if(this.frameX < this.maxFrame){
-//             this.frameX++;
-//         }else{
-//             this.frameX=0;
-//         }
-//     }
-
-//     draw(context) {
-//         context.drawImage(
-//             this.image,
-//             this.frameX * this.width,
-//             this.frameY*this.height,
-//             this.width,
-//             this.height,
-//             20,
-//             8,
-//             this.width,
-//             this.height
-//         );
-
-//         // context.drawImage(this.image, this.x, this.y);
-
-//     }
-// }

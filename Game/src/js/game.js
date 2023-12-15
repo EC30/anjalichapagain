@@ -29,10 +29,21 @@ class Game {
         }
         console.log(levelArray[levelNumber].enemyInterval);
         
+        // if (this.background) {
+        //     this.background.destroy();
+        // }
+    
+        if (this.inputHandler) {
+            this.inputHandler.destroy();
+        }
+        // if (this.player) {
+        //     this.player.destroy();
+        // }
+
 
         this.background=new Background(this,levelArray[levelNumber].background,levelArray[levelNumber].backgroundSpeed);
         this.inputHandler = new InputHandler(this);
-
+        
         this.player = new Character(this); 
         
         this.score=0;
@@ -67,12 +78,11 @@ class Game {
             return;
         }
 
-        // console.log(this.regularEnemyKills);
+        //console.log(this.regularEnemyKills);
         if(this.regularEnemyKills >=10){
             this.isPowerUp = true;
             this.regularEnemyKills = 0;
-            //power up code   
-            
+            this.player.fireballPowerUp();
         }
 
          if(playingBonusLevel){
@@ -128,6 +138,7 @@ class Game {
                     this.player.enterPowerUp();
                 }else{
                     this.lives--;
+                    this.regularEnemyKills = 0;
                 }
             }
 
