@@ -95,3 +95,4 @@ class EnemyProjectile {
         context.drawImage(this.image, this.x, this.y);
     }
 }
+

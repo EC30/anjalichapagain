@@ -9,6 +9,7 @@ class Character {
         this.frameY=0;
         this.maxFrame=37;
         this.speedY = 0;
+        this.speedX=0;
         this.maxSpeed = 3;
         this.Projectiles = [];
         this.image=document.getElementById('player');
@@ -29,6 +30,7 @@ class Character {
             this.speedY = 0;
         }
         this.y += this.speedY;
+        
         if(this.y > this.game.height-this.height) {
             this.y =this.game.height-this.height;
         }

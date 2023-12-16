@@ -4,6 +4,3 @@ window.addEventListener('load', function () {
     });
     goToMainMenu();
 });
-
-
-

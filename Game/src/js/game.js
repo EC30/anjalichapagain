@@ -29,23 +29,14 @@ class Game {
         }
         console.log(levelArray[levelNumber].enemyInterval);
         
-        // if (this.background) {
-        //     this.background.destroy();
-        // }
     
         if (this.inputHandler) {
             this.inputHandler.destroy();
         }
-        // if (this.player) {
-        //     this.player.destroy();
-        // }
-
 
         this.background=new Background(this,levelArray[levelNumber].background,levelArray[levelNumber].backgroundSpeed);
         this.inputHandler = new InputHandler(this);
-        
         this.player = new Character(this); 
-        
         this.score=0;
         this.gameTime=0;
         this.enemyInterval = levelArray[levelNumber].enemyInterval;
@@ -168,7 +159,6 @@ class Game {
                                     // enemy.y+Math.random()*enemy.height*0.5));
                             }
                         }
-
                         if(!this.isPowerUp){
                             this.regularEnemyKills++;
                         }

@@ -1,0 +1,13 @@
+1. For movement:
+	a. press up arrow key for up movement.
+	b. press down arrow key for down movement.
+2. press 'ctrl' key to throw projectile.
+3. press 's' to save the game.
+4. press 'p' to pause the game and again 'p' to play it.
+
+
+for developer mode:
+1. press 'd' for debug mode.
+2. press 'q' to kill enemies.
+3. press 'a' to delete all save games.
+4. press 'x' to make character life to 0.

@@ -69,6 +69,10 @@ class Enemy{
 
         if(this.x+this.width<0 && this.type !='lucky'){
             this.game.regularEnemyKills = 0;
+            //this.markedForDeletion=true;
+        }
+
+        if(this.x+this.width<0){
             this.markedForDeletion=true;
         }
         

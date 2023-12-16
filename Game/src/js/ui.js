@@ -43,8 +43,8 @@ class Layer {
 class UI {
     constructor(game) {
         this.game = game;
-        this.fontSize = 25;
-        this.fontFamily = 'Helvetica';
+        this.fontSize = 20;
+        this.fontFamily = 'Fredoka One';
         this.color = 'white';
     }
 
@@ -52,7 +52,6 @@ class UI {
         context.save();
         context.fillStyle = this.color;
         context.font = this.fontSize + 'px ' + this.fontFamily;
-        
         backButtonGame.style.display = 'flex';
 
         if(playingBonusLevel){
