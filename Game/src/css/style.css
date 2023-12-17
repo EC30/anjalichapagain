@@ -306,6 +306,7 @@ button.big-button:active::before {
   font-family: 'Fredoka One', cursive;
   font-size: 14px;
   letter-spacing: 4px;
+  cursor:pointer;
 }
 
 /* Heading 1 styling */
