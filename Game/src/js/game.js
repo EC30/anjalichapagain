@@ -43,6 +43,7 @@ class Game {
         if (this.inputHandler) {
             this.inputHandler.destroy();
         }
+        console.log(runningLevel);
         // Initialize new background, input handler, and player objects
         this.background=new Background(this,levelArray[levelNumber].background,levelArray[levelNumber].backgroundSpeed);
         this.inputHandler = new InputHandler(this);
@@ -109,10 +110,20 @@ class Game {
             // Check for bonus level completion or failure based on time limit and score
             if (this.gameTime > timeLimit && this.score >= this.winingscore) {
                 bonusPopup.style.display="flex";
+                if(runningLevel==0){
+                    document.getElementById('bonus_continue').style.display='none';
+                }else{
+                    document.getElementById('bonus_continue').style.display='block';
+                }
                 popupShown=true;
                 stopAnimation();                   
             }else if(this.gameTime > timeLimit && this.score < this.winingscore){
                bonusLoserPopup.style.display="flex";
+               if(runningLevel==0){
+                    document.getElementById('bonus_loser_continue').style.display='none';
+               }else{
+                document.getElementById('bonus_loser_continue').style.display='block';
+               }
                popupShown=true;
                stopAnimation();
             }
@@ -252,6 +263,10 @@ class Game {
             // Check if it's time to display the completion pop-up or move to the next level
             if(this.playBonusLevel){
                 completionPopup.style.display='flex';
+                // if(runningLevel>0){
+                //     document.getElementById('bonus_continue').style.display='flex';
+                //     document.getElementById('bonus_loser_continue').style.display='flex';
+                // }
             } else {
                 overlay.style.display = "flex";
                 if(runningLevel >= levels.length-1){

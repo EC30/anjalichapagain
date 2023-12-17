@@ -244,7 +244,8 @@ document.getElementById("bonus_loser_continue").addEventListener("click", functi
 // Play bonus level button click event
 document.getElementById("playBonusLevel").addEventListener("click", function () {
     playingBonusLevel = true;
-    startNewGame();
+    console.log(runningLevel);
+    startNewGame(runningLevel);
     popupShown = false;
     main_menu_container.style.display = "none";
 });
@@ -351,7 +352,8 @@ function saveGame(fileName) {
         saveName: fileName,                 // User-defined save name
         saveLives: game.lives,              // Current player lives
         saveLevel: runningLevel,            // Current game level
-        saveCompleteScore: levelCompleteScore // Accumulated score
+        saveCompleteScore: levelCompleteScore, // Accumulated score
+        saveScore: game.score
     };
 
     // Generate a save variable name
@@ -435,6 +437,7 @@ function startNewGame(level, savedGameData) {
         game = new Game(canvas.width, canvas.height, savedGameData.saveLevel);
         game.lives = savedGameData.saveLives;
         levelCompleteScore = savedGameData.saveCompleteScore;
+        game.score=savedGameData.saveScore;
     } else {
         // If no saved game data, start a new game from the specified level
         game = new Game(canvas.width, canvas.height);
@@ -483,6 +486,12 @@ function goToMainMenu() {
 
     // Reset levelCompleteScore
     levelCompleteScore = 0;
+
+     // Reset the level to the initial level
+     runningLevel = startLevel;
+
+     // Reset other relevant variables if needed
+     playingBonusLevel = false;
 
     // Adjust main menu container dimensions and display
     main_menu_container.style.height = canvas.height;
