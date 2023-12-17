@@ -59,7 +59,7 @@ var levels = [
         winingscore : 50,
         speed : 2,
         droneCount : 6,
-        playerProjectileSpeed : 3,
+        playerProjectileSpeed : 4,
         enemyProjectileSpeed : 6,
         background : [
             layer1,
@@ -95,8 +95,8 @@ var levels = [
         winingscore : 70,
         speed : 3,
         droneCount : 8,
-        playerProjectileSpeed : 3,
-        enemyProjectileSpeed : 9,
+        playerProjectileSpeed : 6,
+        enemyProjectileSpeed : 8,
         background : [
             layer3a,
             layer3b,

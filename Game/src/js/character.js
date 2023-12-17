@@ -127,6 +127,7 @@ class Character {
      * Fires projectiles towards the top.
      */
     shootTop() {
+        // Check if the character has ammunition available
         if (this.game.ammo > 0) {
             this.Projectiles.push(new Projectile(this.game, this.x + 80, this.y + 30));
             this.game.ammo--;
@@ -144,6 +145,7 @@ class Character {
      * Fires projectiles towards the bottom.
      */
     shootButtom() {
+        // Check if the character has ammunition available and is not in a power-up state
         if (this.game.ammo > 0 && !this.game.isPowerUp) {
             this.Projectiles.push(new Projectile(this.game, this.x + 80, this.y + 175));
             this.game.ammo--;
