@@ -1,17 +1,25 @@
+/* Global reset */
 * {
-  margin:0;
-  padding:0;
+  margin: 0;
+  padding: 0;
   box-sizing: border-box;
   font-family: 'Fredoka One', cursive;
 }
 
-.canvas{
+/* Canvas styling */
+.canvas {
   background-color: aqua;
   max-width: 100%;
-  max-height:100%;
+  max-height: 100%;
 }
 
-#overlay, #popup, #pause, #bonusPopup,#bonusLoserPopup, #completionPopup {
+/* Popup styling */
+#overlay,
+#popup,
+#pause,
+#bonusPopup,
+#bonusLoserPopup,
+#completionPopup {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -24,26 +32,36 @@
   align-items: center;
   justify-content: center;
   padding: 0 30px 30px;
-  color: #333
+  color: #333;
 }
-#image{
+
+/* Image styling */
+#image {
   width: 100px;
   margin-top: -50px;
   border-radius: 50%;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
 
+/* Heading 2 styling */
 h2 {
-  font: 20px Helvetica;
   font-weight: bold;
   margin-top: 30px;
-  
 }
 
-#overlay button, #play_again, #continue, #bonus_btn, #bonus_loser_btn, #completion_btn, #completion_map_btn, #continue_next,#bonus_continue,#bonus_loser_continue {
+/* Button styling */
+#overlay button,
+#play_again,
+#continue,
+#bonus_btn,
+#bonus_loser_btn,
+#completion_btn,
+#completion_map_btn,
+#continue_next,
+#bonus_continue,
+#bonus_loser_continue {
   padding: 1rem 2rem;
   border-radius: 0.5rem;
-  border: 4px solid gray;
   font-weight: bold;
   font-size: 18px;
   border: 0;
@@ -52,24 +70,44 @@ h2 {
   width: 100%;
   z-index: 999;
   cursor: pointer;
-  box-shadow: 0 5px 5px rgba(0,0,0,0.2);
+  box-shadow: 0 5px 5px rgba(0, 0, 0, 0.2);
 }
 
-#layer1,#layer2,#layer3a,#layer3b,#bonusLayer, #layerBelow,#background_image,#player,#angler1,#angler2,#lucky,#enemy2,#projectile,#boss,#drone,#smoke,#fire,#fireballPower,#fireball,#bossprojectile, #enemyBullet{
+/* Hide game elements by default */
+#layer1,
+#layer2,
+#layer3a,
+#layer3b,
+#bonusLayer,
+#layerBelow,
+#background_image,
+#player,
+#angler1,
+#angler2,
+#lucky,
+#enemy2,
+#projectile,
+#boss,
+#drone,
+#smoke,
+#fire,
+#fireballPower,
+#fireball,
+#bossprojectile,
+#enemyBullet,
+#bossBullet {
   display: none;
 }
 
-/* code for landing page */
+/* Landing page styling */
 #canvas-container {
   overflow: hidden !important;
   display: flex;
   flex-direction: column;
   justify-content: center;
-
 }
 
 .container {
-  /* display: none; */
   text-align: center;
   display: flex;
   flex-direction: column;
@@ -84,8 +122,8 @@ h2 {
   margin-right: auto;
 }
 
+/* Root variables */
 :root {
-  /* background-image: url("bg.jpg"); */
   --colorShadeA: rgb(106, 163, 137);
   --colorShadeB: rgb(121, 186, 156);
   --colorShadeC: rgb(150, 232, 195);
@@ -93,14 +131,10 @@ h2 {
   --colorShadeE: rgb(205, 255, 232);
 }
 
+/* Font import */
 @import url("https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700");
-* {
-  box-sizing: border-box;
-}
-*::before,
-*::after {
-  box-sizing: border-box;
-}
+
+/* Button styling */
 button {
   position: relative;
   display: inline-block;
@@ -116,6 +150,7 @@ button {
   font-family: inherit;
 }
 
+/* Big button styling */
 button.big-button {
   padding: 1em 2em;
   border: 2px solid var(--colorShadeA);
@@ -124,6 +159,7 @@ button.big-button {
   transform-style: preserve-3d;
   transition: all 175ms cubic-bezier(0, 0, 1, 1);
 }
+
 button.big-button::before {
   position: absolute;
   content: "";
@@ -155,100 +191,90 @@ button.big-button:active {
 
 button.big-button:active::before {
   transform: translate3d(0, 0, -1em);
-
   box-shadow: 0 0 0 2px var(--colorShadeB), 0 0.25em 0 0 var(--colorShadeB);
 }
 
-#savedGameListData{
+/* Saved game list styling */
+#savedGameListData {
   position: absolute;
-  top:10%;
-  /* text-align: center; */
+  top: 10%;
   flex-direction: column;
-  /* justify-content: center; */
   gap: 3rem;
   position: absolute;
   left: 0;
   right: 0;
   margin-left: auto;
   margin-right: auto;
-  /* background-color: green; */
 }
 
-.gameList-div{
-  /* margin-top: 10%; */
+.gameList-div {
   display: flex;
   overflow-y: auto;
   flex-direction: column;
   gap: 5px;
-  /* margin-left: 20%; */
 }
 
-/* Customize the scrollbar for WebKit browsers */
+/* Scrollbar styling for WebKit browsers */
 .gameList-div::-webkit-scrollbar {
   width: 2rem;
 }
 
 .gameList-div::-webkit-scrollbar-thumb {
-  /* background-color: #4CAF50; Color of the thumb */
   background-color: var(--colorShadeC);
-  border-radius: 6px; /* Roundness of the thumb */
+  border-radius: 6px;
 }
 
 .gameList-div::-webkit-scrollbar-track {
-  /* background-color: #f1f1f1; Color of the track */
-  border-radius: 6px; /* Roundness of the track */
+  border-radius: 6px;
 }
 
 .gameList-div::-webkit-scrollbar-button {
   display: flex;
   height: 2rem;
-  background-color: var(--colorShadeC); /* Color of the scrollbar button */
+  background-color: var(--colorShadeC);
 }
 
-.nameList-div{
+.nameList-div {
   display: flex;
-  /* gap:100px; */
   background: var(--colorShadeC);
   border-radius: 1em;
   box-shadow: 0 0 0 2px var(--colorShadeB), 0 0.75em 0 0 var(--colorShadeA);
   transform: translate3d(0, 0.75em, -1em);
   transition: all 175ms cubic-bezier(0, 0, 1, 1);
   margin-bottom: 1rem;
-} 
-.fileNameDiv{
-  flex:1;
+}
+
+.fileNameDiv {
+  flex: 1;
   font-family: 'Fredoka One', cursive;
-  font-size : 20px ;
-  letter-spacing : 4px ;
+  font-size: 20px;
+  letter-spacing: 4px;
   color: #fff;
   margin-top: 0.8rem;
   margin-left: 2rem;
   font-weight: bold;
   text-transform: uppercase;
-  /* vertical-align: center; */
-  /* position: relative;
-  left:0;  */
-  /* top:150%; */
 }
-.savePLayButton{
-  align-items : center ;
-  /* position: relative; */
+
+.savePLayButton {
+  align-items: center;
   margin-right: 0.5rem;
   right: 0;
   padding-left: 0.5rem;
   padding-right: 0.5rem;
-  /* width : 250px ; */
-  height : 60px ;
-  box-sizing : border-box ;
-  text-decoration : none ;
-  border : solid 3px #000 ;
-  border-radius : 40px ;
-  background : #4993ff;
+  height: 60px;
+  box-sizing: border-box;
+  text-decoration: none;
+  border: solid 3px #000;
+  border-radius: 40px;
+  background: #4993ff;
   font-family: 'Fredoka One', cursive;
-  font-size : 20px ;
-  letter-spacing : 4px ;
+  font-size: 20px;
+  letter-spacing: 4px;
   color: #fff;
 }
+
+/* Back button styling */
 .backButton {
   position: absolute;
   top: 10px;
@@ -282,13 +308,11 @@ button.big-button:active::before {
   letter-spacing: 4px;
 }
 
+/* Heading 1 styling */
 .threeD {
-  /* margin-left: 150%; */
   text-align: center;
   color: darkgrey;
   white-space: nowrap;
-  /* position: absolute; */
-  /* transform: translate(-50%, -50%); */
   font-size: 3em;
   font-family: 'Fredoka One', cursive;
   letter-spacing: 0.1em;

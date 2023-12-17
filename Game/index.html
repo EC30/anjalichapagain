@@ -4,36 +4,31 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Assignment 9- Game</title>
-  <!-- Link to the external CSS file -->
-  <link rel="stylesheet" href="./src/css/style.css" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css ">
+  <!-- Link to the external CSS file and Normalize.css -->
+  <link rel="stylesheet" href="./src/css/style.css" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
 </head>
 <body>
 
+  <!-- Container for the visual representation of balls -->
   <div id="canvas-container">
-    <!-- Container for the visual representation of balls -->
     <canvas id="canvas" class="canvas"></canvas>
 
+    <!-- Main menu container -->
     <div class="container" id="container">
       <audio id="buttonHoverSound">
         <source src="./src/sound/smb_fireball.wav" type="audio/mp3">
       </audio>
-        <img src="./src/images/logo.png">
-        <!-- <a href="index.html"> -->
-          <button class="big-button" id="startNewGame" onmouseover="playClickSound()">Start New game</button>
-        <!-- </a> -->
-        
-      <!-- <a href="#"> -->
-        <button class="big-button" id="viewSaveGame" onmouseover="playClickSound()"> View Saved games</button>
-      <!-- </a> -->
+      <img src="./src/images/logo.png">
+      <button class="big-button" id="startNewGame" onmouseover="playClickSound()">Start New game</button>
+      <button class="big-button" id="viewSaveGame" onmouseover="playClickSound()"> View Saved games</button>
+      <button class="big-button" id="playBonusLevel" onmouseover="playClickSound()"> Play Bonus Level </button>
     </div>
   </div>
 
-  <!-- <div id="> -->
-    <!-- <button class="backButtonGame" id="backButtonGame"> <- Go To Main Menu </button> -->
-    <h3 class="backButtonGame" id="backButtonGame"> <- Go To Main Menu </h3>
-    <!-- <h1 class="threeD"> Saved Game List</h1> -->
-  <!-- </div> -->
+  <!-- Back button for the game -->
+  <h3 class="backButtonGame" id="backButtonGame"> <- Go To Main Menu </h3>
 
+  <!-- Congratulations popup -->
   <div id="overlay">
     <img id="image" src="./src/images/tick.png">
     <h2>Congratulations!</h2>
@@ -41,44 +36,46 @@
     <button id="next-level">Play Next Level</button>
   </div>
 
-
+  <!-- Game over popup -->
   <div id="popup">
     <h2>Sorry, Out of Lives</h2>
     <button id="play_again">Play Again</button>
   </div>
 
+  <!-- Pause popup -->
   <div id="pause">
     <h2>Your game is paused</h2>
     <button id="continue" onclick="">Continue</button>
   </div>
 
+  <!-- Level completion popup -->
   <div id="completionPopup">
     <h2>Congratulation! You have completed this level</h2>
     <button id="completion_btn" onclick="">Play bonus level</button>
     <button id="continue_next" onclick="">Continue to Next Level</button>
   </div>
 
+  <!-- Bonus level popup -->
   <div id="bonusPopup">
     <h2>Congratulation! You have won the bonus Level</h2>
     <button id="bonus_btn" onclick="">Tap to play again</button>
     <button id="bonus_continue" onclick="">Continue to next level</button>
   </div>
 
+  <!-- Bonus level loser popup -->
   <div id="bonusLoserPopup">
     <h2>Sorry! You didn't reach the winning score in the bonus level.</h2>
     <button id="bonus_loser_btn" onclick="">Tap to play again</button>
     <button id="bonus_loser_continue" onclick="">Continue to next level</button>
   </div>
 
+  <!-- Background and game sounds -->
   <audio id="backgroundSound" loop>
-    <source src="src/sound/backgroundSound.wav" type="audio/mp3"  autoplay="true"
-    muted="muted">
+    <source src="src/sound/backgroundSound.wav" type="audio/mp3"  autoplay="true" muted="muted">
   </audio>
-
   <audio id="clickSound">
     <source src="src/sound/smb_fireball.wav" type="audio/mp3">
   </audio>
-  
   <audio id="explosionSound">
     <source src="src/sound/explosion.wav" type="audio/mp3">
   </audio>
@@ -92,10 +89,9 @@
     <source src="src/sound/hit.wav" type="audio/mp3">
   </audio>
 
+  <!-- Game images -->
   <img id="player" src="./src/images/anime.png">
-
   <img id="angler1" src="./src/images/angler1.png">
-  <!-- <img id="angler2" src="./src/images/33.1 bulbwhale.png"> -->
   <img id="angler2" src="./src/images/angler2.png">
   <img id="lucky" src="./src/images/lucky.png">  
   <img id="boss" src="./src/images/28.1 hivewhale.png">
@@ -104,19 +100,17 @@
   <img id="smoke" src="./src/images/smoke.png">
   <img id="fire" src="./src/images/fire.png">
   <img id="fireball" src="./src/images/37.1 fireball.png">
-  <img id="fireballPower" src="./src/images/fireballpower.png">
-  <img id="enemyBullet" src="./src/images/enemy_bullet.png">
-  <!-- <img id="bossprojectile" src="./src/images/enemyfire.png"> -->
-  
+  <img id="enemyBullet" src="./src/images/enemBall2.png">
+  <img id="bossBullet" src="./src/images/bossBullet.png">
   <img id="layer1" src="./src/images/layer1final.png">
   <img id="layer2" src="./src/images/layer2final.png">
   <img id="layer3a" src="./src/images/layer3.1final.png">
   <img id="layer3b" src="./src/images/layer3.2final.png">
   <img id="bonusLayer" src="./src/images/bonuslayer.jpg">
   <img id="layerBelow" src="./src/images/layerBelow.png">
-
   <img id="background_image" src="./src/images/bg.jpg">
 
+  <!-- JavaScript files -->
   <script src="./src/js/audio.js"></script>
   <script src="./src/js/utils.js"></script>
   <script src="./src/js/ui.js"></script>

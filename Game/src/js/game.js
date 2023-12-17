@@ -25,11 +25,11 @@ class Game {
         let levelNumber=runningLevel;
         if(playingBonusLevel){
             levelArray=bonusLevels;
-            levelNumber=bonusLevelNumber
+            levelNumber=bonusLevelNumber;
+            this.timeFrame=levelArray[levelNumber].timeframe;
+            //console.log(levelArray[levelNumber].timeframe);
         }
-        console.log(levelArray[levelNumber].enemyInterval);
         
-    
         if (this.inputHandler) {
             this.inputHandler.destroy();
         }
@@ -57,6 +57,8 @@ class Game {
 
         this.regularEnemyKills = 0;
         this.isPowerUp = false;
+
+        this.enemies = [];
     }
 
     update(deltaTime) {
@@ -77,14 +79,14 @@ class Game {
         }
 
          if(playingBonusLevel){
-
-            console.log(this.winingscore);
             const bonusPopup = document.getElementById("bonusPopup")
             const bonusLoserPopup = document.getElementById("bonusLoserPopup")
             
-            const timeLimit = 20000;
+            const timeLimit=this.timeFrame;
+            console.log(timeLimit);
             this.gameTime += deltaTime;
-            // console.log(this.gameTime);
+            
+            //console.log(this.gameTime);
             if (this.gameTime > timeLimit && this.score >= this.winingscore) {
                 bonusPopup.style.display="flex";
                 popupShown=true;
@@ -138,6 +140,9 @@ class Game {
                 if (this.checkCollision(projectile, this.player, "player")) {
                     projectile.markedForDeletion = true;
                     this.lives--;
+                    if(enemy.type === 'boss'){
+                        this.lives --;
+                    }
                 }
             });
             enemy.enemyProjectiles = enemy.enemyProjectiles.filter(projectile => !projectile.markedForDeletion);
@@ -216,7 +221,7 @@ class Game {
         }
         // If Boss Defeated Level Up
 
-        if (this.bossAdded && this.enemies.length == 0) {
+        if (this.bossAdded && this.enemies.length == 0 && !playingBonusLevel) {
             this.bossAdded = false;
             stopAnimation();
             if(this.playBonusLevel){

@@ -22,7 +22,7 @@ var levels = [
         maxAmmo : 50,
         ammoInterval : 500,
         lives : 15,
-        winingscore : 30,
+        winingscore : 10,
         speed : 1,
         droneCount : 4,
         playerProjectileSpeed : 3,
@@ -56,7 +56,7 @@ var levels = [
         maxAmmo : 50,
         ammoInterval : 500,
         lives : 20,
-        winingscore : 50,
+        winingscore : 20,
         speed : 2,
         droneCount : 6,
         playerProjectileSpeed : 3,
@@ -126,9 +126,9 @@ var bonusLevels = [
         ammo : 20,
         maxAmmo : 50,
         ammoInterval : 500,
-        timeframe: 60000,
+        timeframe: 30000,
         lives : 30,
-        winingscore : 20,
+        winingscore : 2,
         speed : 1,
         droneCount : 4,
         playerProjectileSpeed : 3,
@@ -234,11 +234,14 @@ document.getElementById("bonus_loser_continue").addEventListener("click", functi
 
 });
 
-//   document.getElementById("bonusLevel").addEventListener("click", function () {
-//     playingBonusLevel=true;
-//     game.updateVariableValuesForLevelChange();
-//     startAnimation();
-//   });
+// Play bonus level button click event
+document.getElementById("playBonusLevel").addEventListener("click", function () {
+    playingBonusLevel = true;
+    startNewGame();
+    popupShown = false;
+    main_menu_container.style.display = "none";
+});
+
 
 function resetAndRestartGame(resetLevel){
     levelCompleteScore = 0;
@@ -306,14 +309,6 @@ function moveToNextLevel() {
     startAnimation();
 }
 
-// function startNewGame(level){
-//     game = null;
-//     // console.log(level);
-    
-//     game = new Game(canvas.width, canvas.height, level);
-//     startAnimation();
-//     // startAnimation();
-// }
 
 function saveGame(fileName){
     let savedGameData = [];
@@ -563,5 +558,3 @@ document.getElementById('viewSaveGame').addEventListener('click', function () {
 
     canvas_container.appendChild(savedGameList);
 });
-
-
