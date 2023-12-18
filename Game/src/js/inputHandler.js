@@ -36,8 +36,11 @@ class InputHandler {
      * @param {KeyboardEvent} e - The keyup event object.
      */
     keyupFunction(e){
+        // Update the game property with the provided game object
         this.game = game;
+        // Check if the released key is currently in the keys array
         if(this.game.keys.indexOf(e.key) > -1){
+            // Remove the released key from the keys array using splice
             this.game.keys.splice(this.game.keys.indexOf(e.key),1);
         }
     }

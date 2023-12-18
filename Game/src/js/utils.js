@@ -91,7 +91,7 @@ var levels = [
         ammo : 20,
         maxAmmo : 50,
         ammoInterval : 500,
-        lives : 30,
+        lives : 40,
         winingscore : 70,
         speed : 3,
         droneCount : 8,
@@ -129,7 +129,7 @@ var bonusLevels = [
         maxAmmo : 50,
         ammoInterval : 500,
         timeframe: 120000, // Time limit for the bonus level
-        lives : 30,
+        lives : 40,
         winingscore : 40,
         speed : 1,
         droneCount : 4,
@@ -183,6 +183,10 @@ document.getElementById("next-level").addEventListener("click", function () {
 document.getElementById("play_again").addEventListener("click", function () {
     popupShown = false;
     out_of_life_popup.style.display = "none";
+    if(playingBonusLevel && runningLevel >0){
+        playingBonusLevel=false;
+        resetAndRestartGame(startLevel);
+    }
     resetAndRestartGame(startLevel);
 });
 
@@ -334,6 +338,7 @@ function saveGame(fileName) {
 
     // Check if saved games exist
     if (localStorage.getItem('savedGameData')) {
+        // If saved games exist, parse the JSON data from the local storage
         savedGameData = JSON.parse(localStorage.getItem('savedGameData'));
 
         // Check if maximum save count is reached
