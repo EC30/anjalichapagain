@@ -105,7 +105,10 @@ class Game {
             
             const timeLimit=this.timeFrame;
             console.log(timeLimit);
+            console.log(this.gameTime);
+            bonusTime=this.timeFrame-this.gameTime;
             this.gameTime += deltaTime;
+            console.log(bonusTime);
             
             // Check for bonus level completion or failure based on time limit and score
             if (this.gameTime > timeLimit && this.score >= this.winingscore) {
@@ -312,6 +315,7 @@ class Game {
             return false;
         }
          // Check for collision based on the positions and dimensions of the entities
+         //, it indicates that the two entities have overlapping boundaries, and a collision is detected.
         return (a.x <b.x+b.width &&
         a.x + a.width > b.x &&
         a.y <b.y+b.height &&

@@ -32,7 +32,7 @@ class Enemy {
 
         // For Boss and Drone movement does not come left of screen middle
         if (!this.reachedMiddle) {
-            this.x += this.speedX - this.game.speed;
+            this.x += this.speedX - this.game.speed; //to move more than game speed
         }
 
         // Check if Boss and Drone Reached Middle
@@ -42,10 +42,11 @@ class Enemy {
 
         // Boss and Drone movement after reaching middle
         if (this.reachedMiddle) {
-            this.x = Math.floor(this.x);
+            this.x = Math.floor(this.x); //to convert to integer
             this.y = Math.floor(this.y);
 
             // Boss and drone left and right randomly after reaching middle
+            //checking whether the current X position of the boss (this.x) is within a specific range around the target X position 
             if ((this.x >= this.bossNewPositionX - this.game.speed + 1 && this.x <= this.bossNewPositionX + this.game.speed - 1) || this.bossNewPositionX == 0) {
                 this.bossNewPositionX = getRandomInteger(this.game.width / 2, this.game.width);
             }
@@ -89,7 +90,7 @@ class Enemy {
      * Throws a projectile based on the enemy's type and random probability.
      */
     throwProjectile() {
-        // Check if the enemy should throw a projectile
+        // Check if the enemy should throw a projectile at a certain probability 
         if (Math.random() < 0.019 && this.type == "boss") {
             this.throwProjectile2();
         }

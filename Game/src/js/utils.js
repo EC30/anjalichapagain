@@ -10,7 +10,7 @@ let popupShown = false;
 let maxSaves = 10;
 let bonusLevelNumber = 0;
 let playingBonusLevel=false;
-
+let bonusTime=0;
 let isGameRunning = false;
 
 // Define levels with their configurations
@@ -270,8 +270,11 @@ function resetAndRestartGame(resetLevel){
 function animate(timeStamp) {
     const deltaTime = timeStamp - lastTime;
     lastTime = timeStamp;
+     // Clear the entire canvas to prepare for the next frame
     ctx.clearRect(0,0,canvas.width,canvas.height);
+    // Draw the current state of the game on the canvas
     game.draw(ctx);
+    // Update the game's internal state based on the elapsed time (deltaTime)
     game.update(deltaTime);
     if(isAnimating){
         animation = requestAnimationFrame(animate);

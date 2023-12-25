@@ -103,6 +103,11 @@ class UI {
             // Display score and bonus level information during bonus levels.
             context.fillText('Score: ' + this.game.score, 20, 40);
             context.fillText('Level: Bonus Level' + (parseInt(bonusLevelNumber) + 1), 280, 40);
+            //context.fillText('Time:' +this.game.timeFrame, 500, 40);
+            let formattedTime=(bonusTime*0.001).toFixed(1);
+            // Convert milliseconds to seconds
+            context.fillText('Time: ' + formattedTime +'s', 500, 40);
+            //context.fillText('Time: ' + bonusTime, 500, 40);
         } else {
             // Display total score, level, and lives during regular levels.
             let totalScore = parseInt(levelCompleteScore) + parseInt(this.game.score);
@@ -127,5 +132,6 @@ class UI {
         }
         // Restore the canvas state.
         context.restore();
+        console.log(context);
     }
 }
