@@ -1,0 +1,15 @@
+CREATE TABLE IF NOT EXISTS OrderDetails (
+    OrderDetailsID INT PRIMARY KEY,
+    OrderID INT NOT NULL,
+    ProductID INT NOT NULL,
+    Quantity INT NOT NULL,
+    FOREIGN KEY (OrderID) REFERENCES ORDERS(OrderID),
+    FOREIGN KEY (ProductID) REFERENCES PRODUCTS(ProductID)
+);
+
+
+
+
+
+
+
