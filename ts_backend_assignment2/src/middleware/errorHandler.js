@@ -25,7 +25,7 @@ function genericErrorHandler(err, _req, res, _next) {
     .json({ message: err.message });
 }
 
-module.exports = {
-  genericErrorHandler,
-};
+// module.exports = genericErrorHandler;
+module.exports = { genericErrorHandler };
+
 

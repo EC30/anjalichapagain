@@ -2,11 +2,10 @@ require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
-// const todosRoutes = require('./src/routes/todos');
-// const usersRoutes = require('./src/routes/users');
 const routes = require('./src/routes/index');
 const { validateAccessToken} = require('./src/utils/authUtils');
 const jwt = require('jsonwebtoken');
+const { genericErrorHandler } =require('./src/middleware/errorHandler')
 
 const db = require('./src/db/db');
 const { createTodoTable } = require('./src/models/todoModel');
@@ -18,6 +17,7 @@ const app = express();
 app.use(cors());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+app.use(genericErrorHandler);
 
 // Create tables before starting the server
 createTodoTable()

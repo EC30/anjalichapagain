@@ -10,12 +10,12 @@ const { createUserTable } = require('../models/userModel');
 const { validateAccessToken, validateRefreshToken, getUserByRefreshToken } = require('../utils/authUtils');
 const { createLogger } = require('../utils/logger');
 const { userIdSchema, userSchema } = require('../schema/userschema');
-// const UnauthenticatedError = require("../error/unauthenticatedError");
-// const BadRequestError = require("../error/badRequestError");
-// const notfoundError = require("../error/notfoundError");
-// const internalServerError = require("../error/internalServerError");
-// const { genericErrorHandler } = require('../middleware/errorHandler');
-const { UnauthenticatedError, BadRequestError, NotFoundError, InternalServerError, genericErrorHandler } = require('../middleware/errorHandler');
+const UnauthenticatedError = require("../error/unauthenticatedError");
+const BadRequestError = require("../error/badRequestError");
+const notfoundError = require("../error/notfoundError");
+const internalServerError = require("../error/internalServerError");
+const { genericErrorHandler } = require('../middleware/errorHandler');
+// const { UnauthenticatedError, BadRequestError, NotFoundError, InternalServerError, genericErrorHandler } = require('../middleware/errorHandler');
 
 
 const logger = createLogger('UserController');
@@ -134,14 +134,14 @@ const getUserById = async (req, res) => {
     if (!user) {
       logger.error('User not found');
       //return res.status(404).json({ error: 'User not found' });
-      throw new NotFoundError("user not found");
+      throw new notfoundError("user not found");
     }
     res.json(user);
 
   } catch (error) {
     console.error('Error fetching user by ID:', error);
-    // throw new InternalServerError("user not found");
-    res.status(500).json({ error: 'Internal Server Error' });
+    throw new internalServerError("user not found");
+    //res.status(500).json({ error: 'Internal Server Error' });
   }
 };
 router.use(genericErrorHandler);
