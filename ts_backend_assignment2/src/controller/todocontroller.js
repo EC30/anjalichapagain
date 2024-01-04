@@ -26,14 +26,14 @@ const TodoController = {
 
       if (!todo) {
         //return res.status(404).json({ error: 'Todo not found' });
-        throw new notfoundError('Todo not found');
+        // throw new notfoundError('Todo not found');
       }
 
       res.json(todo);
     } catch (error) {
       console.error('Error fetching todo by ID:', error);
-      res.status(500).json({ error: 'Internal Server Error' });
-      //throw new internalServerError("internal server error");
+      // res.status(500).json({ error: 'Internal Server Error' });
+      throw new internalServerError("internal server error");
     }
   },
 
