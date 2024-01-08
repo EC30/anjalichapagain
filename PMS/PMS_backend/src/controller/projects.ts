@@ -2,6 +2,7 @@ import HttpStatus from "http-status-codes";
 import { NextFunction, Request, Response } from "express";
 import { Iprojects, Queryprojects } from "../interface/projects";
 import * as projectsService from "../services/projects";
+import { IassignedProjects } from "../interface/assignedProject";
 
 
 export async function createprojects(req: any, res: Response) {
@@ -75,4 +76,15 @@ export async function deleteprojects(
   } catch (error) {
     next(error);
   }
+}
+
+export async function assignProjects(req: any, res: Response) {
+  const body: IassignedProjects = req.body;
+  const user = req.user;
+  const projectId =req.params.id;
+  await projectsService.assignProjects(projectId, body, user.id);
+
+  res.status(HttpStatus.CREATED).json({
+    message: "Project created successfully",
+  });
 }

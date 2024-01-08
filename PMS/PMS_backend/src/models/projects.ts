@@ -48,7 +48,7 @@ export default class projectsModel extends BaseModel {
   }
 
   static async createprojects(projects: Iprojects) {
-    return this.queryBuilder().insert(projects).table("projects");
+    return this.queryBuilder().returning("id").insert(projects).table("projects");
   }
 
   static async updateprojects(id: number, projects: Iprojects) {

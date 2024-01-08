@@ -1,6 +1,6 @@
 import { Knex } from 'knex';
 
-const TABLE_NAME = 'assignedProjects';
+const TABLE_NAME = 'assigned_projects';
 
 
 /**

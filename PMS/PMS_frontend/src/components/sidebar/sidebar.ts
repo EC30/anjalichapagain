@@ -1,4 +1,3 @@
-// import "../../components/sidebar/sidebar.html"
 const renderSidebar = (placeholder: HTMLElement, active: string) => {
     fetch("../../components/sidebar/sidebar.html")
         .then((response) => response.text())

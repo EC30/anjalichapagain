@@ -2,8 +2,21 @@ import NotFoundError from "../error/notFoundError";
 import BadRequestError from "../error/badRequestError";
 import { Iprojects, Queryprojects } from "../interface/projects";
 import projectsModel from "../models/projects";
+import AssignedProjectsModel from "../models/assignedProject";
 import { buildMeta, getPaginationOptions } from "../util/pagination";
+import { IassignedProjects } from "../interface/assignedProject";
 
+// export async function createprojects(body: Iprojects, userId: number, assignedTo: number[]) {
+//   console.log(body);
+//   const project = await projectsModel.createprojects({
+//     ...body,
+//     assigned_by: userId,
+//   });
+//   // createAssignedProject(assignedTo, project.id)
+//   return {
+//     message: "project created successfully",
+//   };
+// }
 export async function createprojects(body: Iprojects, userId: number) {
   console.log(body);
   await projectsModel.createprojects({
@@ -67,4 +80,15 @@ export async function deleteprojects(id: number, userId: number) {
   }
 
   await projectsModel.deleteprojects(id);
+}
+
+export async function assignProjects(projectId:number, body: IassignedProjects, userId: number) {
+  await AssignedProjectsModel.createAssignedProject({
+    ...body,
+    project_id:projectId,
+    updated_by: userId,
+  });
+  return {
+    message: "project assign created successfully",
+  };
 }

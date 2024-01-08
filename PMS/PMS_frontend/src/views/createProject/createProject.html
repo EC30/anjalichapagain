@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/css/bootstrap-multiselect.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
+	<script src="https://kit.fontawesome.com/64d58efce2.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="../../css/taskStyle.css">
+</head>
+<body>
+    <section id="sidebar-placeholder"></section>
+    <section id="content">
+		<!-- NAVBAR -->
+		<nav>
+			<i class='bx bx-menu' ></i>
+			<a href="#" class="nav-link">Categories</a>
+			<form action="#">
+				<div class="form-input">
+					<input type="search" placeholder="Search...">
+					<button type="submit" class="search-btn"><i class='bx bx-search' ></i></button>
+				</div>
+			</form>
+			<input type="checkbox" id="switch-mode" hidden>
+			<label for="switch-mode" class="switch-mode"></label>
+			<a href="#" class="profile">
+				<img src="img/people.png">
+			</a>
+		</nav>
+		<!-- NAVBAR -->
+
+		<!-- MAIN -->
+		<main>
+            <div class="head-title">
+				<div class="left">
+					<h1>Dashboard</h1>
+					<ul class="breadcrumb">
+						<li>
+							<a href="#">Dashboard</a>
+						</li>
+						<li><i class='bx bx-chevron-right' ></i></li>
+						<li>
+							<a class="active" href="#">Create Project</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+            <div class="project-data">
+                <form id="projectForm">
+                    <div class="input-field">
+                        <label for="projectName">Project Name:</label>
+                        <input type="text" id="projectName" name="projectName" required>
+
+                        <label for="projectDescription">Project Description:</label>
+                        <textarea id="projectDescription" name="projectDescription" rows="4" required></textarea>
+
+                        <label for="deadline">Deadline:</label>
+                        <input type="text" id="deadline" name="deadline" readonly required>
+
+                        <label for="assignedBy">Assigned By:</label>
+                        <select id="assignedBy" name="assignedBy" required>
+                            <option value="user1">User 1</option>
+                            <option value="user2">User 2</option>
+                            <option value="user3">User 3</option>
+                            <!-- Add more options as needed -->
+                        </select>
+						<label for="priority">Priority:</label>
+                        <select id="assignedBy" name="priority" required>
+                            <option value="High Priority">High Priority</option>
+                            <option value="Medium">Low</option>
+                            <option value="Low">Low</option>
+                            <!-- Add more options as needed -->
+                        </select>
+                    </div>
+                    
+                    <label for="assignedTo">Assigned To (Multiple):</label>
+                    <button type="button" class="submitButton" data-toggle="collapse" data-target="#assignedToOptions">Select Users</button>
+                    <div id="assignedToOptions" class="collapse">
+                        <select id="assignedTo" name="assignedTo[]" multiple="multiple" class="form-control">
+                            <option value="user1">User 1</option>
+                            <option value="user2">User 2</option>
+                            <option value="user3">User 3</option>
+                        </select>
+                    </div>
+                
+                    <div id="selectedUsers"></div>
+                
+                    <label for="image">Add Image:</label>
+                    <input type="file" id="image" name="image" accept="image/*">
+
+                    <div class="buttons">
+                        <button type="submit" class="resetButton">Reset Form</button>
+                        <button type="submit" class="submitButton">Create Project </button>
+                    </div>
+                    
+                </form>
+            </div>
+
+
+		</main>
+		<!-- MAIN -->
+	</section>
+
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/js/bootstrap-multiselect.js"></script>
+<script src="./task.js"></script>
+<script>
+    $(function() {
+        $("#deadline").datepicker();
+
+        $('#assignedTo').multiselect({
+            includeSelectAllOption: true,
+            enableFiltering: true,
+            maxHeight: 200
+        });
+
+        $('#assignedTo').change(function() {
+            var selectedUsers = $('#assignedTo option:selected').map(function() {
+                return $(this).val();
+            }).get();
+            $("#selectedUsers").html("<b>Assigned To:</b> " + selectedUsers.join(", "));
+        });
+    });
+</script>
+
+<script type=module src="../dashboard/dashboard.ts"></script>
+
+</body>
+</html>
