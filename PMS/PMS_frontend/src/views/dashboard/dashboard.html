@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<!-- Boxicons -->
+	<link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
+	<!-- My CSS -->
+	<link rel="stylesheet" href="../../css/taskStyle.css">
+
+	<title>ProjifyPro</title>
+</head>
+<body>
+    <section id="sidebar-placeholder"></section>
+	<!-- CONTENT -->
+	<section id="content">
+		<!-- NAVBAR -->
+		<nav>
+			<i class='bx bx-menu' ></i>
+			<a href="#" class="nav-link">Categories</a>
+			<form action="#">
+				<div class="form-input">
+					<input type="search" placeholder="Search...">
+					<button type="submit" class="search-btn"><i class='bx bx-search' ></i></button>
+				</div>
+			</form>
+			<input type="checkbox" id="switch-mode" hidden>
+			<label for="switch-mode" class="switch-mode"></label>
+			<a href="#" class="profile">
+				<img src="../../images/people.png">
+			</a>
+		</nav>
+		<!-- NAVBAR -->
+
+		<!-- MAIN -->
+		<main>
+			<div class="head-title">
+				<div class="left">
+					<h1>Dashboard</h1>
+					<ul class="breadcrumb">
+						<li>
+							<a href="#">Dashboard</a>
+						</li>
+						<li>
+							<a class="active" href="#">Home</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+
+			<ul class="box-info">
+				<li>
+					<i class='bx bxs-shopping-bag-alt' ></i>
+					<span class="text">
+						<h3>10</h3>
+						<p>Total Projects </p>
+					</span>
+				</li>
+				<li>
+					<i class='bx bxs-calendar-check' ></i>
+					<span class="text">
+						<h3>2</h3>
+						<p>Completed Projects</p>
+					</span>
+				</li>
+				<li>
+					<i class='bx bx-flashing'></i>
+					<span class="text">
+						<h3>2</h3>
+						<p>Remaining Projects</p>
+					</span>
+				</li>
+			</ul>
+
+
+			<div class="table-data">
+				<div class="order">
+					<table>
+						<thead>
+							<tr>
+								<th>Project Name </th>
+								<th>Completion Deadline</th>
+								<th>Status</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>
+									<p>Hello world</p>
+								</td>
+								<td>01-10-2021</td>
+								<td><span class="status completed">Completed</span></td>
+							</tr>
+							<tr>
+                                <td>
+									<p>Hello world</p>
+								</td>
+								<td>01-10-2021</td>
+								<td><span class="status pending">Pending</span></td>
+							</tr>
+							<tr>
+                                <td>
+									<p>Hello world</p>
+								</td>
+								<td>01-10-2021</td>
+								<td><span class="status process">Process</span></td>
+							</tr>
+							<tr>
+                                <td>
+									<p>Hello world</p>
+								</td>
+								<td>01-10-2021</td>
+								<td><span class="status pending">Pending</span></td>
+							</tr>
+							<tr>
+                                <td>
+									<p>Hello world</p>
+								</td>
+								<td>01-10-2021</td>
+								<td><span class="status completed">Completed</span></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				</div>
+			</div>
+		</main>
+		<!-- MAIN -->
+	</section>
+	<!-- CONTENT -->
+
+	
+	<script type=module src="./dashboard.ts"></script>
+</body>
+</html>
