@@ -3,6 +3,7 @@ import { NextFunction, Request, Response } from "express";
 import { Iprojects, Queryprojects } from "../interface/projects";
 import * as projectsService from "../services/projects";
 import { IassignedProjects } from "../interface/assignedProject";
+import * as assignedProjectService from "../services/assignedProject";
 
 
 export async function createprojects(req: any, res: Response) {
@@ -78,13 +79,28 @@ export async function deleteprojects(
   }
 }
 
-export async function assignProjects(req: any, res: Response) {
-  const body: IassignedProjects = req.body;
-  const user = req.user;
-  const projectId =req.params.id;
-  await projectsService.assignProjects(projectId, body, user.id);
+export async function assignProjects(req: any, res: Response, next:NextFunction) {
+  try{
+    const body: IassignedProjects = req.body;
+    const user = req.user;
+    const projectId =req.params.id;
+    await projectsService.assignProjects(projectId, body, user.id);
 
-  res.status(HttpStatus.CREATED).json({
-    message: "Project created successfully",
-  });
+    res.status(HttpStatus.CREATED).json({
+      message: "Project assigned successfully",
+    });
+  } catch(error){
+    next(error);
+  }
+}
+
+export async function getAssignedProject(req: any, res: Response) {
+  const query = req.query;
+  const user = req.user;
+  const projectss = await assignedProjectService.getAssignedprojects
+  (
+    user.id,
+    query as unknown as Queryprojects
+    );
+  res.json(projectss);
 }

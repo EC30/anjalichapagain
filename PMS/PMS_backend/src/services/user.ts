@@ -11,6 +11,14 @@ export const getAll = async () => {
   return data;
 };
 
+export const getUserByUsername = async (username: string) => {
+  const data = await UserModel.getUserByUsername(username);
+  if (!data) {
+    throw new NotFoundError(`User with username: ${username} not found`);
+  }
+  return data;
+};
+
 export const getById = async (id: number) => {
   const data = await UserModel.getById(id);
 

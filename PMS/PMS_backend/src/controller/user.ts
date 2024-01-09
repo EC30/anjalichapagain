@@ -27,6 +27,23 @@ export const getById = async (
     next(error);
   }
 };
+export const getUserByUsername = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    const username = String(req.params.username);
+
+    const data = await userService.getUserByUsername(username);
+
+    return res.json({
+      data,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
 
 export const updateUser = async (
   req: Request,
