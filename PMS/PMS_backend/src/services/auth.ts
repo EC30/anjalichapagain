@@ -49,6 +49,8 @@ export const login = async (body: Ilogin) => {
   const user = {
     id: userDetail.id,
     username: userDetail.username,
+    fullName:userDetail.fullName,
+    email:userDetail.email
   };
 
   const accessToken = jwt.sign(user, config.jwt.accessTokenSecret!, {
@@ -59,6 +61,7 @@ export const login = async (body: Ilogin) => {
   return {
     accessToken,
     refreshToken,
+    user,
     message: "User login successfully",
   };
 };
@@ -87,6 +90,7 @@ export const refreshToken = async (refreshToken:string) => {
       message: "Access token refreshed successfully",
     };
 };
+
 
 
 

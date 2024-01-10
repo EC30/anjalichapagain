@@ -28,7 +28,7 @@
 			<label for="switch-mode" class="switch-mode"></label>
 			<a href="#" class="profile">
 				<img src="../../images/people.png">
-				<h4 class="userName"> </h4>
+				<h4 class="userName" id="userName"></h4>
 			</a>
 		</nav>
 		<!-- NAVBAR -->
@@ -53,27 +53,25 @@
 				<li>
 					<i class='bx bxs-shopping-bag-alt' ></i>
 					<span class="text">
-						<h3>10</h3>
+						<h3 id="totalProjects"></h3>
 						<p>Total Projects </p>
 					</span>
 				</li>
 				<li>
 					<i class='bx bxs-calendar-check' ></i>
 					<span class="text">
-						<h3>2</h3>
+						<h3 id="completedProjects">2</h3>
 						<p>Completed Projects</p>
 					</span>
 				</li>
 				<li>
 					<i class='bx bx-flashing'></i>
 					<span class="text">
-						<h3>2</h3>
+						<h3 id="RemainingProjects">2</h3>
 						<p>Remaining Projects</p>
 					</span>
 				</li>
 			</ul>
-
-
 			<div class="table-data">
 				<div class="order">
 					<table>
@@ -84,46 +82,18 @@
 								<th>Status</th>
 							</tr>
 						</thead>
-						<tbody>
-							<tr>
+						<tbody id="projectTableBody">
+							<!-- <tr id="projectRow">
 								<td>
-									<p>Hello world</p>
+									<p id="projectName">Hello world</p>
 								</td>
-								<td>01-10-2021</td>
-								<td><span class="status completed">Completed</span></td>
-							</tr>
-							<tr>
-                                <td>
-									<p>Hello world</p>
-								</td>
-								<td>01-10-2021</td>
-								<td><span class="status pending">Pending</span></td>
-							</tr>
-							<tr>
-                                <td>
-									<p>Hello world</p>
-								</td>
-								<td>01-10-2021</td>
-								<td><span class="status process">Process</span></td>
-							</tr>
-							<tr>
-                                <td>
-									<p>Hello world</p>
-								</td>
-								<td>01-10-2021</td>
-								<td><span class="status pending">Pending</span></td>
-							</tr>
-							<tr>
-                                <td>
-									<p>Hello world</p>
-								</td>
-								<td>01-10-2021</td>
-								<td><span class="status completed">Completed</span></td>
-							</tr>
+								<td id="projectDeadline">01-10-2021</td>
+								<td id="projectStatus"><span class="status completed">Completed</span></td>
+							</tr> -->
 						</tbody>
 					</table>
 				</div>
-				</div>
+			
 			</div>
 		</main>
 		<!-- MAIN -->

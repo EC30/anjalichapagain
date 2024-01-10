@@ -51,9 +51,13 @@ loginButton.addEventListener("click", async (event) => {
             password,
         });
         const accessToken = response.data.accessToken;
+        const userData=response.data.user;
         console.log("Login successful");
         console.log("Token:", accessToken);
         localStorage.setItem("accessToken", accessToken);
+        localStorage.setItem("refreshToken", response.data.refreshToken);
+        // document.cookie = `currentUserData=${userData}; path=/`;
+        sessionStorage.setItem("user", JSON.stringify(userData));
         window.location.href="./src/views/dashboard/dashboard.html";
     }catch(error){
         console.log("Login failed");

@@ -413,30 +413,29 @@ body {
 	grid-gap: 12px;
 	padding-left: 6px;
 }
-#content main .table-data .order table td img {
-	width: 36px;
-	height: 36px;
-	border-radius: 50%;
-	object-fit: cover;
-}
+
 #content main .table-data .order table tbody tr:hover {
 	background: var(--grey);
 }
-#content main .table-data .order table tr td .status {
+.statusCompleted {
+	background: var(--blue);
 	font-size: 10px;
-	padding: 6px 16px;
+	text-align: center;
 	color: var(--light);
 	border-radius: 20px;
+	padding: 6px 16px;
+	height: fit-content;
 	font-weight: 700;
 }
-#content main .table-data .order table tr td .status.completed {
-	background: var(--blue);
-}
-#content main .table-data .order table tr td .status.process {
-	background: var(--yellow);
-}
-#content main .table-data .order table tr td .status.pending {
+.statusPending {
 	background: var(--orange);
+	font-size: 10px;
+	text-align: center;
+	color: var(--light);
+	padding: 6px 16px;
+	border-radius: 20px;
+	max-height: 50px;
+	font-weight: 700;
 }
 
 @media screen and (max-width: 768px) {

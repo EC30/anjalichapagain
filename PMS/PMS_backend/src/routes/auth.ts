@@ -1,7 +1,8 @@
 import { Router } from "express";
 
-import { login, refreshToken, signup } from "../controller/auth";
+import { login, refreshToken, signup, getCurrentUsers } from "../controller/auth";
 import { userSchema } from "../schema/user";
+import {auth} from "../middleware/auth";
 import { validateReqBody, validateReqQuery } from "../middleware/validator";
 // import { login } from "../controller/auth";
 
@@ -13,6 +14,8 @@ router.post("/login", login);
 
 router.post("/refresh", refreshToken);
 
+router.post("/check", getCurrentUsers);
 
+// router.post("/check", auth);
 
 export default router;

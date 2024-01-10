@@ -26,7 +26,9 @@ export const checkAssigned = async (
       try {
         console.log('utils');
         const assignedUser=await AssignedProjectsModel.getAssignedProjectByProjectId(userId,projectId);
-
+        console.log(assignedUser);
+        console.log(typeof userId);
+        console.log(typeof projectId);
         if(!assignedUser){
           return false;
         }
@@ -35,5 +37,25 @@ export const checkAssigned = async (
       } catch (error) {
         return false;
       }
+};
+
+export const checkAssignedUser = async (
+  userId:number,
+  projectId:number,
+  ) => {
+    try {
+      console.log('utils');
+      const assignedUser=await AssignedProjectsModel.getAssignedProjectByProjectId(userId,projectId);
+      console.log(assignedUser);
+      console.log(typeof userId);
+      console.log(typeof projectId);
+      if(!assignedUser){
+        return false;
+      }
+      console.log(assignedUser);
+      return assignedUser;
+    } catch (error) {
+      return false;
+    }
 };
 

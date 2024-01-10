@@ -91,9 +91,13 @@ export async function deleteprojects(id: number, userId: number) {
   await projectsModel.deleteprojects(id);
 }
 
-export async function assignProjects(projectId:number, body: IassignedProjects, userId: string) {
+export async function assignProjects(projectId:string, body: IassignedProjects, userId: string) {
   // console.log(typeof userId);
   // console.log(body.assigned_to[0]);
+  const isOwner = await checkOwner(parseInt(projectId), parseInt(userId));
+  if(!isOwner){
+    throw new unauthenticatedError("Not Your Project");
+  }
   if(body.assigned_to.includes(parseInt(userId))){
     const indexToRemove = body.assigned_to.indexOf(parseInt(userId));
     console.log(indexToRemove);
@@ -102,16 +106,9 @@ export async function assignProjects(projectId:number, body: IassignedProjects, 
     }
     // throw new unauthenticatedError("Can;t Assign to Yourself");
   }
-  const checkAssignedUser=await checkAssigned(parseInt(userId),projectId);
+  const checkAssignedUser=await projectsModel.getprojectsAssignedTo(parseInt(userId),parseInt(projectId));
   console.log("checkassigneduser:",checkAssignedUser);
-  if(body.assigned_to.includes(checkAssignedUser)){
-    throw new unauthenticatedError("you are already assigned to this project");
-  }
-  const isOwner = await checkOwner(projectId, parseInt(userId));
-  if(!isOwner){
-    throw new unauthenticatedError("Not Your Project");
-  }
-  // console.log(body.assigned_to.length);
+
   try{
     for(let i = 0; i < body.assigned_to.length; i++){
       await AssignedProjectsModel.createAssignedProject({

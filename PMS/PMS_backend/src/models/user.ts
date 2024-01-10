@@ -35,6 +35,7 @@ export default class UserModel extends BaseModel {
         fullname:"fullname",
         email:"email",
         password: "password",
+        refreshToken:"refresh_token"
       })
       .from("users")
       .where({ username });

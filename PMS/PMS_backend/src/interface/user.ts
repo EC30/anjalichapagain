@@ -10,3 +10,10 @@ export interface Ilogin {
   username: string;
   password: string;
 }
+
+export interface DecodedToken{
+  id: string;
+  username:string;
+  iat: number;
+  exp: number;
+}
