@@ -1,4 +1,5 @@
 import projectsModel from "../models/projects";
+import AssignedProjectsModel from "../models/assignedProject";
 import NotFoundError from "../error/notFoundError";
 import { NextFunction, Request, Response } from "express";
 export const checkOwner = async (
@@ -16,13 +17,23 @@ export const checkOwner = async (
 
     return false;
     }
-  };
-  export const checkAssigned = async (
+};
+
+export const checkAssigned = async (
+    userId:number,
+    projectId:number,
     ) => {
       try {
-          
-       
+        console.log('utils');
+        const assignedUser=await AssignedProjectsModel.getAssignedProjectByProjectId(userId,projectId);
+
+        if(!assignedUser){
+          return false;
+        }
+        console.log(assignedUser);
+        return assignedUser;
       } catch (error) {
-       
+        return false;
       }
-    };
+};
+

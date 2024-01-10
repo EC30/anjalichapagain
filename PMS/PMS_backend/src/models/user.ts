@@ -35,10 +35,23 @@ export default class UserModel extends BaseModel {
         fullname:"fullname",
         email:"email",
         password: "password",
-        refreshToken: "refresh_token"
       })
       .from("users")
       .where({ username });
+
+    return user?.[0];
+  }
+  static async getUserByEmail(email: string) {
+    const user = await this.queryBuilder()
+      .select({
+        id: "id",
+        username: "username",
+        fullname:"fullname",
+        email:"email",
+        password: "password",
+      })
+      .from("users")
+      .where({ email });
 
     return user?.[0];
   }

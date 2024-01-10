@@ -1,97 +1,51 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script src="https://kit.fontawesome.com/64d58efce2.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="../../css/style.css" />
-    <title>Sign in & Sign up Form</title>
+	<title>Animated Login Form</title>
+	<link rel="stylesheet" type="text/css" href="../../css/style.css">
+	<link href="https://fonts.googleapis.com/css?family=Poppins:600&display=swap" rel="stylesheet">
+	<script src="https://kit.fontawesome.com/a81368914c.js"></script>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
+    <img class="wave" src="../../images/wave.png">
     <div class="container">
-        <div class="forms-container">
-            <div class="signin-signup">
-                <!-- Sign In Form -->
-                <form action="#" class="sign-in-form" id="signin-form" method="post">
-                    <h2 class="title">Welcome to ProjifyPro</h2>
-                    <h2 class="title">Sign in</h2>
-                    <div class="input-field">
-                        <i class="fas fa-user"></i>
-                        <input type="text" placeholder="Username" id="signin-username" name="signin-username" />
-                    </div>
-                    <div class="input-field">
-                        <i class="fas fa-lock"></i>
-                        <input type="password" placeholder="Password" id="signin-password" name="signin-password"/>
-                    </div>
-                    <button type="submit" name="Login" class="btn solid"> Login </button>
-                </form>
-
-                <!-- Sign Up Form -->
-                <form action="#" class="sign-up-form" id="signup-form" method="post">
-                    <h2 class="title">Sign up</h2>
-                    <div class="input-field">
-                        <i class="fas fa-user"></i>
-                        <input type="text" placeholder="Username" id="signup-username" name="signup-username" />
-                    </div>
-                    <div class="input-field">
-                        <i class="fas fa-user"></i>
-                        <input type="text" placeholder="Full Name" id="signup-fullname" name="signup-fullname" />
-                    </div>
-                    <div class="input-field">
-                        <i class="fas fa-envelope"></i>
-                        <input type="email" placeholder="Email" id="signup-email" name="signup-email"/>
-                    </div>
-                    <div class="input-field">
-                        <i class="fas fa-lock"></i>
-                        <input type="password" placeholder="Password" id="signup-password" name="signup-password"/>
-                    </div>
-                    <div class="input-field">
-                        <i class="fas fa-lock"></i>
-                        <input type="password" placeholder="Confirm Password" id="signup-confirm-password" name="signup-confirm-password"/>
-                    </div>
-                    <button type="submit" class="btn" id="signup"> Sign Up</button> 
-                </form>
-            </div>
+        <div class="img">
+            <img src="../../images/bg.svg">
         </div>
-
-        <div class="panels-container">
-            <!-- Left Panel -->
-            <div class="panel left-panel">
-                <div class="content">
-                    <h3>New here ?</h3>
-                    <p>
-                        Get started on your projects with ease. Our system empowers you to efficiently plan, collaborate, and achieve your project goals. Let's make project management seamless for you!
-                    </p>
-                    <button class="btn transparent" id="sign-up-btn">Sign up</button>
+        <div class="login-content">
+            <form action="index.html">
+                <div id="signup-error-meesage" class="signup-error-meesage"></div>
+                <img src="../../images/avatar.svg">
+                <h1>Register</h1>
+                <div class="input-field">
+                    <i class="fas fa-user"></i>
+                    <input type="text" placeholder="Username" id="signup-username" name="signup-username" />
                 </div>
-            </div>
-
-            <!-- Right Panel -->
-            <div class="panel right-panel">
-                <div class="content">
-                    <h3>Join our Project Management Community!</h3>
-                    <p>
-                        Explore the power of efficient project collaboration. Connect with other team members, share updates, and achieve success together. Let's make project management a seamless journey for everyone!
-                    </p>
-                    <button class="btn transparent" id="sign-in-btn">Sign in</button>
+                <div class="input-field">
+                    <i class="fas fa-user"></i>
+                    <input type="text" placeholder="Full Name" id="signup-fullname" name="signup-fullname" />
                 </div>
-            </div>
+                <div class="input-field">
+                    <i class="fas fa-envelope"></i>
+                    <input type="email" placeholder="Email" id="signup-email" name="signup-email"/>
+                </div>
+                <div class="input-field">
+                    <i class="fas fa-lock"></i>
+                    <input type="password" placeholder="Password" id="signup-password" name="signup-password"/>
+                </div>
+                <div class="input-field">
+                    <i class="fas fa-lock"></i>
+                    <input type="password" placeholder="Confirm Password" id="signup-confirm-password" name="signup-confirm-password"/>
+                </div>
+                <input type="submit" class="btn" value="Register" id="signup">
+                <div class="register-link">
+                    <p>Already a user? <a href="../../../index.html">Login</a></p>
+                </div>
+            </form>
         </div>
     </div>
-    <script>
-      const sign_in_btn = document.querySelector("#sign-in-btn");
-      const sign_up_btn = document.querySelector("#sign-up-btn");
-      const container = document.querySelector(".container");
-
-      sign_up_btn.addEventListener("click", () => {
-        container.classList.add("sign-up-mode");
-      });
-
-      sign_in_btn.addEventListener("click", () => {
-        container.classList.remove("sign-up-mode");
-      });
-    </script>
-
-    <script type="module" src="./index.ts"></script>
 </body>
+<script type="module" src="./signUp.ts"></script>
+
 </html>

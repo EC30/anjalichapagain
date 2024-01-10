@@ -9,12 +9,21 @@ import notFoundError from '../error/notFoundError';
 import BadRequestError from "../error/badRequestError";
 
 import { ACCESS_TOKEN_EXPIRY, REFRESH_TOKEN_EXPIRY } from "../constant/jwt";
+import UnauthenticatedError from "../error/unauthenticatedError";
 
 const SALT_ROUNDS = 10;
 
 export const signup = async (body: IUser) => {
   const refreshToken = uuidv4();
   const hashedPassword = await bcrypt.hash(body.password, SALT_ROUNDS);
+  const usernameData = await UserModel.getUserByUsername(body.username);
+  const userEmail = await UserModel.getUserByEmail(body.email);
+  if(usernameData){
+    throw new UnauthenticatedError("user name already exist");
+  }
+  if(userEmail){
+    throw new UnauthenticatedError("Email already exist");
+  }
   await UserModel.create({
     ...body,
     password: hashedPassword,

@@ -46,10 +46,6 @@ body {
 	overflow-x: hidden;
 }
 
-
-
-
-
 /* SIDEBAR */
 #sidebar {
 	position: fixed;
@@ -176,9 +172,6 @@ body {
 	width: calc(100% - 60px);
 	left: 60px;
 }
-
-
-
 
 /* NAVBAR */
 #content nav {
@@ -368,10 +361,6 @@ body {
 	color: var(--dark);	
 }
 
-
-
-
-
 #content main .table-data {
 	display: flex;
 	flex-wrap: wrap;
@@ -449,13 +438,6 @@ body {
 #content main .table-data .order table tr td .status.pending {
 	background: var(--orange);
 }
-
-/* MAIN */
-
-/* CONTENT */
-
-
-
 
 @media screen and (max-width: 768px) {
 	#sidebar {
@@ -616,7 +598,6 @@ body {
 	margin-top: 20px;
   }
   
-  /* Style the buttons */
   .submitButton {
 	width: 200px;
 	background-color: #5995fd;
@@ -746,17 +727,6 @@ body {
 	gap: 10px;
 }
 
-/* .editPopup{
-	background-color: #888;
-	border-radius: 10px;
-	position: absolute;
-	left:10%;
-	width: 80%;
-	top:20%;
-	display: flex;
-	flex-direction: column;
-	padding: 20px;
-} */
 .editPopup {
     background-color: lavender;
     border-radius: 10px;
@@ -769,15 +739,15 @@ body {
     padding: 20px;
     display: flex;
     flex-direction: column;
-    position: relative; /* To make the position relative to the parent */
+    position: relative; 
 }
 
 .closeButton {
     position: absolute;
     top: 10px;
     right: 10px;
-    background-color: #fff; /* Background color for the button */
-    color: #333; /* Text color for the button */
+    background-color: #fff; 
+    color: #333; 
     border: none;
     padding: 5px 10px;
     border-radius: 5px;
@@ -785,5 +755,5 @@ body {
 }
 
 .closeButton:hover {
-    background-color: #ddd; /* Background color on hover */
+    background-color: #ddd; 
 }

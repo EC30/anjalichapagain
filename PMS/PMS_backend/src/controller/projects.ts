@@ -4,6 +4,7 @@ import { Iprojects, Queryprojects } from "../interface/projects";
 import * as projectsService from "../services/projects";
 import { IassignedProjects } from "../interface/assignedProject";
 import * as assignedProjectService from "../services/assignedProject";
+import AssignedProjectsModel from "../models/assignedProject";
 
 
 export async function createprojects(req: any, res: Response) {
@@ -59,6 +60,24 @@ export async function updateprojects(
     next(error);
   }
 }
+export async function updateprojectsByAssignedUser(
+  req: any,
+  res: Response,
+  next: NextFunction
+) {
+  try {
+    const user = req.user;
+    const { id } = req.params;
+    console.log("controller");
+    const projects = await projectsService.updateprojectByAssignedUser(parseInt(id), user.id, req.body);
+
+    res.json(projects);
+    console.log('Updated projects:', projects);
+  } catch (error) {
+    console.error('Error updating projects:', error);
+    next(error);
+  }
+}
 
 export async function deleteprojects(
   req: any,
@@ -95,12 +114,51 @@ export async function assignProjects(req: any, res: Response, next:NextFunction)
 }
 
 export async function getAssignedProject(req: any, res: Response) {
+  console.log("aa");
   const query = req.query;
   const user = req.user;
+  console.log(user);
   const projectss = await assignedProjectService.getAssignedprojects
   (
     user.id,
     query as unknown as Queryprojects
     );
   res.json(projectss);
+}
+
+export async function updateAssignedProject(
+  req: any,
+  res: Response,
+  next: NextFunction
+) {
+  try {
+    const user = req.user;
+    const { id } = req.params;
+    
+    const projects = await assignedProjectService.updateAssignedproject(parseInt(id), user.id, req.body);
+
+    res.json(projects);
+    console.log('Updated  assign projects:', projects);
+  } catch (error) {
+    console.error('Error updating  assign projects:', error);
+    next(error);
+  }
+}
+export async function deleteAssignedProject(
+  req: any,
+  res: Response,
+  next: NextFunction
+) {
+  try {
+    const user = req.user;
+    const { id } = req.params;
+
+    const projects = await assignedProjectService.deleteAssignedProject(parseInt(id), user.id);
+
+    res.json({
+      message: "Assign project deleted successfully",
+    });
+  } catch (error) {
+    next(error);
+  }
 }

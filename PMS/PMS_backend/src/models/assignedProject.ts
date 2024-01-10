@@ -13,14 +13,35 @@ export default class AssignedProjectsModel extends BaseModel {
           createdAt: "t.created_at",
           updatedAt: "t.updated_at",
           updatedBy: "t.updated_by",
-          // projectName: "p.name", 
+          projectName: "p.name", 
+          projectDesc:"p.description",
+          projectStatus:"p.status",
+          deadline:"p.deadline"
       })
       .from({ t: TABLE_NAME })
       .where({ assignedTo: params.userId })
-      // .whereRaw("LOWER(task) like ?", [`%${params.search?.toLowerCase()}%`])
-      .leftJoin({ u: "users" }, { "t.assigned_to": "u.id" });
+      .leftJoin({ u: "users" }, { "t.assigned_to": "u.id" })
+      .leftJoin({ p: "projects" }, { "t.project_id": "p.id" });;
 
     query.offset(params.offset).limit(params.limit);
+
+    return query;
+  }
+
+  static async getAssignedProjectByProjectId(userId:number, projectId:number) {
+    const query = this.queryBuilder()
+      .select({
+          id: "t.id",
+          projectId: "t.project_id",
+          assignedTo: "t.assigned_to",
+          createdAt: "t.created_at",
+          updatedAt: "t.updated_at",
+          updatedBy: "t.updated_by",
+          // projectName: "p.name", 
+      })
+      .from({ t: TABLE_NAME })
+      .where({ assignedTo: userId, projectId:projectId})
+      .first();
 
     return query;
   }
@@ -29,7 +50,6 @@ export default class AssignedProjectsModel extends BaseModel {
     return this.queryBuilder()
       .table(TABLE_NAME)
       .where({ assignedTo: params.userId })
-      // .whereRaw("LOWER(name) like ?", [`%${params.search?.toLowerCase()}%`])
       .count({ count: "id" })
       .first();
   }
@@ -39,9 +59,10 @@ export default class AssignedProjectsModel extends BaseModel {
       .select({
         id: "id",
         assignedTo: "assigned_to",
+        updatedBy: "updated_by"
       })
       .from(TABLE_NAME)
-      .where({ id, assignedTo: userId })
+      .where({ id, updatedBy: userId })
       .first();
   }
 
@@ -55,5 +76,10 @@ export default class AssignedProjectsModel extends BaseModel {
 
   static async deleteAssignedProject(id:number) {
       return this.queryBuilder().table(TABLE_NAME).where({ id }).del();
+  }
+
+  static async isUserAssignedToProject(userId: number, projectId: number) {
+    const result = await this.getAssignedProjectByProjectId(userId, projectId);
+    return result !== undefined;
   }
 }

@@ -1,21 +1,18 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="https://kit.fontawesome.com/64d58efce2.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="./src/css/style.css" />
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <title>Sign in & Sign up Form</title>
 </head>
 <body>
     <div class="container">
         <div class="forms-container">
             <div class="signin-signup">
-                <!-- Sign In Form -->
                 <form action="#" class="sign-in-form" id="signin-form" method="post">
-                    <div id="error-message" class="d-none alert alert-danger">Hello </div>
+                    <div id="login-error-message" class="login-error-message"></div>
                     <h2 class="title">Welcome to ProjifyPro</h2>
                     <h2 class="title">Sign in</h2>
                     <div class="input-field">
@@ -26,11 +23,11 @@
                         <i class="fas fa-lock"></i>
                         <input type="password" placeholder="Password" id="signin-password" name="signin-password"/>
                     </div>
-                    <button type="submit" name="Login" class="btn solid" id="login"> Login </button>
+                    <button type="submit" name="Login" class="loginBtn" id="login"> Login </button>
                 </form>
 
-                <!-- Sign Up Form -->
                 <form action="#" class="sign-up-form" id="signup-form" method="post">
+                    <div id="error-message" class="error-message"></div>
                     <h2 class="title">Sign up</h2>
                     <div class="input-field">
                         <i class="fas fa-user"></i>
@@ -52,13 +49,12 @@
                         <i class="fas fa-lock"></i>
                         <input type="password" placeholder="Confirm Password" id="signup-confirm-password" name="signup-confirm-password"/>
                     </div>
-                    <button type="submit" class="btn" id="signup"> Sign Up</button> 
+                    <button type="submit" class="signUpBtn" id="signup"> Sign Up</button> 
                 </form>
             </div>
         </div>
 
         <div class="panels-container">
-            <!-- Left Panel -->
             <div class="panel left-panel">
                 <div class="content">
                     <h3>New here ?</h3>
@@ -69,7 +65,6 @@
                 </div>
             </div>
 
-            <!-- Right Panel -->
             <div class="panel right-panel">
                 <div class="content">
                     <h3>Join our Project Management Community!</h3>
@@ -97,4 +92,46 @@
 
     <script type="module" src="./index.ts"></script>
 </body>
+</html> -->
+
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Login Form</title>
+	<link rel="stylesheet" type="text/css" href="./src/css/style.css">
+	<link href="https://fonts.googleapis.com/css?family=Poppins:600&display=swap" rel="stylesheet">
+	<script src="https://kit.fontawesome.com/a81368914c.js"></script>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+    <img class="wave" src="./src/images/wave.png">
+    <div class="container">
+        <div class="img">
+            <img src="./src/images/bg.svg">
+        </div>
+        <div class="login-content">
+            <form action="#" class="sign-in-form" id="signin-form" method="post">
+                <div id="login-error-message" class="login-error-message"></div>
+                <img src="./src/images/avatar.svg">
+                <h1>Login</h1>
+                <div class="input-field">
+                    <i class="fas fa-user"></i>
+                    <input type="text" placeholder="Username" id="signin-username" name="signin-username" />
+                </div>
+                <div class="input-field">
+                    <i class="fas fa-lock"></i>
+                    <input type="password" placeholder="Password" id="signin-password" name="signin-password"/>
+                </div>
+                <input type="submit" class="btn" value="Login" id="login">
+                <div class="register-link">
+                    <p>Don't have an account? <a href="./src/views/signUp/signUp.html">Register</a></p>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+
+<script type="module" src="./index.ts"></script>
+
 </html>
