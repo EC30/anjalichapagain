@@ -5,8 +5,19 @@ import config from "./config";
 import routes from "./routes";
 import { logger } from "./middleware/logger";
 import { genericErrorHandler, notFoundError } from "./middleware/errorHandler";
+import multer from "multer";
 
 const app = express();
+// app.use(express.urlencoded({ extended: t }));
+
+// const storage = multer.diskStorage({
+//     destination: function (req, file, cb) {
+//       cb(null, 'uploads/'); 
+//     },
+//     filename: function (req, file, cb) {
+//       cb(null, Date.now() + '-' + file.originalname);
+//     },
+// });
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.json());

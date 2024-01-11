@@ -8,15 +8,16 @@ import AssignedProjectsModel from "../models/assignedProject";
 import { buildMeta, getPaginationOptions } from "../util/pagination";
 import { IassignedProjects } from "../interface/assignedProject";
 import {checkOwner, checkAssigned} from "../util/projectUtils";
+import { exist, number } from "joi";
 
 export async function createprojects(body: Iprojects, userId: number) {
   console.log(body);
-  await projectsModel.createprojects({
+  const projectData=await projectsModel.createprojects({
     ...body,
     assigned_by: userId,
   });
   return {
-    message: "project created successfully",
+    projectData,
   };
 }
 
@@ -92,6 +93,7 @@ export async function deleteprojects(id: number, userId: number) {
 }
 
 export async function assignProjects(projectId:string, body: IassignedProjects, userId: string) {
+  // console.log("aa");
   // console.log(typeof userId);
   // console.log(body.assigned_to[0]);
   const isOwner = await checkOwner(parseInt(projectId), parseInt(userId));
@@ -106,9 +108,13 @@ export async function assignProjects(projectId:string, body: IassignedProjects, 
     }
     // throw new unauthenticatedError("Can;t Assign to Yourself");
   }
-  const checkAssignedUser=await projectsModel.getprojectsAssignedTo(parseInt(userId),parseInt(projectId));
-  console.log("checkassigneduser:",checkAssignedUser);
 
+  const checkAssignedUser=await AssignedProjectsModel.getprojectsAssignedTo(parseInt(projectId),parseInt(userId));
+
+  const existsInArray1 = body.assigned_to.some(value => checkAssignedUser.includes(value));
+  if(existsInArray1){
+    throw new BadRequestError(`project is already assigned to users${checkAssignedUser}`);
+  }
   try{
     for(let i = 0; i < body.assigned_to.length; i++){
       await AssignedProjectsModel.createAssignedProject({

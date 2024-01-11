@@ -66,6 +66,27 @@ export default class AssignedProjectsModel extends BaseModel {
       .first();
   }
 
+  static async getprojectsAssignedTo(projectId: number, userId: number) {
+    const result = await this.queryBuilder()
+      .select({
+        assignedTo: 'assigned_to',
+      })
+      .from({ TABLE_NAME })
+      .where({ 'project_id': projectId, 'updated_by': userId });
+
+      // const assignedToArray = [];
+
+      // result.forEach(element => {
+      //   assignedToArray.push(element.assignedTo);
+      // });
+      // console.log(result[0].assignedTo);
+      const assignedToArray = result.map(row => parseInt(row.assignedTo));
+      // console.log(assignedToArray);
+      // console.log(assignedToArray);
+      return assignedToArray;
+   
+  }
+
   static async createAssignedProject(assignedProject:any) {
     return this.queryBuilder().insert(assignedProject).table(TABLE_NAME);
 }

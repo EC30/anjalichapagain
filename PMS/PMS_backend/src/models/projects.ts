@@ -10,6 +10,7 @@ export default class projectsModel extends BaseModel {
         description:"t.description",
         deadline:"t.deadline",
         status: "t.status",
+        image:"t.image",
         assignedBy: "t.assigned_by",
         username: "u.username",
       })
@@ -47,25 +48,25 @@ export default class projectsModel extends BaseModel {
       .first();
   }
 
-  static async getprojectsAssignedTo(id: number, userId: number) {
-    const result = await this.queryBuilder()
-      .select({
-        id: 'p.id',
-        name: 'p.name',
-        status: 'p.status',
-        assignedBy: 'p.assigned_by',
-        assignedTo: 'u.assigned_to',
-      })
-      .from({ p: 'projects' })
-      .where({ 'p.id': id, 'p.assigned_by': userId })
-      .innerJoin({ u: 'assigned_projects' }, 'u.project_id', 'p.id');
+  // static async getprojectsAssignedTo(id: number, userId: number) {
+  //   const result = await this.queryBuilder()
+  //     .select({
+  //       id: 'p.id',
+  //       name: 'p.name',
+  //       status: 'p.status',
+  //       assignedBy: 'p.assigned_by',
+  //       assignedTo: 'u.assigned_to',
+  //     })
+  //     .from({ p: 'projects' })
+  //     .where({ 'p.id': id, 'p.assigned_by': userId })
+  //     .innerJoin({ u: 'assigned_projects' }, 'u.project_id', 'p.id');
 
-      const assignedToArray = result.map((row) => row.assigned_to);
-      console.log(assignedToArray);
-      console.log(result);
-      return assignedToArray;
+  //     const assignedToArray = result.map((row) => row.assigned_to);
+  //     console.log(assignedToArray);
+  //     console.log(result);
+  //     return assignedToArray;
    
-  }
+  // }
 
   static async createprojects(projects: Iprojects) {
     return this.queryBuilder().returning("id").insert(projects).table("projects");

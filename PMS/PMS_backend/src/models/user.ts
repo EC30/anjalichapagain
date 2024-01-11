@@ -59,7 +59,8 @@ export default class UserModel extends BaseModel {
 
 
   static async create(user: IUser) {
-    return this.queryBuilder().insert(user).table("users");
+    // return this.queryBuilder().insert(user).table("users");
+    return this.queryBuilder().insert(user).table("users").returning("*");
   }
 
   static async update(id: number, user: IUser) {

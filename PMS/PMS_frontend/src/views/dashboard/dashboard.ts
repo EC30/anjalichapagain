@@ -32,8 +32,8 @@ document.addEventListener("DOMContentLoaded", async () => {
             userNameElement.textContent = userName;
         }
         const projectData = response.data;
-        console.log(projectData.data);
-        console.log(projectData.data.length);
+        // console.log(projectData.data);
+        // console.log(projectData.data.length);
         if (totalProject) {
             const totalProjectsCount = projectData.data.length;
             totalProject.textContent = totalProjectsCount.toString();

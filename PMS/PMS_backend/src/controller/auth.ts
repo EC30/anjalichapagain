@@ -15,6 +15,7 @@ export const signup = async (
     const user=await authService.signup(body);
     return res.status(HttpStatus.CREATED).json({
       message: `Signed up ${body.username} `,
+      userdata: user,
     });
    
   } catch (error) {

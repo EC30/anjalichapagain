@@ -24,14 +24,14 @@ export const signup = async (body: IUser) => {
   if(userEmail){
     throw new UnauthenticatedError("Email already exist");
   }
-  await UserModel.create({
+  const userData=await UserModel.create({
     ...body,
     password: hashedPassword,
     refresh_token:refreshToken
   });
 
   return {
-    message: "User signed up successfully",
+    userData,
   };
 };
 

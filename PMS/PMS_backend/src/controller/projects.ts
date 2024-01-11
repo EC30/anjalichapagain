@@ -9,13 +9,22 @@ import AssignedProjectsModel from "../models/assignedProject";
 
 export async function createprojects(req: any, res: Response) {
   const body: Iprojects = req.body;
+  console.log(req.body);
+  console.log(req.file);
   const user = req.user;
+  body.image= req.file.path;
   // console.log(req,req.body,task,user);
-  await projectsService.createprojects(body, user.id);
+  const projectInfo=await projectsService.createprojects(body, user.id);
 
   res.status(HttpStatus.CREATED).json({
     message: "Project created successfully",
+    projectInfo,
   });
+}
+export async function uploadFiles(req: any, res: Response){
+  console.log(req.body);
+  console.log(req.file);
+  res.json({ message: "Successfully uploaded files" });
 }
 
 export async function getprojectss(req: any, res: Response) {

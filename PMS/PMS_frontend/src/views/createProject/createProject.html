@@ -48,7 +48,7 @@
 				</div>
 			</div>
             <div class="project-data">
-                <form id="projectForm">
+                <form id="projectForm" enctype="multipart/form-data">
                     <div class="input-field">
                         <label for="projectName">Project Name:</label>
                         <input type="text" id="projectName" name="projectName" required>
@@ -59,40 +59,32 @@
                         <label for="deadline">Deadline:</label>
                         <input type="text" id="deadline" name="deadline" readonly required>
 
-                        <label for="assignedBy">Assigned By:</label>
-                        <select id="assignedBy" name="assignedBy" required>
-                            <option value="user1">User 1</option>
-                            <option value="user2">User 2</option>
-                            <option value="user3">User 3</option>
-                            <!-- Add more options as needed -->
-                        </select>
 						<label for="priority">Priority:</label>
                         <select id="assignedBy" name="priority" required>
                             <option value="High Priority">High Priority</option>
                             <option value="Medium">Low</option>
                             <option value="Low">Low</option>
-                            <!-- Add more options as needed -->
                         </select>
                     </div>
                     
-                    <label for="assignedTo">Assigned To (Multiple):</label>
-                    <button type="button" class="submitButton" data-toggle="collapse" data-target="#assignedToOptions">Select Users</button>
-                    <div id="assignedToOptions" class="collapse">
-                        <select id="assignedTo" name="assignedTo[]" multiple="multiple" class="form-control">
-                            <option value="user1">User 1</option>
-                            <option value="user2">User 2</option>
-                            <option value="user3">User 3</option>
-                        </select>
-                    </div>
                 
                     <div id="selectedUsers"></div>
+                    <label for="userDropdown">Select Users:</label>
+                    <div id="userDropdown" class="dropdown">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="submitButton">
+                            Select Users
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" id="user-dropdown">
+                        </div>
+                    </div>
+
                 
                     <label for="image">Add Image:</label>
                     <input type="file" id="image" name="image" accept="image/*">
 
                     <div class="buttons">
-                        <button type="submit" class="resetButton">Reset Form</button>
-                        <button type="submit" class="submitButton">Create Project </button>
+                        <button type="reset" class="resetButton" id="resetButton">Reset Form</button>
+                        <button type="submit" class="submitButton" id="submitButton">Create Project </button>
                     </div>
                     
                 </form>
@@ -109,27 +101,16 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/js/bootstrap-multiselect.js"></script>
 <script src="./task.js"></script>
+<script type=module src="./createProject.ts"></script>
 <script>
     $(function() {
         $("#deadline").datepicker();
-
-        $('#assignedTo').multiselect({
-            includeSelectAllOption: true,
-            enableFiltering: true,
-            maxHeight: 200
-        });
-
-        $('#assignedTo').change(function() {
-            var selectedUsers = $('#assignedTo option:selected').map(function() {
-                return $(this).val();
-            }).get();
-            $("#selectedUsers").html("<b>Assigned To:</b> " + selectedUsers.join(", "));
-        });
     });
 </script>
 
 <script type=module src="../dashboard/dashboard.ts"></script>
 <script type=module src="../../components/utils.ts"></script>
+
 
 </body>
 </html>
