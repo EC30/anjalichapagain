@@ -52,37 +52,6 @@ export const refreshToken = async (
   }
 };
 
-export const getCurrentUsers = async (
-  req: Request,
-  res: Response,
-  next: NextFunction
-) => {
-  try {
-    const token = req.headers.authorization;  
-    if (!token) {
-      return res.status(401).json({ error: 'Access token missing' });
-    }
-    // Split the token correctly
-    const bearer = token.split(" ");
-    
-    if (bearer.length !== 2) {
-      return res.status(401).json({ error: 'Invalid access token format' });
-    }
-    jwt.verify(bearer[1], config.jwt.accessTokenSecret!, (err, authData) => {
-      if (err) {
-        return res.status(401).json(err);
-      } else{
-        res.json({
-          message: "user accessed",
-          authData
-        });
-      }
-    });
-  } catch (error) {
-    next(error);
-  }
-};
-
 
 
 

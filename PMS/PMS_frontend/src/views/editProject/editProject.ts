@@ -4,11 +4,9 @@ import * as yup from "yup";
 const projectName = document.getElementById("projectName") as HTMLInputElement;
 const projectDesc = document.getElementById("projectDescription") as HTMLInputElement;
 const projectDeadline = document.getElementById("deadline") as HTMLInputElement;
-const submitButton = document.getElementById("submitButton") as HTMLButtonElement;
+const editButton = document.getElementById("editButton") as HTMLButtonElement;
 const image=document.getElementById("image") as HTMLInputElement;
 const errorMessage=document.getElementById("project-error-message") as HTMLDivElement;
-const dropdownMenu = document.querySelector("#userDropdown .dropdown-menu");
-const selectedUsersDiv = document.getElementById("selectedUsers") as HTMLDivElement;
 
 const validationSchema = yup.object().shape({
     name: yup.string().required().min(4),
@@ -31,23 +29,11 @@ function updateSelectedUsers(dropdownMenu: Element | null, selectedUsersDiv: HTM
         selectedUsersDiv.innerHTML = `<b>Selected Users:</b> ${selectedUsers.join(", ")}`;
     }
 }
-function resetForm() {
-    projectName.value = "";
-    projectDesc.value = "";
-    projectDeadline.value = "";
-    image.value = ""; // Reset the file input if applicable
-
-    const checkboxes = dropdownMenu?.querySelectorAll(".form-check-input");
-    checkboxes?.forEach((checkbox) => {
-        (checkbox as HTMLInputElement).checked = false;
-    });
-
-    selectedUsersDiv.innerHTML = "";
-
-    errorMessage.style.display = "none";
-}
 
 document.addEventListener("DOMContentLoaded", async () => {
+    const dropdownMenu = document.querySelector("#userDropdown .dropdown-menu");
+    const selectedUsersDiv = document.getElementById("selectedUsers");
+
     if (dropdownMenu && selectedUsersDiv) {
         dropdownMenu.addEventListener("change", () => {
             updateSelectedUsers(dropdownMenu, selectedUsersDiv);
@@ -80,7 +66,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             dropdownMenu?.appendChild(formCheck);
             // console.log(user);
         }
-        submitButton.addEventListener("click", async (event) => {
+        editButton.addEventListener("click", async (event) => {
             event.preventDefault();
             const name = projectName.value;
             const description = projectDesc.value;
@@ -120,7 +106,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                 formData.append("description", description);
                 formData.append("deadline", deadline);
                 
-                const projectResponse = await axios.post("http://localhost:8000/projects", 
+                const projectResponse = await axios.put("http://localhost:8000/projects", 
                     formData,
                     {
                         headers: {
@@ -128,7 +114,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                         },
                     });
                 
-                console.log("Project created response:", projectResponse);
+                console.log("Project edited response:", projectResponse);
                 console.log("Project message response:", projectResponse.data.message);
                 console.log("Project id:", projectResponse.data.projectInfo.projectData[0].id);
 
@@ -150,7 +136,6 @@ document.addEventListener("DOMContentLoaded", async () => {
                 } else {
                     console.error("Project ID not found in the response:", projectResponse);
                 }
-                resetForm();
                 
             } catch (error) {
                 errorMessage.style.display = "flex";
@@ -162,7 +147,6 @@ document.addEventListener("DOMContentLoaded", async () => {
                     console.log(error.errors);
                     errorMessage.innerText = error.errors.join("\n");
                 }
-                // console.error("Error:", error);
             }
         });
 

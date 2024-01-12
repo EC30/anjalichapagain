@@ -12,8 +12,9 @@ allSideMenu.forEach((item: HTMLAnchorElement) => {
 });
 
 const menuBar = document.getElementById("toggle-button");
-// const sidebar = document.getElementById("sidebar");
-const sidebar=document.getElementById("sidebar-placeholder");
+const sidebar = document.getElementById("sidebar");
+// const sidebar=document.getElementById("sidebar-placeholder");
+console.log(sidebar);
 
 menuBar?.addEventListener("click", function () {
     sidebar?.classList.toggle("hide");

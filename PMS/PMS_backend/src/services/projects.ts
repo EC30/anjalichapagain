@@ -9,9 +9,14 @@ import { buildMeta, getPaginationOptions } from "../util/pagination";
 import { IassignedProjects } from "../interface/assignedProject";
 import {checkOwner, checkAssigned} from "../util/projectUtils";
 import { exist, number } from "joi";
+import UnauthenticatedError from "../error/unauthenticatedError";
 
 export async function createprojects(body: Iprojects, userId: number) {
-  console.log(body);
+  const projectName = await projectsModel.getprojectsByProjectName(body.name);
+  console.log(projectName);
+  if(projectName){
+    throw new UnauthenticatedError("project name already exist");
+  }
   const projectData=await projectsModel.createprojects({
     ...body,
     assigned_by: userId,

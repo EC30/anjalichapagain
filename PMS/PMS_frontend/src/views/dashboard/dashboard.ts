@@ -10,19 +10,25 @@ const remainingProject = document.getElementById("RemainingProjects");
 const projectTableBody=document.getElementById("projectTableBody");
 
 window.onload = async () => {
-    renderSidebar(sidebar, "sidebar-dashboard");
+    renderSidebar(sidebar);
 };
 
 document.addEventListener("DOMContentLoaded", async () => {
     try {
-        const userData = JSON.parse(sessionStorage.getItem("user"));
+        // const userData = JSON.parse(sessionStorage.getItem("user"));
         const accessToken = localStorage.getItem("accessToken");
 
         if (!accessToken) {
             console.error("No access token found");
             return;
         }
-        const userName = userData.username;
+        const userData = await axios.get("http://localhost:8000/users/check", {
+            headers: {
+                Authorization: `Bearer ${accessToken}`,
+            },
+        });
+
+        const userName = userData.data.data.fullname;
         const response = await axios.get("http://localhost:8000/projects", {
             headers: {
                 Authorization: `Bearer ${accessToken}`,

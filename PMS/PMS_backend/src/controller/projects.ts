@@ -7,19 +7,27 @@ import * as assignedProjectService from "../services/assignedProject";
 import AssignedProjectsModel from "../models/assignedProject";
 
 
-export async function createprojects(req: any, res: Response) {
-  const body: Iprojects = req.body;
-  console.log(req.body);
-  console.log(req.file);
-  const user = req.user;
-  body.image= req.file.path;
-  // console.log(req,req.body,task,user);
-  const projectInfo=await projectsService.createprojects(body, user.id);
+export async function createprojects(req: any, res: Response, next:NextFunction) {
+  try{
+    const body: Iprojects = req.body;
+    console.log(req.body);
+    console.log(req.file);
+    const user = req.user;
+    // body.image= req.file.path;
+    if (req.file) {
+      body.image = req.file.path;
+    } 
+    // console.log(req,req.body,task,user);
+    const projectInfo=await projectsService.createprojects(body, user.id);
+  
+    res.status(HttpStatus.CREATED).json({
+      message: "Project created successfully",
+      projectInfo,
+    });
+  }catch(error){
+    next(error);
+  }
 
-  res.status(HttpStatus.CREATED).json({
-    message: "Project created successfully",
-    projectInfo,
-  });
 }
 export async function uploadFiles(req: any, res: Response){
   console.log(req.body);

@@ -76,3 +76,22 @@ export const deleteUser = async (
     next(error);
   }
 };
+
+export const getCurrentUsers = async (
+  req: any,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    console.log("controllers", req.user);
+
+    const id = req?.user?.id;
+    const data = await userService.getById(id);
+
+    return res.json({
+      data,
+    });
+  } catch (error) {
+    next(error);
+  }
+};

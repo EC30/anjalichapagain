@@ -1,15 +1,31 @@
-const renderSidebar = (placeholder: HTMLElement, active: string) => {
+const renderSidebar = (placeholder: HTMLElement) => {
     fetch("../../components/sidebar/sidebar.html")
         .then((response) => response.text())
         .then((data) => {
-            console.log(data);
             placeholder.innerHTML = data;
-            const sidebarLinks = document.querySelectorAll(".sidebarlinks");
-            for (const sidebarLInk of sidebarLinks) {
-                sidebarLInk.classList.remove("active");
-            }
-            const currentPage = document.getElementById(active);
-            currentPage!.classList.add("active");
+            const allSideMenu = document.querySelectorAll<HTMLAnchorElement>("#sidebar .side-menu.top li a");
+
+            allSideMenu.forEach((item: HTMLAnchorElement) => {
+                const li = item.parentElement;
+            
+                item.addEventListener("click", function () {
+                    allSideMenu.forEach((i: HTMLAnchorElement) => {
+                        i.parentElement?.classList.remove("active");
+                    });
+                    li?.classList.add("active");
+                });
+            });
+            
+            const menuBar = document.getElementById("toggle-button");
+            const sidebar = document.getElementById("sidebar");
+            // const sidebar=document.getElementById("sidebar-placeholder");
+            console.log(sidebar);
+            console.log(menuBar);
+            
+            menuBar?.addEventListener("click", function () {
+                sidebar?.classList.toggle("hide");
+            });
+            
         });
 };
 export default renderSidebar;

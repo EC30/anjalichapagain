@@ -37,19 +37,18 @@
 					<h1>Dashboard</h1>
 					<ul class="breadcrumb">
 						<li>
-							<a href="#">Dashboard</a>
+							<a href="../dashboard/dashboard.html">Dashboard</a>
 						</li>
 						<li><i class='bx bx-chevron-right' ></i></li>
 						<li>
-							<a class="active" href="#">Create Project</a>
+							<a class="active" href="#">Edit Project</a>
 						</li>
 					</ul>
 				</div>
 			</div>
             <div class="project-data">
-                <div id="project-error-message" class="project-error-message"></div>
                 <form id="projectForm" enctype="multipart/form-data">
-                    <h2 class="create_title"> CREATE PROJECT</h2>
+                    <h2> EDIT PROJECTS</h2>
                     <div class="input-field">
                         <label for="projectName">Project Name:</label>
                         <input type="text" id="projectName" name="projectName" required>
@@ -84,8 +83,7 @@
                     <input type="file" id="image" name="image" accept="image/*">
 
                     <div class="buttons">
-                        <button type="reset" class="resetButton" id="resetButton">Reset Form</button>
-                        <button type="submit" class="submitButton" id="submitButton">Create Project </button>
+                        <button type="submit" class="submitButton" id="editButton">Edit Project </button>
                     </div>
                     
                 </form>
@@ -114,6 +112,7 @@
 
 <script type=module src="../dashboard/dashboard.ts"></script>
 <script type=module src="../../components/utils.ts"></script>
+<script type="module" src="./editProject.ts"></script>
 
 
 </body>

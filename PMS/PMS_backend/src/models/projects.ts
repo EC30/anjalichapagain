@@ -48,6 +48,36 @@ export default class projectsModel extends BaseModel {
       .first();
   }
 
+  // static async getprojectsByProjectName(name: string) {
+  //   const project= await this.queryBuilder()
+  //     .select({
+  //       id: "id",
+  //       name: "name",
+  //       status: "status",
+  //     })
+  //     .from("projects")
+  //     .where({name})
+
+  //   return project?.[0];
+  // }
+  static async getprojectsByProjectName(name: string) {
+    try {
+      const project = await this.queryBuilder()
+        .select({
+          id: "id",
+          name: "name",
+          status: "status",
+        })
+        .from("projects")
+        .where({ name });
+  
+      return project?.[0];
+    } catch (error) {
+      console.error("Error in getprojectsByProjectName:", error);
+      throw error;
+    }
+  }
+
   // static async getprojectsAssignedTo(id: number, userId: number) {
   //   const result = await this.queryBuilder()
   //     .select({

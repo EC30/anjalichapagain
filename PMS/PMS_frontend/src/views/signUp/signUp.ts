@@ -45,7 +45,7 @@ signUpButton.addEventListener("click", async (event) => {
     } catch (error) {
         errorMessage.style.display = "flex";
         if (error.response && error.response.data) {
-            const backendErrors = error.response.data;
+            const backendErrors = error.response.data.message;
             console.log("Backend Errors:", backendErrors);
             errorMessage.innerText = JSON.stringify(backendErrors, null, 2);
         } else {

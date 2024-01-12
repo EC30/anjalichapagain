@@ -13,7 +13,8 @@ export default class AssignedProjectsModel extends BaseModel {
           createdAt: "t.created_at",
           updatedAt: "t.updated_at",
           updatedBy: "t.updated_by",
-          projectName: "p.name", 
+          projectName: "p.name",
+          image:"p.image",
           projectDesc:"p.description",
           projectStatus:"p.status",
           deadline:"p.deadline"

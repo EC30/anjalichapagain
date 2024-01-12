@@ -46,8 +46,8 @@ document.addEventListener("DOMContentLoaded", async () => {
             const card = document.createElement("div");
             card.className="card";
             const img = document.createElement("img");
-            // img.src = assignedData.data[i].imageUrl;
-            img.src = "../../images/aa.jpg";
+            img.src = assignedData.data[i].image;
+            // img.src = "../../images/aa.jpg";
             const cardContent = document.createElement("div");
             cardContent.className = "card-content";
             const projectName = document.createElement("div");
@@ -71,7 +71,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                 const popup = document.createElement("div");
                 popup.className = "popup";
                 const popupImg = document.createElement("img");
-                popupImg.src = "../../images/aa.jpg";
+                popupImg.src = assignedData.data[i].image;
                 popup.appendChild(popupImg);
                 
                 popup.addEventListener("click", () => {
