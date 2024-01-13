@@ -24,6 +24,13 @@ export async function getAssignedprojects(userId: number, query: QueryAssignedpr
     meta,
   };
 }
+export async function getAssignedUsers(userId: number, projectId: number) {
+  const projectss = await AssignedProjectsModel.getprojectsAssignedTo( projectId, userId );
+
+  return {
+    data: projectss,
+  };
+}
 
 export async function updateAssignedproject(id: number, userId: number, body:any) {
   const projects: IassignedProjects = await  AssignedProjectsModel.getAssignedProjectsById(id, userId);
@@ -36,14 +43,12 @@ export async function updateAssignedproject(id: number, userId: number, body:any
   return projects;
 }
 
+// export async function deleteAssignedProject(id: number, userId: number) {
+//   const projects =  AssignedProjectsModel.getAssignedProjectsById(id, userId);
 
+//   if (!projects) {
+//     throw new NotFoundError(`Project with id ${id} Not Found`);
+//   }
 
-export async function deleteAssignedProject(id: number, userId: number) {
-  const projects =  AssignedProjectsModel.getAssignedProjectsById(id, userId);
-
-  if (!projects) {
-    throw new NotFoundError(`Project with id ${id} Not Found`);
-  }
-
-  await  AssignedProjectsModel.deleteAssignedProject(id);
-}
+//   await  AssignedProjectsModel.deleteAssignedProject(id);
+// }

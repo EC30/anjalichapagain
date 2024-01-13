@@ -6,6 +6,7 @@ export interface Iprojects {
   deadline:Date;
   image:string;
   assigned_by: number;
+  priority: 'High' | 'Medium' | 'Low';
   status?: boolean;
 }
 

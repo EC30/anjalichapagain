@@ -16,6 +16,7 @@ export async function up(knex: Knex): Promise<void> {
     table.string('description').notNullable();
     table.dateTime('deadline').notNullable();
     table.boolean('status').notNullable().defaultTo('false');
+    table.enum('priority', ['High', 'Medium', 'Low']).defaultTo('High');
     table.string('image').nullable();
 
     table.timestamp('created_at').notNullable().defaultTo(knex.raw('now()'));
@@ -25,7 +26,8 @@ export async function up(knex: Knex): Promise<void> {
       .unsigned()
       .notNullable()
       .references('id')
-      .inTable('users');
+      .inTable('users')
+      .onDelete('CASCADE');;
       
     table.timestamp('updated_at').nullable();
     
@@ -34,7 +36,8 @@ export async function up(knex: Knex): Promise<void> {
       .unsigned()
       .references('id')
       .inTable('users')
-      .nullable();
+      .nullable()
+      .onDelete('CASCADE');;
   });
 }
 

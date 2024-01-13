@@ -18,7 +18,7 @@ const app = express();
 //       cb(null, Date.now() + '-' + file.originalname);
 //     },
 // });
-
+app.use('/src/uploads', express.static('src/uploads'));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(cors());

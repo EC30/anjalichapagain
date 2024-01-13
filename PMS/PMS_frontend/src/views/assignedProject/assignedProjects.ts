@@ -1,7 +1,5 @@
 import "../../css/taskStyle.css";
 import axios from "axios";
-import renderSidebar from "../../components/sidebar/sidebar";
-const sidebar = document.getElementById("sidebar-placeholder") as HTMLElement;
 const cardFlexContainer = document.getElementById("cardFlex");
 // const editPopup=document.getElementById("editPopup");
 // const projectName = document.getElementById("projectName") as HTMLInputElement;
@@ -9,6 +7,7 @@ const cardFlexContainer = document.getElementById("cardFlex");
 // const projectDeadline = document.getElementById("deadline") as HTMLInputElement;
 // const submitButton = document.getElementById("submitButton") as HTMLButtonElement;
 // const image=document.getElementById("image") as HTMLInputElement;
+const baseurl="http://localhost:8000/";
 
 function toggleStatus(event) {
     const checkbox = event.target;
@@ -39,20 +38,42 @@ function updateSelectedUsers(dropdownMenu: Element | null, selectedUsersDiv: HTM
         selectedUsersDiv.innerHTML = `<b>Selected Users:</b> ${selectedUsers.join(", ")}`;
     }
 }
-window.onload = async () => {
-    renderSidebar(sidebar, "sidebar-dashboard");
-};
-function confirmDelete() {
+
+function confirmDelete(projectId:number) {
     if (confirm("Are you sure you want to delete this project?")) {
-        deleteProject();
+        deleteProject(projectId);
     }
 }
-function deleteProject() {
-    alert("Project deleted successfully."); 
+async function deleteProject(projectId:number) {
+    try {
+        const accessToken = localStorage.getItem("accessToken");
+        
+        if (!accessToken) {
+            console.error("No access token found");
+            return;
+        }
+
+        // Send a DELETE request to delete the project
+        const deleteResponse = await axios.delete(`http://localhost:8000/projects/${projectId}`, {
+            headers: {
+                Authorization: `Bearer ${accessToken}`,
+            },
+        });
+
+        alert("project deleted successfully");
+        console.log("Project deleted successfully.", deleteResponse);
+
+        // Optionally, you can remove the deleted project from the UI
+        const cardToRemove = document.querySelector(`.card[data-project-id="${projectId}"]`);
+        if (cardToRemove) {
+            cardFlexContainer?.removeChild(cardToRemove);
+        }
+    } catch (error) {
+        console.error("Error deleting the project:", error);
+    }
 }
-function editProject() {
-    //editPopup.style.display = "flex";
-    window.location.href="../editProject/editProject.html";
+function editProject(projectId:number) {
+    window.location.href=`../editProject/editProject.html?id=${projectId}`;
 }
 document.addEventListener("DOMContentLoaded", async () => {
     try {
@@ -108,7 +129,13 @@ document.addEventListener("DOMContentLoaded", async () => {
             const card = document.createElement("div");
             card.className="card";
             const img = document.createElement("img");
-            img.src = assignedData.data[i].image;
+            if(assignedData.data[i].image){
+                const aa = assignedData.data[i].image.replace(/\\/g, "/");
+                img.src = `${baseurl}${aa}`;
+                console.log(aa);
+            }else{
+                img.src = `${baseurl}src/uploads/default.jpg`;
+            }   
             const cardContent = document.createElement("div");
             cardContent.className = "card-content";
             const projectName = document.createElement("div");
@@ -132,8 +159,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                 const popup = document.createElement("div");
                 popup.className = "popup";
                 const popupImg = document.createElement("img");
-                popupImg.src = assignedData.data[i].image;
-                popup.appendChild(popupImg);
+                popupImg.src=img.src;
                 
                 popup.addEventListener("click", () => {
                     document.body.removeChild(popup);
@@ -141,11 +167,12 @@ document.addEventListener("DOMContentLoaded", async () => {
 
                 document.body.appendChild(popup);
             });
-
+            const projectId:number=assignedData.data[i].id;
+            console.log(projectId);
             projectName.textContent=assignedData.data[i].name;
             projectDescription.textContent=assignedData.data[0].description;
             deadline.textContent=assignedData.data[i].deadline;
-            priority.textContent="High Priority";
+            priority.textContent=assignedData.data[i].priority;
             if(assignedData.data[i].status===false){
                 statusText.textContent="Pending";
                 toggleMode.style.backgroundColor="red";
@@ -158,12 +185,15 @@ document.addEventListener("DOMContentLoaded", async () => {
             
             const editButton = document.createElement("i");
             editButton.className = "fas fa-edit";
-            // const link =document.createElement("a");
-            editButton.addEventListener("click", editProject);
+            editButton.addEventListener("click", () => {
+                editProject(projectId);
+            });
         
             const deleteButton = document.createElement("i");
             deleteButton.className = "fas fa-trash";
-            deleteButton.addEventListener("click", confirmDelete);
+            deleteButton.addEventListener("click", () => {
+                confirmDelete(projectId);
+            });
         
             // link.appendChild(editButton);
             // link.href="../editProject/editProject.html";

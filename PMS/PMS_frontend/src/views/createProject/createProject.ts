@@ -48,6 +48,7 @@ function resetForm() {
 }
 
 document.addEventListener("DOMContentLoaded", async () => {
+    const projectPriority=document.getElementById("priority") as HTMLSelectElement;
     if (dropdownMenu && selectedUsersDiv) {
         dropdownMenu.addEventListener("change", () => {
             updateSelectedUsers(dropdownMenu, selectedUsersDiv);
@@ -57,9 +58,23 @@ document.addEventListener("DOMContentLoaded", async () => {
     try {
         const response = await axios.get("http://localhost:8000/users");
         const userData = response.data;
-        console.log(userData.data);
+        const accessToken = localStorage.getItem("accessToken");
+                
+        if (!accessToken) {
+            console.error("No access token found");
+            return;
+        }
+        const userCheck = await axios.get("http://localhost:8000/users/check", {
+            headers: {
+                Authorization: `Bearer ${accessToken}`,
+            },
+        });
+
 
         for (let i = 0; i < userData.data.length; i++) {
+            if(userCheck.data.data.id == userData.data[i].id){
+                continue;
+            }
             const formCheck = document.createElement("div");
             formCheck.classList.add("form-check");
 
@@ -85,8 +100,10 @@ document.addEventListener("DOMContentLoaded", async () => {
             const name = projectName.value;
             const description = projectDesc.value;
             const deadline = projectDeadline.value;
+            const selectedValue = projectPriority.value;
+            console.log(selectedValue);
             const selectedUsers: string[] = [];
-            const imageupload=image?.files[0];
+            const imageupload = image?.files?.[0] ?? null;
             
             const checkboxes = dropdownMenu?.querySelectorAll(".form-check-input");
             checkboxes?.forEach((checkbox) => {
@@ -101,7 +118,6 @@ document.addEventListener("DOMContentLoaded", async () => {
                     console.error("No access token found");
                     return;
                 }
-
                 await validationSchema.validate({
                     name: projectName.value,
                     description:projectDesc.value,
@@ -119,6 +135,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                 formData.append("name", name);
                 formData.append("description", description);
                 formData.append("deadline", deadline);
+                formData.append("priority", selectedValue);
                 
                 const projectResponse = await axios.post("http://localhost:8000/projects", 
                     formData,
@@ -152,7 +169,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                 }
                 resetForm();
                 
-            } catch (error) {
+            } catch (error: unknown) {
                 errorMessage.style.display = "flex";
                 if (error.response && error.response.data) {
                     const backendErrors = error.response.data.message;
@@ -162,7 +179,6 @@ document.addEventListener("DOMContentLoaded", async () => {
                     console.log(error.errors);
                     errorMessage.innerText = error.errors.join("\n");
                 }
-                // console.error("Error:", error);
             }
         });
 

@@ -1,42 +1,26 @@
 import "../../css/taskStyle.css";
 import axios from "axios";
-import renderSidebar from "../../components/sidebar/sidebar";
 
-const sidebar = document.getElementById("sidebar-placeholder") as HTMLElement;
-const userNameElement = document.getElementById("userName") as HTMLElement;
 const totalProject = document.getElementById("totalProjects");
 const completedProject = document.getElementById("completedProjects");
 const remainingProject = document.getElementById("RemainingProjects");
 const projectTableBody=document.getElementById("projectTableBody");
-
-window.onload = async () => {
-    renderSidebar(sidebar);
-};
+// const baseurl=
 
 document.addEventListener("DOMContentLoaded", async () => {
     try {
-        // const userData = JSON.parse(sessionStorage.getItem("user"));
+
         const accessToken = localStorage.getItem("accessToken");
 
         if (!accessToken) {
             console.error("No access token found");
             return;
         }
-        const userData = await axios.get("http://localhost:8000/users/check", {
-            headers: {
-                Authorization: `Bearer ${accessToken}`,
-            },
-        });
-
-        const userName = userData.data.data.fullname;
         const response = await axios.get("http://localhost:8000/projects", {
             headers: {
                 Authorization: `Bearer ${accessToken}`,
             },
         });
-        if (userNameElement) {
-            userNameElement.textContent = userName;
-        }
         const projectData = response.data;
         // console.log(projectData.data);
         // console.log(projectData.data.length);

@@ -14,27 +14,14 @@
     <section id="sidebar-placeholder"></section>
     <section id="content">
 		<!-- NAVBAR -->
-		<nav>
-			<i class='bx bx-menu' id="toggle-button"></i>
-			<form action="#">
-				<div class="form-input">
-					<input type="search" placeholder="Search...">
-					<button type="submit" class="search-btn"><i class='bx bx-search' ></i></button>
-				</div>
-			</form>
-			<input type="checkbox" id="switch-mode" hidden>
-			<label for="switch-mode" class="switch-mode"></label>
-			<a href="#" class="profile">
-				<img src="../../images/people.png">
-			</a>
-		</nav>
+		<section id="navbar-placeholder"></section>
 		<!-- NAVBAR -->
 
 		<!-- MAIN -->
 		<main>
             <div class="head-title">
 				<div class="left">
-					<h1>Dashboard</h1>
+					<h1>EDIT PROJECTS</h1>
 					<ul class="breadcrumb">
 						<li>
 							<a href="../dashboard/dashboard.html">Dashboard</a>
@@ -47,8 +34,8 @@
 				</div>
 			</div>
             <div class="project-data">
-                <form id="projectForm" enctype="multipart/form-data">
-                    <h2> EDIT PROJECTS</h2>
+                <div id="edit-error-message" class="edit-error-message"></div>
+                <form id="projectEditForm" enctype="multipart/form-data">
                     <div class="input-field">
                         <label for="projectName">Project Name:</label>
                         <input type="text" id="projectName" name="projectName" required>
@@ -60,9 +47,9 @@
                         <input type="text" id="deadline" name="deadline" readonly required>
 
 						<label for="priority">Priority:</label>
-                        <select id="assignedBy" name="priority" required>
-                            <option value="High Priority">High Priority</option>
-                            <option value="Medium">Low</option>
+                        <select id="priority" name="priority" required>
+                            <option value="High">High Priority</option>
+                            <option value="Medium">Medium</option>
                             <option value="Low">Low</option>
                         </select>
                     </div>
@@ -81,6 +68,8 @@
                 
                     <label for="image">Add Image:</label>
                     <input type="file" id="image" name="image" accept="image/*">
+                    <p id="originalImage"></p>
+                    <img src="" id="imageShow" style="height: 200px;width: 200px;"/>
 
                     <div class="buttons">
                         <button type="submit" class="submitButton" id="editButton">Edit Project </button>
@@ -99,8 +88,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/js/bootstrap-multiselect.js"></script>
-<script src="./task.js"></script>
-<script type=module src="./createProject.ts"></script>
+<script type="module" src="../../components/sidebar/render.ts"></script>
 <script>
         $(function() {
         var currentDate = new Date();
@@ -109,9 +97,6 @@
         });
     });
 </script>
-
-<script type=module src="../dashboard/dashboard.ts"></script>
-<script type=module src="../../components/utils.ts"></script>
 <script type="module" src="./editProject.ts"></script>
 
 

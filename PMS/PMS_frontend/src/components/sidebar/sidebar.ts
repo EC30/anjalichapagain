@@ -3,28 +3,27 @@ const renderSidebar = (placeholder: HTMLElement) => {
         .then((response) => response.text())
         .then((data) => {
             placeholder.innerHTML = data;
-            const allSideMenu = document.querySelectorAll<HTMLAnchorElement>("#sidebar .side-menu.top li a");
+            // const allSideMenu = document.querySelectorAll<HTMLAnchorElement>("#sidebar .side-menu.top li a");
 
-            allSideMenu.forEach((item: HTMLAnchorElement) => {
-                const li = item.parentElement;
+            // allSideMenu.forEach((item: HTMLAnchorElement) => {
+            //     const li = item.parentElement;
             
-                item.addEventListener("click", function () {
-                    allSideMenu.forEach((i: HTMLAnchorElement) => {
-                        i.parentElement?.classList.remove("active");
-                    });
-                    li?.classList.add("active");
-                });
-            });
+            //     item.addEventListener("click", function () {
+            //         allSideMenu.forEach((i: HTMLAnchorElement) => {
+            //             i.parentElement?.classList.remove("active");
+            //         });
+            //         li?.classList.add("active");
+            //     });
+            // });
             
-            const menuBar = document.getElementById("toggle-button");
-            const sidebar = document.getElementById("sidebar");
-            // const sidebar=document.getElementById("sidebar-placeholder");
-            console.log(sidebar);
-            console.log(menuBar);
+            // const menuBar = document.getElementById("toggle-button");
+            // const sidebar = document.getElementById("sidebar");
+            // console.log(sidebar);
+            // console.log(menuBar);
             
-            menuBar?.addEventListener("click", function () {
-                sidebar?.classList.toggle("hide");
-            });
+            // menuBar?.addEventListener("click", function () {
+            //     sidebar?.classList.toggle("hide");
+            // });
             
         });
 };

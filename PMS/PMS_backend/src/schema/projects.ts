@@ -30,6 +30,9 @@ const schema={
     "string.base": "Image should be a string",
     "string.pattern.base": "Invalid image file format",
   }),
+  priority: Joi.string().valid('High', 'Medium', 'Low').optional().messages({
+    "any.only": "Priority should be one of 'High', 'Medium', 'Low'",
+  }),
 }
 export const projectSchema = Joi.object(schema);
 

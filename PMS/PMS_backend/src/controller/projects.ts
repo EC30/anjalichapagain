@@ -5,6 +5,7 @@ import * as projectsService from "../services/projects";
 import { IassignedProjects } from "../interface/assignedProject";
 import * as assignedProjectService from "../services/assignedProject";
 import AssignedProjectsModel from "../models/assignedProject";
+import { request } from "http";
 
 
 export async function createprojects(req: any, res: Response, next:NextFunction) {
@@ -16,7 +17,9 @@ export async function createprojects(req: any, res: Response, next:NextFunction)
     // body.image= req.file.path;
     if (req.file) {
       body.image = req.file.path;
-    } 
+    } else{
+      body.image="src/uploads/default.jpg";
+    }
     // console.log(req,req.body,task,user);
     const projectInfo=await projectsService.createprojects(body, user.id);
   
@@ -67,10 +70,13 @@ export async function updateprojects(
   try {
     const user = req.user;
     const { id } = req.params;
-    
+    if (req.file) {
+      req.body.image = req.file.path;
+    }
+    console.log("controller" , req.body);
     const projects = await projectsService.updateprojects(parseInt(id), user.id, req.body);
 
-    res.json(projects);
+    res.json({ message: "Successfully updated project" });
     console.log('Updated projects:', projects);
   } catch (error) {
     console.error('Error updating projects:', error);
@@ -85,7 +91,6 @@ export async function updateprojectsByAssignedUser(
   try {
     const user = req.user;
     const { id } = req.params;
-    console.log("controller");
     const projects = await projectsService.updateprojectByAssignedUser(parseInt(id), user.id, req.body);
 
     res.json(projects);
@@ -143,6 +148,17 @@ export async function getAssignedProject(req: any, res: Response) {
   res.json(projectss);
 }
 
+export async function getAssignedUsers(req: any, res: Response) {
+  const user = req.user;
+  const projectId=req.params.id;
+  const projectss = await assignedProjectService.getAssignedUsers
+  (
+    user.id,
+    projectId
+    );
+  res.json(projectss);
+}
+
 export async function updateAssignedProject(
   req: any,
   res: Response,
@@ -161,21 +177,21 @@ export async function updateAssignedProject(
     next(error);
   }
 }
-export async function deleteAssignedProject(
-  req: any,
-  res: Response,
-  next: NextFunction
-) {
-  try {
-    const user = req.user;
-    const { id } = req.params;
+// export async function deleteAssignedProject(
+//   req: any,
+//   res: Response,
+//   next: NextFunction
+// ) {
+//   try {
+//     const user = req.user;
+//     const { id } = req.params;
 
-    const projects = await assignedProjectService.deleteAssignedProject(parseInt(id), user.id);
+//     const projects = await assignedProjectService.deleteAssignedProject(parseInt(id), user.id);
 
-    res.json({
-      message: "Assign project deleted successfully",
-    });
-  } catch (error) {
-    next(error);
-  }
-}
+//     res.json({
+//       message: "Assign project deleted successfully",
+//     });
+//   } catch (error) {
+//     next(error);
+//   }
+// }

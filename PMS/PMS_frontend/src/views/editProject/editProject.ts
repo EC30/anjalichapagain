@@ -1,20 +1,16 @@
 import axios from "axios";
-import * as yup from "yup";
 
 const projectName = document.getElementById("projectName") as HTMLInputElement;
 const projectDesc = document.getElementById("projectDescription") as HTMLInputElement;
 const projectDeadline = document.getElementById("deadline") as HTMLInputElement;
 const editButton = document.getElementById("editButton") as HTMLButtonElement;
-const image=document.getElementById("image") as HTMLInputElement;
-const errorMessage=document.getElementById("project-error-message") as HTMLDivElement;
+const projectPriority=document.getElementById("priority") as HTMLSelectElement;
+const image=document.getElementById("imageShow") as HTMLInputElement;
+const imageInput = document.getElementById("image") as HTMLInputElement;
+const errorMessage=document.getElementById("edit-error-message") as HTMLDivElement;
+const baseurl="http://localhost:8000/";
 
-const validationSchema = yup.object().shape({
-    name: yup.string().required().min(4),
-    description: yup.string().required().min(10),
-    deadline: yup.date().required(),
-});
-
-function updateSelectedUsers(dropdownMenu: Element | null, selectedUsersDiv: HTMLElement | null): void {
+function updateSelectedUsers(dropdownMenu: Element , selectedUsersDiv: HTMLElement): void {
     if (dropdownMenu && selectedUsersDiv) {
         const selectedUsers: string[] = [];
         const checkboxes = dropdownMenu.querySelectorAll(".form-check-input");
@@ -24,15 +20,51 @@ function updateSelectedUsers(dropdownMenu: Element | null, selectedUsersDiv: HTM
                 selectedUsers.push((checkbox as HTMLInputElement).value);
             }
         });
-
-        console.log(selectedUsers);
-        selectedUsersDiv.innerHTML = `<b>Selected Users:</b> ${selectedUsers.join(", ")}`;
+        selectedUsersDiv .innerHTML = `<b>Selected Users:</b> ${selectedUsers.join(", ")}`;
     }
 }
 
 document.addEventListener("DOMContentLoaded", async () => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const projectId = urlParams.get("id");
+    const accessToken = localStorage.getItem("accessToken");
+    const projectDetailsResponse = await axios.get(`http://localhost:8000/projects/${projectId}`, {
+        headers: {
+            Authorization: `Bearer ${accessToken}`,
+        },
+    });
+
+    const assignedUSers = await axios.get(`http://localhost:8000/projects/assignedUsers/${projectId}`, {
+        headers: {
+            Authorization: `Bearer ${accessToken}`,
+        },
+    });
+    const projectDetails = projectDetailsResponse.data; 
+    projectName.value = projectDetails.name || "";
+    projectDesc.value = projectDetails.description || "";
+    projectDeadline.value = projectDetails.deadline || "";
+    projectPriority.value = projectDetails.priority;
+
+    if(projectDetails.image){
+        const aa = projectDetails.image.replace(/\\/g, "/");
+        const imageUrl = `${baseurl}${aa}`;
+        image.src = imageUrl;
+    }
+    else{
+        image.src = `${baseurl}src/uploads/default.jpg`;
+    }
+    imageInput.addEventListener("change", (event) => {
+        const selectedImage = (event.target as HTMLInputElement).files?.[0];
+        if (selectedImage) {
+            const imageUrl = URL.createObjectURL(selectedImage);
+            image.innerHTML = `<img src="${imageUrl}" alt="Selected Image" />`;
+        } else {
+            image.innerHTML = "";
+        }
+    });
     const dropdownMenu = document.querySelector("#userDropdown .dropdown-menu");
     const selectedUsersDiv = document.getElementById("selectedUsers");
+    
 
     if (dropdownMenu && selectedUsersDiv) {
         dropdownMenu.addEventListener("change", () => {
@@ -43,9 +75,22 @@ document.addEventListener("DOMContentLoaded", async () => {
     try {
         const response = await axios.get("http://localhost:8000/users");
         const userData = response.data;
-        console.log(userData.data);
-
+        const selectedUsers:Array<number>=[];
+        const accessToken = localStorage.getItem("accessToken");
+                
+        if (!accessToken) {
+            console.error("No access token found");
+            return;
+        }
+        const userCheck = await axios.get("http://localhost:8000/users/check", {
+            headers: {
+                Authorization: `Bearer ${accessToken}`,
+            },
+        });
         for (let i = 0; i < userData.data.length; i++) {
+            if(userCheck.data.data.id == userData.data[i].id){
+                continue;
+            }
             const formCheck = document.createElement("div");
             formCheck.classList.add("form-check");
 
@@ -54,7 +99,11 @@ document.addEventListener("DOMContentLoaded", async () => {
             checkbox.classList.add("form-check-input");
             checkbox.id = userData.data[i].id;
             checkbox.value = userData.data[i].fullname;
-
+            if(assignedUSers.data.data.includes(parseInt(userData.data[i].id))){
+                checkbox.checked=true;
+                selectedUsers.push(userData.data[i].fullname);
+                
+            }
             const label = document.createElement("label");
             label.classList.add("form-check-label");
             label.htmlFor = userData.data[i].id;
@@ -64,78 +113,77 @@ document.addEventListener("DOMContentLoaded", async () => {
             formCheck.appendChild(label);
 
             dropdownMenu?.appendChild(formCheck);
-            // console.log(user);
         }
+        if(selectedUsersDiv){
+            selectedUsersDiv.innerHTML = `<b>Selected Users:</b> ${selectedUsers.join(", ")}`;
+        }
+
+       
         editButton.addEventListener("click", async (event) => {
             event.preventDefault();
             const name = projectName.value;
             const description = projectDesc.value;
             const deadline = projectDeadline.value;
-            const selectedUsers: string[] = [];
-            const imageupload=image?.files[0];
-            
+            const selectedUsers: number[] = [];
+            const selectedValue = projectPriority.value;
+            const imageupload = imageInput?.files?.[0] ?? null;
+        
             const checkboxes = dropdownMenu?.querySelectorAll(".form-check-input");
             checkboxes?.forEach((checkbox) => {
                 if ((checkbox as HTMLInputElement).checked) {
-                    selectedUsers.push((checkbox as HTMLInputElement).id);
+                    selectedUsers.push(parseInt((checkbox as HTMLInputElement).id));
                 }
             });
+            console.log(selectedUsers);
+        
+            // let formData = new FormData(document.querySelector("form"));
+            const formData=new FormData();
+            formData.append("name", name);
+            formData.append("description", description);
+            formData.append("deadline", deadline);
+            formData.append("priority", selectedValue);
+            if(imageupload){
+                formData.append("image",imageupload);
+            }
+        
+        
             try {
                 const accessToken = localStorage.getItem("accessToken");
-                
+        
                 if (!accessToken) {
                     console.error("No access token found");
                     return;
                 }
-
-                await validationSchema.validate({
-                    name: projectName.value,
-                    description:projectDesc.value,
-                    deadline: projectDeadline.value,
-                }, { abortEarly: false });
-                if (selectedUsers.length === 0) {
-                    errorMessage.style.display = "flex";
-                    errorMessage.innerText = "Please select at least one user.";
-                    return;
-                }
-                const formData=new FormData();
-                if(imageupload){
-                    formData.append("image",imageupload);
-                }
-                formData.append("name", name);
-                formData.append("description", description);
-                formData.append("deadline", deadline);
-                
-                const projectResponse = await axios.put("http://localhost:8000/projects", 
+        
+                const projectResponse = await axios.put(
+                    `http://localhost:8000/projects/${projectId}`,
                     formData,
                     {
                         headers: {
                             Authorization: `Bearer ${accessToken}`,
+                            
                         },
-                    });
-                
+                    }
+                );
+        
                 console.log("Project edited response:", projectResponse);
                 console.log("Project message response:", projectResponse.data.message);
-                console.log("Project id:", projectResponse.data.projectInfo.projectData[0].id);
-
-                // Check if projectResponse.data.id exists
-                if (projectResponse.data && projectResponse.data.projectInfo.projectData[0].id) {
-                    const projectId: number = projectResponse.data.projectInfo.projectData[0].id;
-                
-                    // Post assigned user data
-                    const assignedUserResponse = await axios.post(`http://localhost:8000/projects/${projectId}/assign`, {
+        
+                console.log(selectedUsers[0]);
+                console.log(typeof selectedUsers[0]);
+                const assignedUserResponse = await axios.post(
+                    `http://localhost:8000/projects/${projectId}/assign`,
+                    {
                         assigned_to: selectedUsers,
-                    }, {
+                    },
+                    {
                         headers: {
                             Authorization: `Bearer ${accessToken}`,
                         },
-                    });
-                
-                    console.log("Assigned users response:", assignedUserResponse);
-                
-                } else {
-                    console.error("Project ID not found in the response:", projectResponse);
-                }
+                    }
+                );
+        
+                console.log("Assigned users response:", assignedUserResponse);
                 
             } catch (error) {
                 errorMessage.style.display = "flex";
@@ -149,7 +197,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                 }
             }
         });
-
+        
     } catch (error) {
         console.error("Error fetching assigned projects:", error);
     }

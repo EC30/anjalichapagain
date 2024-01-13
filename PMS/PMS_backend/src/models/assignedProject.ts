@@ -15,6 +15,7 @@ export default class AssignedProjectsModel extends BaseModel {
           updatedBy: "t.updated_by",
           projectName: "p.name",
           image:"p.image",
+          priority:"p.priority",
           projectDesc:"p.description",
           projectStatus:"p.status",
           deadline:"p.deadline"
@@ -43,6 +44,19 @@ export default class AssignedProjectsModel extends BaseModel {
       .from({ t: TABLE_NAME })
       .where({ assignedTo: userId, projectId:projectId})
       .first();
+
+    return query;
+  }
+
+  static async getAssignedUsersByProjectId(userId:number, projectId:number) {
+    const query = this.queryBuilder()
+      .select({
+          id: "t.id",
+          assignedTo: "t.assigned_to",
+          // projectName: "p.name", 
+      })
+      .from({ t: TABLE_NAME })
+      .where({ assignedBy: userId, projectId:projectId});
 
     return query;
   }
@@ -96,12 +110,10 @@ export default class AssignedProjectsModel extends BaseModel {
       return this.queryBuilder().update(assignedProject).table(TABLE_NAME).where({ id });
   }
 
-  static async deleteAssignedProject(id:number) {
-      return this.queryBuilder().table(TABLE_NAME).where({ id }).del();
-  }
-
-  static async isUserAssignedToProject(userId: number, projectId: number) {
-    const result = await this.getAssignedProjectByProjectId(userId, projectId);
-    return result !== undefined;
+  static async deleteAssignedProject(projectId:number, userId:number) {
+      return this.queryBuilder().table(TABLE_NAME)
+      .where({ 
+        'project_id': projectId, 'assigned_to': userId, 
+       }).del();
   }
 }

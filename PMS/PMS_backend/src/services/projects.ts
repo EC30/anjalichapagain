@@ -67,6 +67,7 @@ export async function updateprojects(id: number, userId: number, body:Iprojects,
     projects.status = body.status;
     await projectsModel.updateprojects(id,projects);
   }else{
+    console.log("owner");
     await projectsModel.updateprojects(id,body);
   }
   return projects;
@@ -82,7 +83,6 @@ export async function updateprojectByAssignedUser(id: number, userId: number, bo
   console.log("services2");
   console.log(checkAssignedUser.updatedBy);
   await updateprojects(id,checkAssignedUser.updatedBy,body,true);
-
 }
 
 
@@ -98,9 +98,9 @@ export async function deleteprojects(id: number, userId: number) {
 }
 
 export async function assignProjects(projectId:string, body: IassignedProjects, userId: string) {
-  // console.log("aa");
-  // console.log(typeof userId);
-  // console.log(body.assigned_to[0]);
+  if(body.assigned_to.length===0){
+    throw new BadRequestError("please assign to at least one user");
+  }
   const isOwner = await checkOwner(parseInt(projectId), parseInt(userId));
   if(!isOwner){
     throw new unauthenticatedError("Not Your Project");
@@ -115,19 +115,41 @@ export async function assignProjects(projectId:string, body: IassignedProjects, 
   }
 
   const checkAssignedUser=await AssignedProjectsModel.getprojectsAssignedTo(parseInt(projectId),parseInt(userId));
+  console.log(checkAssignedUser[0]);
+  console.log(typeof checkAssignedUser[0]);
+  const to_add:Array<number>=[];
+  const to_delete:Array<number>=[];
+  body.assigned_to.forEach(element => {
+    if(!checkAssignedUser.includes(element)){
+      to_add.push(element);
+    }
 
-  const existsInArray1 = body.assigned_to.some(value => checkAssignedUser.includes(value));
-  if(existsInArray1){
-    throw new BadRequestError(`project is already assigned to users${checkAssignedUser}`);
-  }
+  });
+  checkAssignedUser.forEach(element => {
+    if(!body.assigned_to.includes(element)){
+      to_delete.push(element);
+    }
+
+  });
+
   try{
-    for(let i = 0; i < body.assigned_to.length; i++){
+    for(let i = 0; i < to_add.length; i++){
       await AssignedProjectsModel.createAssignedProject({
         ...body,
         assigned_to:body.assigned_to[i],
-        project_id:projectId,
-        updated_by: userId,
+        project_id:parseInt(projectId),
+        updated_by:parseInt(userId),
       });
+    }
+  } catch(error){
+    throw new BaseError("Internal Server Error");
+  }
+  try{
+    for(let i = 0; i < to_delete.length; i++){
+      await AssignedProjectsModel.deleteAssignedProject(
+        parseInt(projectId),
+        to_delete[i],
+      );
     }
   } catch(error){
     throw new BaseError("Internal Server Error");

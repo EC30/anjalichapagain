@@ -3,33 +3,21 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+        <!-- <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/css/bootstrap-multiselect.css">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> -->
         <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
         <script src="https://kit.fontawesome.com/64d58efce2.js" crossorigin="anonymous"></script>
-        <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+        <!-- <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script> -->
         <link rel="stylesheet" href="../../css/taskStyle.css">
     </head>
 <body>
     <section id="sidebar-placeholder"></section>
     <section id="content">
 		<!-- NAVBAR -->
-		<nav>
-			<i class='bx bx-menu' id="toggle-button"></i>
-			<form action="#">
-				<div class="form-input">
-					<input type="search" placeholder="Search...">
-					<button type="submit" class="search-btn"><i class='bx bx-search' ></i></button>
-				</div>
-			</form>
-			<input type="checkbox" id="switch-mode" hidden>
-			<label for="switch-mode" class="switch-mode"></label>
-			<a href="#" class="profile">
-				<img src="../../images/people.png">
-			</a>
+		<section id="navbar-placeholder"></section>
 		</nav>
 		<!-- NAVBAR -->
 
@@ -37,7 +25,7 @@
 		<main>
             <div class="head-title">
 				<div class="left">
-					<h1>Dashboard</h1>
+					<h1>ASSIGNED PROJECTS</h1>
 					<ul class="breadcrumb">
 						<li>
 							<a href="../dashboard/dashboard.html">Dashboard</a>
@@ -53,50 +41,6 @@
             <div class="cardFlex" id="cardFlex">
             </div>
 
-
-            <div id="editPopup" class="editPopup" >
-                <span class="closeIcon" onclick="closeEditPopup()">&times;</span>
-                <h2> EDIT PROJECTS</h2>
-                <div class="project-data">
-                    <form id="projectForm">
-                        <div class="input-field">
-                            <label for="projectName">Project Name:</label>
-                            <input type="text" id="projectName" name="projectName" required>
-            
-                            <label for="projectDescription">Project Description:</label>
-                            <textarea id="projectDescription" name="projectDescription" rows="4" required></textarea>
-            
-                            <label for="deadline">Deadline:</label>
-                            <input type="text" id="deadline" name="deadline" readonly required>
-            
-                            <label for="priority">Priority:</label>
-                            <select id="assignedBy" name="priority" required>
-                                <option value="High Priority">High Priority</option>
-                                <option value="Medium">Medium</option>
-                                <option value="Low">Low</option>
-                            </select>
-                        </div>
-                        <div id="selectedUsers"></div>
-                        <label for="userDropdown">Select Users:</label>
-                        <div id="userDropdown" class="dropdown">
-                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="submitButton">
-                                Select Users
-                            </button>
-                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" id="user-dropdown">
-                            </div>
-                        </div>
-                        
-                        <label for="image">Add Image:</label>
-                        <input type="file" id="image" name="image" accept="image/*">
-            
-                        <div class="buttons">
-                            <button type="reset" class="resetButton">Reset Form</button>
-                            <button type="submit" class="submitButton">Update Project</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-
 		</main>
 		<!-- MAIN -->
 	</section>
@@ -105,6 +49,8 @@
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script type="module" src="../../components/sidebar/render.ts"></script>
+    <script type=module src="./assignedProjects.ts"></script>
     <script>
         $(function() {
             $("#deadline").datepicker();
@@ -114,6 +60,4 @@
         }
 
     </script>
-    <script type=module src="../../components/utils.ts"></script>
-    <script type=module src="./assignedProjects.ts"></script>
 </html>
