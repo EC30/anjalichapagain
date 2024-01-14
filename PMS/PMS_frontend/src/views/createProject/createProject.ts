@@ -9,6 +9,8 @@ const image=document.getElementById("image") as HTMLInputElement;
 const errorMessage=document.getElementById("project-error-message") as HTMLDivElement;
 const dropdownMenu = document.querySelector("#userDropdown .dropdown-menu");
 const selectedUsersDiv = document.getElementById("selectedUsers") as HTMLDivElement;
+const projectPriority=document.getElementById("priority") as HTMLSelectElement;
+const successMessage = document.getElementById("successMessage") as HTMLDivElement;
 
 const validationSchema = yup.object().shape({
     name: yup.string().required().min(4),
@@ -35,7 +37,8 @@ function resetForm() {
     projectName.value = "";
     projectDesc.value = "";
     projectDeadline.value = "";
-    image.value = ""; // Reset the file input if applicable
+    image.value = ""; 
+    projectPriority.value="";
 
     const checkboxes = dropdownMenu?.querySelectorAll(".form-check-input");
     checkboxes?.forEach((checkbox) => {
@@ -48,7 +51,6 @@ function resetForm() {
 }
 
 document.addEventListener("DOMContentLoaded", async () => {
-    const projectPriority=document.getElementById("priority") as HTMLSelectElement;
     if (dropdownMenu && selectedUsersDiv) {
         dropdownMenu.addEventListener("change", () => {
             updateSelectedUsers(dropdownMenu, selectedUsersDiv);
@@ -163,6 +165,10 @@ document.addEventListener("DOMContentLoaded", async () => {
                     });
                 
                     console.log("Assigned users response:", assignedUserResponse);
+                    successMessage.style.display = "block";  
+                    setTimeout(() => {
+                        successMessage.style.display = "none";  
+                    }, 5000);
                 
                 } else {
                     console.error("Project ID not found in the response:", projectResponse);

@@ -443,6 +443,16 @@ body {
 	max-height: 50px;
 	font-weight: 700;
 }
+.priorityHigh{
+	background: green;
+	font-size: 10px;
+	text-align: center;
+	color: var(--light);
+	padding: 6px 16px;
+	border-radius: 20px;
+	max-height: 50px;
+	font-weight: 700;
+}
 
 @media screen and (max-width: 768px) {
 	#sidebar {
@@ -458,10 +468,6 @@ body {
 		display: none;
 	}
 }
-
-
-
-
 
 
 @media screen and (max-width: 576px) {
@@ -643,7 +649,7 @@ body {
 
 .card {
     width: 300px;
-    background-color: lavender;
+    background-color: #FFFFE0;
     border-radius: 10px;
     overflow: hidden;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -703,6 +709,8 @@ body {
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
+	font-weight: 700;
+	font-size: 35px;
 }
 
 .status-text {
@@ -782,4 +790,12 @@ body {
     width: 380px;
     overflow: hidden;
     display: none;
-  }
+}
+.success-message{
+    background-color: #AFE1AF;
+    padding: 1rem;
+    height: 40px;
+    width: 380px;
+    overflow: hidden;
+    display: none;
+}

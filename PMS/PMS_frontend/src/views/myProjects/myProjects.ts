@@ -2,6 +2,7 @@ import "../../css/taskStyle.css";
 import axios from "axios";
 const cardFlexContainer = document.getElementById("cardFlex");
 const baseurl="http://localhost:8000/";
+const queryParams=window.location.search;
 
 document.addEventListener("DOMContentLoaded", async () => {
     try {
@@ -11,7 +12,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             console.error("No access token found");
             return;
         }
-        const response = await axios.get("http://localhost:8000/projects/assigned", {
+        const response = await axios.get(`http://localhost:8000/projects/assigned${queryParams}`, {
             headers: {
                 Authorization: `Bearer ${accessToken}`,
             },
@@ -43,6 +44,19 @@ document.addEventListener("DOMContentLoaded", async () => {
             priority.className = "deadline";
             const completionStatus = document.createElement("div");
             completionStatus.className = "completion-status";
+            const completionDeadline = new Date(assignedData.data[i].deadline);
+            const today = new Date();
+            
+            if (completionDeadline < today && assignedData.data[i].projectStatus === false) {
+                const alertText = document.createElement("div");
+                alertText.textContent = "Project has passed the completion deadline and is still pending!";
+                alertText.style.color = "red"; 
+                
+                card.style.backgroundColor = "#FFE0D3";
+
+                cardContent.appendChild(alertText);
+            }
+
             const statusText = document.createElement("div");
             statusText.className = "status-text";
             const toggleMode = document.createElement("input");
@@ -75,6 +89,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                 toggleMode.style.backgroundColor="red";
             }else{
                 statusText.textContent="Completed"; 
+                card.style.backgroundColor="#D0F0C0";
                 toggleMode.style.backgroundColor="green";
             }
             cardContent.appendChild(projectName);
@@ -96,7 +111,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
 });
 
-async function toggleStatus(assignedData, index:number, event) {
+async function toggleStatus(assignedData, index, event) {
     const checkbox = event.target;
     const card = checkbox.closest(".card");
     const statusText = card.querySelector(".status-text");

@@ -22,6 +22,11 @@ export default class AssignedProjectsModel extends BaseModel {
       })
       .from({ t: TABLE_NAME })
       .where({ assignedTo: params.userId })
+      .where((builder) => {
+        if (params.search) {
+          builder.whereRaw("LOWER(p.name) like ?", [`%${params.search.toLowerCase()}%`]);
+        }
+      })
       .leftJoin({ u: "users" }, { "t.assigned_to": "u.id" })
       .leftJoin({ p: "projects" }, { "t.project_id": "p.id" });;
 

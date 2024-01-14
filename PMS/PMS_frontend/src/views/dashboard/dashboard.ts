@@ -5,7 +5,7 @@ const totalProject = document.getElementById("totalProjects");
 const completedProject = document.getElementById("completedProjects");
 const remainingProject = document.getElementById("RemainingProjects");
 const projectTableBody=document.getElementById("projectTableBody");
-// const baseurl=
+const queryParams=window.location.search;
 
 document.addEventListener("DOMContentLoaded", async () => {
     try {
@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             console.error("No access token found");
             return;
         }
-        const response = await axios.get("http://localhost:8000/projects", {
+        const response = await axios.get(`http://localhost:8000/projects${queryParams}`, {
             headers: {
                 Authorization: `Bearer ${accessToken}`,
             },
@@ -44,10 +44,12 @@ document.addEventListener("DOMContentLoaded", async () => {
             const projectName = document.createElement("td");
             const projectDeadline = document.createElement("td");
             const projectStatus = document.createElement("td");
+            const projectPriority = document.createElement("td");
             const status=document.createElement("span");
 
             projectName.textContent=projectData.data[i].name;
             projectDeadline.textContent=projectData.data[i].deadline;
+            projectPriority.textContent=projectData.data[i].priority;
             if(projectData.data[i].status===false){
                 status.textContent="Pending";
                 status.className="statusPending";
@@ -55,11 +57,16 @@ document.addEventListener("DOMContentLoaded", async () => {
                 status.textContent="Completed"; 
                 status.className="statusCompleted";
             }
+            if(projectData.data[i].priority==="High"){
+                projectPriority.style.color="green";
+                projectPriority.style.fontWeight="bold";
+            }
 
             projectRow.appendChild(projectName);
             projectRow.appendChild(projectDeadline);
             projectRow.appendChild(projectStatus);
             projectStatus.appendChild(status);
+            projectRow.appendChild(projectPriority);
             projectTableBody?.appendChild(projectRow);
 
         }

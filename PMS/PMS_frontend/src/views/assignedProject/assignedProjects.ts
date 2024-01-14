@@ -1,27 +1,8 @@
 import "../../css/taskStyle.css";
 import axios from "axios";
 const cardFlexContainer = document.getElementById("cardFlex");
-// const editPopup=document.getElementById("editPopup");
-// const projectName = document.getElementById("projectName") as HTMLInputElement;
-// const projectDesc = document.getElementById("projectDescription") as HTMLInputElement;
-// const projectDeadline = document.getElementById("deadline") as HTMLInputElement;
-// const submitButton = document.getElementById("submitButton") as HTMLButtonElement;
-// const image=document.getElementById("image") as HTMLInputElement;
 const baseurl="http://localhost:8000/";
-
-function toggleStatus(event) {
-    const checkbox = event.target;
-    const card = checkbox.closest(".card");
-    const statusText = card.querySelector(".status-text");
-
-    if (checkbox.checked) {
-        statusText.textContent = "Completed";
-        checkbox.style.backgroundColor = "green";
-    } else {
-        statusText.textContent = "Pending";
-        checkbox.style.backgroundColor = "red";
-    }
-}
+const queryParams=window.location.search;
 
 function updateSelectedUsers(dropdownMenu: Element | null, selectedUsersDiv: HTMLElement | null): void {
     if (dropdownMenu && selectedUsersDiv) {
@@ -110,14 +91,14 @@ document.addEventListener("DOMContentLoaded", async () => {
             dropdownMenu?.appendChild(formCheck);
             // console.log(user);
         }
-        // const userData = JSON.parse(sessionStorage.getItem("user"));
+      
         const accessToken = localStorage.getItem("accessToken");
 
         if (!accessToken) {
             console.error("No access token found");
             return;
         }
-        const response = await axios.get("http://localhost:8000/projects", {
+        const response = await axios.get(`http://localhost:8000/projects${queryParams}`, {
             headers: {
                 Authorization: `Bearer ${accessToken}`,
             },
@@ -132,7 +113,6 @@ document.addEventListener("DOMContentLoaded", async () => {
             if(assignedData.data[i].image){
                 const aa = assignedData.data[i].image.replace(/\\/g, "/");
                 img.src = `${baseurl}${aa}`;
-                console.log(aa);
             }else{
                 img.src = `${baseurl}src/uploads/default.jpg`;
             }   
@@ -153,13 +133,12 @@ document.addEventListener("DOMContentLoaded", async () => {
             const toggleMode = document.createElement("input");
             toggleMode.type = "checkbox";
             toggleMode.id = "toggle-mode";
-            toggleMode.addEventListener("change", toggleStatus);
-
             img.addEventListener("click", () => {
                 const popup = document.createElement("div");
                 popup.className = "popup";
                 const popupImg = document.createElement("img");
                 popupImg.src=img.src;
+                popup.appendChild(popupImg);
                 
                 popup.addEventListener("click", () => {
                     document.body.removeChild(popup);
@@ -167,8 +146,25 @@ document.addEventListener("DOMContentLoaded", async () => {
 
                 document.body.appendChild(popup);
             });
+
+            const completionDeadline = new Date(assignedData.data[i].deadline);
+            console.log(completionDeadline);
+            const today = new Date();
+            console.log(today);
+            
+            if (completionDeadline < today && assignedData.data[i].status === false) {
+                const alertText = document.createElement("div");
+                alertText.textContent = "Project has passed the completion deadline and is still pending!";
+                alertText.style.color = "red"; 
+                card.style.backgroundColor = "#FFE0D3";
+
+                cardContent.appendChild(alertText);
+            }
+
             const projectId:number=assignedData.data[i].id;
             console.log(projectId);
+            toggleMode.dataset.projectId = assignedData.data[i].id; 
+            toggleMode.addEventListener("change", toggleStatus.bind(null, assignedData, i));
             projectName.textContent=assignedData.data[i].name;
             projectDescription.textContent=assignedData.data[0].description;
             deadline.textContent=assignedData.data[i].deadline;
@@ -179,6 +175,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             }else{
                 statusText.textContent="Completed"; 
                 toggleMode.style.backgroundColor="green";
+                card.style.backgroundColor="#D0F0C0";
             }
             const actionButtons = document.createElement("div");
             actionButtons.className = "action-buttons";
@@ -195,8 +192,6 @@ document.addEventListener("DOMContentLoaded", async () => {
                 confirmDelete(projectId);
             });
         
-            // link.appendChild(editButton);
-            // link.href="../editProject/editProject.html";
             actionButtons.appendChild(editButton);
             actionButtons.appendChild(deleteButton);
             cardContent.appendChild(projectName);
@@ -218,3 +213,39 @@ document.addEventListener("DOMContentLoaded", async () => {
         console.error("Error fetching assigned projects:", error);
     }
 });
+
+async function toggleStatus(assignedData, index:number, event) {
+    const checkbox = event.target;
+    const card = checkbox.closest(".card");
+    const statusText = card.querySelector(".status-text");
+    const projectId = assignedData.data[index].id;
+
+    try {
+        const accessToken = localStorage.getItem("accessToken");
+
+        if (!accessToken) {
+            console.error("No access token found");
+            return;
+        }
+
+        const updateResponse = await axios.put(`http://localhost:8000/projects/${projectId}`, {
+            status: checkbox.checked,
+        }, {
+            headers: {
+                Authorization: `Bearer ${accessToken}`,
+            },
+        });
+
+        console.log("Project status updated successfully.", updateResponse);
+
+        if (checkbox.checked) {
+            statusText.textContent = "Completed";
+            checkbox.style.backgroundColor = "green";
+        } else {
+            statusText.textContent = "Pending";
+            checkbox.style.backgroundColor = "red";
+        }
+    } catch (error) {
+        console.error("Error updating the project status:", error);
+    }
+}

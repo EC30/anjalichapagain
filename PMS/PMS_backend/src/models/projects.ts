@@ -18,7 +18,11 @@ export default class projectsModel extends BaseModel {
       .from({ t: "projects" })
       .where({ assignedBy: params.userId })
       .where(params.status ? { status: params.status }: true )
-      // .whereRaw("LOWER(task) like ?", [`%${params.search?.toLowerCase()}%`])
+      .where((builder) => {
+        if (params.search) {
+          builder.whereRaw("LOWER(t.name) like ?", [`%${params.search.toLowerCase()}%`]);
+        }
+      })
       .leftJoin({ u: "users" }, { "t.assigned_by": "u.id" });
 
     query.offset(params.offset).limit(params.limit);

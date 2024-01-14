@@ -1,5 +1,3 @@
-// nav.ts
-
 const renderNavbar = async (placeholder: HTMLElement): Promise<void> => {
     try {
         const response = await fetch("../../components/sidebar/navbar.html");

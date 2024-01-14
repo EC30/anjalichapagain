@@ -1,5 +1,4 @@
 import axios from "axios";
-
 const projectName = document.getElementById("projectName") as HTMLInputElement;
 const projectDesc = document.getElementById("projectDescription") as HTMLInputElement;
 const projectDeadline = document.getElementById("deadline") as HTMLInputElement;
@@ -184,6 +183,11 @@ document.addEventListener("DOMContentLoaded", async () => {
                 );
         
                 console.log("Assigned users response:", assignedUserResponse);
+                const confirmation = window.confirm("Project Edited Successfully. Do you want to view the assigned project?");
+        
+                if (confirmation) {
+                    window.location.href = "../assignedProject/assignedProject.html";
+                }
                 
             } catch (error) {
                 errorMessage.style.display = "flex";

@@ -4,12 +4,6 @@ import { IassignedProjects } from "../interface/assignedProject";
 import * as assignedProjectService from "../services/assignedProject";
 
 
-// export async function getAssignedProject(req: any, res: Response) {
-//   const query = req.query;
-//   const projectss = await assignedProjectService.getAssignedprojects();
-//   res.json(projectss);
-// }
-
 export async function updateAssignedProjects(
   req: any,
   res: Response,
@@ -28,22 +22,3 @@ export async function updateAssignedProjects(
     next(error);
   }
 }
-
-// export async function deleteAssignedProject(
-//   req: any,
-//   res: Response,
-//   next: NextFunction
-// ) {
-//   try {
-//     const project = req.project;
-//     const { id } = req.params;
-
-//     const projects = await assignedProjectService.deleteAssignedProject(parseInt(id), project.id);
-
-//     res.json({
-//       message: "projects deleted successfully",
-//     });
-//   } catch (error) {
-//     next(error);
-//   }
-// }

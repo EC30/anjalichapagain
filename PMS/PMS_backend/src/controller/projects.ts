@@ -177,21 +177,3 @@ export async function updateAssignedProject(
     next(error);
   }
 }
-// export async function deleteAssignedProject(
-//   req: any,
-//   res: Response,
-//   next: NextFunction
-// ) {
-//   try {
-//     const user = req.user;
-//     const { id } = req.params;
-
-//     const projects = await assignedProjectService.deleteAssignedProject(parseInt(id), user.id);
-
-//     res.json({
-//       message: "Assign project deleted successfully",
-//     });
-//   } catch (error) {
-//     next(error);
-//   }
-// }
