@@ -7,6 +7,15 @@ const remainingProject = document.getElementById("RemainingProjects");
 const projectTableBody=document.getElementById("projectTableBody");
 const queryParams=window.location.search;
 
+function formattedDate(date:Date){
+    return [ 
+        date.getFullYear(),
+        date.getMonth()+1,
+        date.getDate(),
+    ].join("-");
+
+}
+
 document.addEventListener("DOMContentLoaded", async () => {
     try {
 
@@ -22,7 +31,6 @@ document.addEventListener("DOMContentLoaded", async () => {
             },
         });
         const projectData = response.data;
-        // console.log(projectData.data);
         // console.log(projectData.data.length);
         if (totalProject) {
             const totalProjectsCount = projectData.data.length;
@@ -48,7 +56,8 @@ document.addEventListener("DOMContentLoaded", async () => {
             const status=document.createElement("span");
 
             projectName.textContent=projectData.data[i].name;
-            projectDeadline.textContent=projectData.data[i].deadline;
+            // projectDeadline.textContent=new Date(projectData.data[i].deadline).toLocaleString("en-US",{ timeZone: "Asia/Kathmandu" });
+            projectDeadline.textContent=formattedDate(new Date(projectData.data[i].deadline));
             projectPriority.textContent=projectData.data[i].priority;
             if(projectData.data[i].status===false){
                 status.textContent="Pending";
@@ -68,6 +77,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             projectStatus.appendChild(status);
             projectRow.appendChild(projectPriority);
             projectTableBody?.appendChild(projectRow);
+            console.log(new Date(projectData.data[i].deadline).toLocaleString("en-US",{ timeZone: "Asia/Kathmandu" }));
 
         }
 

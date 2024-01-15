@@ -1,5 +1,6 @@
 import "../../css/taskStyle.css";
 import axios from "axios";
+import formattedDate from "../../components/sidebar/render";
 const cardFlexContainer = document.getElementById("cardFlex");
 const baseurl="http://localhost:8000/";
 const queryParams=window.location.search;
@@ -44,9 +45,18 @@ document.addEventListener("DOMContentLoaded", async () => {
             priority.className = "deadline";
             const completionStatus = document.createElement("div");
             completionStatus.className = "completion-status";
-            const completionDeadline = new Date(assignedData.data[i].deadline);
-            const today = new Date();
+            const completionDeadline = formattedDate(new Date(assignedData.data[i].deadline));
+            const today = formattedDate(new Date());
             
+            if (completionDeadline == today && assignedData.data[i].projectStatus === false) {
+                const alertText = document.createElement("div");
+                alertText.textContent = "Last day to complete project!";
+                alertText.style.color = "Orange"; 
+                
+                card.style.backgroundColor = "#FFE0D3";
+
+                cardContent.appendChild(alertText);
+            }
             if (completionDeadline < today && assignedData.data[i].projectStatus === false) {
                 const alertText = document.createElement("div");
                 alertText.textContent = "Project has passed the completion deadline and is still pending!";
@@ -82,7 +92,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
             projectName.textContent=assignedData.data[i].projectName;
             projectDescription.textContent=assignedData.data[0].projectDesc;
-            deadline.textContent=assignedData.data[i].deadline;
+            deadline.textContent=formattedDate(new Date(assignedData.data[i].deadline));
             priority.textContent=assignedData.data[i].priority;
             if(assignedData.data[i].projectStatus===false){
                 statusText.textContent="Pending";

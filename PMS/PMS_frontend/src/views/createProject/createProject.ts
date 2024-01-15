@@ -1,6 +1,5 @@
 import axios from "axios";
 import * as yup from "yup";
-
 const projectName = document.getElementById("projectName") as HTMLInputElement;
 const projectDesc = document.getElementById("projectDescription") as HTMLInputElement;
 const projectDeadline = document.getElementById("deadline") as HTMLInputElement;
@@ -101,9 +100,9 @@ document.addEventListener("DOMContentLoaded", async () => {
             event.preventDefault();
             const name = projectName.value;
             const description = projectDesc.value;
-            const deadline = projectDeadline.value;
+            const deadline = projectDeadline.value; 
             const selectedValue = projectPriority.value;
-            console.log(selectedValue);
+            console.log(deadline);
             const selectedUsers: string[] = [];
             const imageupload = image?.files?.[0] ?? null;
             
@@ -146,7 +145,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                             Authorization: `Bearer ${accessToken}`,
                         },
                     });
-                
+                console.log(formData);
                 console.log("Project created response:", projectResponse);
                 console.log("Project message response:", projectResponse.data.message);
                 console.log("Project id:", projectResponse.data.projectInfo.projectData[0].id);

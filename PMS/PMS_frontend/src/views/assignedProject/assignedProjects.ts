@@ -1,5 +1,6 @@
 import "../../css/taskStyle.css";
 import axios from "axios";
+import formattedDate from "../../components/sidebar/render";
 const cardFlexContainer = document.getElementById("cardFlex");
 const baseurl="http://localhost:8000/";
 const queryParams=window.location.search;
@@ -147,10 +148,19 @@ document.addEventListener("DOMContentLoaded", async () => {
                 document.body.appendChild(popup);
             });
 
-            const completionDeadline = new Date(assignedData.data[i].deadline);
-            console.log(completionDeadline);
-            const today = new Date();
-            console.log(today);
+            const completionDeadline = formattedDate(new Date(assignedData.data[i].deadline));
+            console.log("completionDate", completionDeadline);
+            const today = formattedDate(new Date());
+            console.log("today", today);
+
+            if (completionDeadline == today && assignedData.data[i].status === false) {
+                const alertText = document.createElement("div");
+                alertText.textContent = "Last day to complete the project!";
+                alertText.style.color = "orange"; 
+                card.style.backgroundColor = "#FFE0D3";
+
+                cardContent.appendChild(alertText);
+            }
             
             if (completionDeadline < today && assignedData.data[i].status === false) {
                 const alertText = document.createElement("div");
@@ -167,7 +177,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             toggleMode.addEventListener("change", toggleStatus.bind(null, assignedData, i));
             projectName.textContent=assignedData.data[i].name;
             projectDescription.textContent=assignedData.data[0].description;
-            deadline.textContent=assignedData.data[i].deadline;
+            deadline.textContent=formattedDate(new Date(assignedData.data[i].deadline));
             priority.textContent=assignedData.data[i].priority;
             if(assignedData.data[i].status===false){
                 statusText.textContent="Pending";

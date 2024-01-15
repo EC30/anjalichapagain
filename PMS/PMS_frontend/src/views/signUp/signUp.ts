@@ -8,6 +8,7 @@ const signUpPassword = document.getElementById("signup-password") as HTMLInputEl
 const signUpCPassword = document.getElementById("signup-confirm-password") as HTMLInputElement;
 const signUpButton = document.getElementById("signup") as HTMLButtonElement;
 const errorMessage=document.getElementById("signup-error-meesage") as HTMLDivElement;
+const successMessage = document.getElementById("successMessage") as HTMLDivElement;
 
 const schema = yup.object().shape({
     username: yup.string().required().min(6).label("Username"),
@@ -41,6 +42,10 @@ signUpButton.addEventListener("click", async (event) => {
         });
 
         console.log(response);
+        successMessage.style.display = "block";  
+        setTimeout(() => {
+            successMessage.style.display = "none";  
+        }, 3000);
         window.location.href="../../../index.html";
     } catch (error) {
         errorMessage.style.display = "flex";

@@ -177,3 +177,11 @@ form{
 		justify-content: center;
 	}
 }
+.success-message{
+  background-color: #AFE1AF;
+  padding: 1rem;
+  height: 40px;
+  width: 380px;
+  overflow: hidden;
+  display: none;
+}

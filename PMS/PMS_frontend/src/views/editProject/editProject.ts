@@ -1,4 +1,5 @@
 import axios from "axios";
+import formattedDate from "../../components/sidebar/render";
 const projectName = document.getElementById("projectName") as HTMLInputElement;
 const projectDesc = document.getElementById("projectDescription") as HTMLInputElement;
 const projectDeadline = document.getElementById("deadline") as HTMLInputElement;
@@ -41,7 +42,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     const projectDetails = projectDetailsResponse.data; 
     projectName.value = projectDetails.name || "";
     projectDesc.value = projectDetails.description || "";
-    projectDeadline.value = projectDetails.deadline || "";
+    projectDeadline.value = formattedDate(new Date(projectDetails.deadline)) || formattedDate(new Date());
     projectPriority.value = projectDetails.priority;
 
     if(projectDetails.image){

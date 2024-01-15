@@ -37,13 +37,12 @@ export async function getprojects(userId: number, query: Queryprojects) {
   const total = count.count;
 
   const meta = buildMeta(total, size, page);
-
+  console.log(projectss);
   return {
     data: projectss,
     meta,
   };
 }
-
 
 export async function getprojectsById(id: number, userId: number) {
   const projects = await projectsModel.getprojectsById(id, userId);
