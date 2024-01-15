@@ -4,6 +4,7 @@ import { IUser } from "../interface/user";
 import BadRequestError from "../error/badRequestError";
 import { userSchema } from '../schema/user';
 import { updateUserSchema } from "../schema/user";
+import { v4 as uuidv4 } from 'uuid';
 
 export const getAll = async () => {
   const data = await UserModel.getAll();
@@ -50,4 +51,14 @@ export const deleteUser = async (id: number) => {
   }
 
   await UserModel.delete(id);
+};
+
+export const userLogout = async (id: number) => {
+  const user = await UserModel.getById(id);
+  const refreshToken = uuidv4();
+  if (!user) {
+    throw new NotFoundError(`User with id: ${id} not found`);
+  }
+
+  await UserModel.updateRefreshToken(id, refreshToken);
 };

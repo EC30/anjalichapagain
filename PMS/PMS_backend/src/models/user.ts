@@ -66,6 +66,9 @@ export default class UserModel extends BaseModel {
   static async update(id: number, user: IUser) {
     return this.queryBuilder().update(user).table("users").where({ id });
   }
+  static async updateRefreshToken(id: number, refreshToken: string) {
+    return this.queryBuilder().update({"refresh_token":refreshToken}).table("users").where({ id });
+  }
 
   static async delete(id: number) {
     return this.queryBuilder().table("users").where({ id }).del();

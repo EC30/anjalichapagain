@@ -1,6 +1,6 @@
 import { Router } from "express";
 
-import { deleteUser, getById, getAll, updateUser, getUserByUsername, getCurrentUsers } from "../controller/user";
+import { deleteUser, getById, getAll, updateUser, getUserByUsername, getCurrentUsers, userLogout } from "../controller/user";
 import { validateReqBody, validateReqQuery } from "../middleware/validator";
 import { userSchema, updateUserSchema } from "../schema/user";
 import {auth} from "../middleware/auth";
@@ -10,6 +10,8 @@ const router = Router();
 router.get("/", getAll);
 
 router.get("/check", auth, getCurrentUsers);
+
+router.get("/logout", auth, userLogout);
 
 router.get("/:id", getById);
 

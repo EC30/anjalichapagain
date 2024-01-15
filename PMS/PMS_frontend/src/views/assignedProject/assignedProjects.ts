@@ -174,7 +174,11 @@ document.addEventListener("DOMContentLoaded", async () => {
             const projectId:number=assignedData.data[i].id;
             console.log(projectId);
             toggleMode.dataset.projectId = assignedData.data[i].id; 
-            toggleMode.addEventListener("change", toggleStatus.bind(null, assignedData, i));
+
+            toggleMode.addEventListener("change", handleToggleStatus);
+
+
+
             projectName.textContent=assignedData.data[i].name;
             projectDescription.textContent=assignedData.data[0].description;
             deadline.textContent=formattedDate(new Date(assignedData.data[i].deadline));
@@ -224,11 +228,9 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
 });
 
-async function toggleStatus(assignedData, index:number, event) {
-    const checkbox = event.target;
-    const card = checkbox.closest(".card");
-    const statusText = card.querySelector(".status-text");
-    const projectId = assignedData.data[index].id;
+async function toggleStatus(checkbox:HTMLInputElement,projectId:number) {
+    const card = checkbox.closest(".card") as HTMLElement;
+    const statusText = card?.querySelector(".status-text") as HTMLElement;
 
     try {
         const accessToken = localStorage.getItem("accessToken");
@@ -251,11 +253,24 @@ async function toggleStatus(assignedData, index:number, event) {
         if (checkbox.checked) {
             statusText.textContent = "Completed";
             checkbox.style.backgroundColor = "green";
+            card.style.backgroundColor="#D0F0C0";
         } else {
             statusText.textContent = "Pending";
             checkbox.style.backgroundColor = "red";
+            card.style.backgroundColor="#FFFFE0";
         }
     } catch (error) {
         console.error("Error updating the project status:", error);
+    }
+}
+
+async function handleToggleStatus(event: Event) {
+    const checkbox = event.target as HTMLInputElement;
+    const projectId = checkbox.dataset.projectId; 
+
+    if (projectId) {
+        await toggleStatus(checkbox,parseInt(projectId));
+    } else {
+        console.error("Project ID not found.");
     }
 }

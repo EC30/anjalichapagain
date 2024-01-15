@@ -95,3 +95,19 @@ export const getCurrentUsers = async (
     next(error);
   }
 };
+
+export const userLogout = async (
+  req: any,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    const id = req?.user?.id;
+    const data = await userService.userLogout(id);
+    return res.json({
+      data,
+    });
+  } catch (error) {
+    next(error);
+  }
+};

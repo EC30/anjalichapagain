@@ -36,6 +36,7 @@ export const signup = async (body: IUser) => {
 };
 
 export const login = async (body: Ilogin) => {
+  
   const userDetail = await UserModel.getUserByUsername(body.username);
 
   if (!userDetail) {
@@ -56,7 +57,8 @@ export const login = async (body: Ilogin) => {
   const accessToken = jwt.sign(user, config.jwt.accessTokenSecret!, {
     expiresIn: ACCESS_TOKEN_EXPIRY,
   });
-  const refreshToken = userDetail.refreshToken;
+  const refreshToken = uuidv4();
+  await UserModel.updateRefreshToken(userDetail.id, refreshToken);
 
   return {
     accessToken,

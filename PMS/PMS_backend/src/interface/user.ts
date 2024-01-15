@@ -3,7 +3,7 @@ export interface IUser {
   fullname: string;
   email:string,
   password: string;
-  refresh_token: string
+  refresh_token: string;
 }
 
 export interface Ilogin {

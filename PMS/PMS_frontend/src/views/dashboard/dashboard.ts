@@ -15,6 +15,16 @@ function formattedDate(date:Date){
     ].join("-");
 
 }
+export interface Iprojects {
+    name: string;
+    description:string;
+    deadline:Date;
+    image:string;
+    assigned_by: number;
+    priority: "High" | "Medium" | "Low";
+    status?: boolean;
+  }
+
 
 document.addEventListener("DOMContentLoaded", async () => {
     try {
@@ -31,19 +41,19 @@ document.addEventListener("DOMContentLoaded", async () => {
             },
         });
         const projectData = response.data;
-        // console.log(projectData.data.length);
+        console.log(projectData);
         if (totalProject) {
             const totalProjectsCount = projectData.data.length;
             totalProject.textContent = totalProjectsCount.toString();
         }
 
         if (completedProject) {
-            const completedProjectsCount = projectData.data.filter(project => project.status === true).length;
+            const completedProjectsCount = projectData.data.filter((project:Iprojects) => project.status === true).length;
             completedProject.textContent = completedProjectsCount.toString();
         }
 
         if (remainingProject) {
-            const remainingProjectsCount = projectData.data.filter(project => project.status === false).length;
+            const remainingProjectsCount = projectData.data.filter((project:Iprojects) => project.status === false).length;
             remainingProject.textContent = remainingProjectsCount.toString();
         }
 

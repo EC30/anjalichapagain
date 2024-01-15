@@ -73,7 +73,8 @@ document.addEventListener("DOMContentLoaded", async () => {
             toggleMode.type = "checkbox";
             toggleMode.id = "toggle-mode";
             toggleMode.dataset.projectId = assignedData.data[i].projectId; 
-            toggleMode.addEventListener("change", toggleStatus.bind(null, assignedData, i));
+            // toggleMode.addEventListener("change", toggleStatus.bind(null, assignedData, i));
+            toggleMode.addEventListener("change", handleToggleStatus);
             
 
             img.addEventListener("click", () => {
@@ -121,11 +122,9 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
 });
 
-async function toggleStatus(assignedData, index, event) {
-    const checkbox = event.target;
-    const card = checkbox.closest(".card");
-    const statusText = card.querySelector(".status-text");
-    const projectId = assignedData.data[index].projectId;
+async function toggleStatus(checkbox:HTMLInputElement,projectId:number) {
+    const card = checkbox.closest(".card") as HTMLElement;
+    const statusText = card?.querySelector(".status-text") as HTMLElement;
 
     try {
         const accessToken = localStorage.getItem("accessToken");
@@ -148,11 +147,24 @@ async function toggleStatus(assignedData, index, event) {
         if (checkbox.checked) {
             statusText.textContent = "Completed";
             checkbox.style.backgroundColor = "green";
+            card.style.backgroundColor="#D0F0C0";
         } else {
             statusText.textContent = "Pending";
             checkbox.style.backgroundColor = "red";
+            card.style.backgroundColor="#FFFFE0";
         }
     } catch (error) {
         console.error("Error updating the project status:", error);
+    }
+}
+
+async function handleToggleStatus(event: Event) {
+    const checkbox = event.target as HTMLInputElement; //which triggered the event
+    const projectId = checkbox.dataset.projectId; 
+
+    if (projectId) {
+        await toggleStatus(checkbox,parseInt(projectId));
+    } else {
+        console.error("Project ID not found.");
     }
 }

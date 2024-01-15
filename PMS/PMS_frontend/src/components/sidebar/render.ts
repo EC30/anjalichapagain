@@ -65,6 +65,17 @@ document.addEventListener("DOMContentLoaded", async () => {
     const logoutButton = document.getElementById("logout");
     if (logoutButton) {
         logoutButton.addEventListener("click", () => {
+            const accessToken = localStorage.getItem("accessToken");
+            if (!accessToken) {
+                console.error("No access token found");
+                return;
+            }
+            
+            axios.get("http://localhost:8000/users/logout", {
+                headers: {
+                    Authorization: `Bearer ${accessToken}`,
+                },
+            });
             localStorage.removeItem("accessToken");
             localStorage.removeItem("refreshToken");
             window.location.href = "../../../index.html";
