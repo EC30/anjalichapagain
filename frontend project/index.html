@@ -14,261 +14,304 @@
 </head>
 
 <body>
-     <header>
-        <div class="logo">
-            <img src="./src/images/logo.png" alt="logo" class="header__logo">
-            <span class="logo-link logo-link-ltr">Virtual Reality</span>
-        </div>
-        <div class="custom-bars" >
-            <i class="fas fa-bars" id="menuToggle"></i>
-        </div>
-
-        <div class="navigation">
-            <nav  id="navMenu">
-                <i class="fas fa-close" id="close-icon"></i>
-                <ul class="header__nav">
-                    <li class="text active"> Home</li>
-                    <li class="text has-dropdown">
-                        About us
-                        <i class="fas fa-angle-down dropdown-icon"></i>
-                        <ul class="dropdown-content">
-                            <li><a href="#">Team</a></li>
-                            <li><a href="#">Testimonials</a></li>
-                            <li><a href="#">Faq</a></li>
-                        </ul>
-                    </li>
-                    <li class="text"> Portfolio</li>
-                    <li class="text"> Contact Us</li>
-                    <li class="text"> Services</li>
-                    <li class="text"> News</li>
-                    
-                </ul>
-            </nav>
-            <div class="header_icon">
-                <div>
-                    <i class="fas fa-user"></i> Login
-                </div>
-                <div><i class="fas fa-lock"></i></div>
-                <div class="box"> Get Started</div>
+    <div class="myHeader">
+        <header>
+            <div class="logo">
+                <img src="./src/images/logo.png" alt="logo" class="header__logo">
+                <span class="logo-link logo-link-ltr">Virtual Reality</span>
             </div>
-        </div>
-    </header>
+            <div class="custom-bars" >
+                <i class="fas fa-bars" id="menuToggle"></i>
+            </div>
+    
+            <div class="navigation">
+                <nav id="desktopNavMenu">
+                    <ul class="header__nav">
+                        <li class="text active"> Home</li>
+                        <li class="text has-dropdown">
+                            About us
+                            <i class="fas fa-angle-down dropdown-icon"></i>
+                            <ul class="dropdown-content">
+                                <li><a href="#">Team</a></li>
+                                <li><a href="#">Testimonials</a></li>
+                                <li><a href="#">Faq</a></li>
+                            </ul>
+                        </li>
+                        <li class="text"> Portfolio</li>
+                        <li class="text"> Contact Us</li>
+                        <li class="text"> Services</li>
+                        <li class="text"> News</li>
+                        
+                    </ul>
+                </nav>
+                <nav id="navMenu" style="display:none;">
+                    <i class="fas fa-close" id="close-icon"></i>
+                    <ul class="header__nav">
+                        <li class="text active"> Home</li>
+                        <li class="text has-dropdown">
+                            About us
+                            <i class="fas fa-angle-down dropdown-icon"></i>
+                            <ul class="dropdown-content">
+                                <li><a href="#">Team</a></li>
+                                <li><a href="#">Testimonials</a></li>
+                                <li><a href="#">Faq</a></li>
+                            </ul>
+                        </li>
+                        <li class="text"> Portfolio</li>
+                        <li class="text"> Contact Us</li>
+                        <li class="text"> Services</li>
+                        <li class="text"> News</li>
+                        
+                    </ul>
+                </nav>
+                <div class="header_icon">
+                    <div>
+                        <i class="fas fa-user"></i> Login
+                    </div>
+                    <div><i class="fas fa-lock"></i></div>
+                    <div class="box"> Get Started</div>
+                </div>
+            </div>
+        </header>
+    </div>
+
 
     <div class="slide-slider-container">
-        <div class="slide-slider" id="carousel">
-            <div class="slide-slide">
-                <div class="slider">
-                    <div class="slider_left" data-aos="fade-up" data-aos-once="false">
-                        <span class="slider_text"> Where Virtual Reality Ends</span>
-                        <span class="slider_main_text" data-aos="fade-up"> Imagination Begins</span>
-                        <p class="slider_info">We specialize in providing cutting-edge Virtual Reality solutions that transport you to immersive digital worlds.</p>
-                        <div class="slider_buttons">
-                            <a href="explore-more.html" class="explore">Explore More</a> 
-                            <a href="explore-more.html" class="play"><img src="src/images/play-button-6694069_1280.png" style="width: 60px;height: 60px;"></a> 
-                            <span class="watch"> Watch Intro</span>
+        <div class="slide-container">
+            <div class="slide-slider" id="carousel">
+                <div class="slide-slide">
+                    <div class="slider">
+                        <div class="slider_left" data-aos="fade-up" data-aos-once="false">
+                            <span class="slider_text"> Where Virtual Reality Ends</span>
+                            <span class="slider_main_text" data-aos="fade-up"> Imagination Begins</span>
+                            <p class="slider_info">We specialize in providing cutting-edge Virtual Reality solutions that transport you to immersive digital worlds.</p>
+                            <div class="slider_buttons">
+                                <a href="explore-more.html" class="explore">Explore More</a> 
+                                <div class="play">
+                                    <a href=""><img src="src/images/play-button-6694069_1280.png" style="width: 60px;height: 60px;"></a>
+                                    <ul>
+                                        <li></li>
+                                    </ul>
+                                </div>
+                                <div class="watch"><span>  Watch Intro</span></div>
+                            </div>
                         </div>
                     </div>
-
-                    <img src="./src/images/png-image.png" alt="slider_image" class="slider_right">
                 </div>
-            </div>
-
-            <div class="slide-slide">
-                <div class="slider">
-                    <div class="slider_left" data-aos="fade-up" data-aos-once="false">
-                        <span class="slider_text"> Where Reality Meets Expectations</span>
-                        <span class="slider_main_text" data-aos="fade-up"> Imagination Begins</span>
-                        <p class="slider_info">We specialize in providing cutting-edge Virtual Reality solutions that transport you to immersive digital worlds.</p>
-                        <div class="slider_buttons">
-                            <a href="explore-more.html" class="explore">Explore More</a> 
-                            <a href="explore-more.html" class="play"><img src="src/images/play-button-6694069_1280.png" style="width: 60px;height: 60px;"></a> 
-                            <span class="watch"> Watch Intro</span>
+    
+                <div class="slide-slide">
+                    <div class="slider">
+                        <div class="slider_left" data-aos="fade-up" data-aos-once="false">
+                            <span class="slider_text"> Where Reality Meets Expectations</span>
+                            <span class="slider_main_text" data-aos="fade-up"> Imagination Begins</span>
+                            <p class="slider_info">We specialize in providing cutting-edge Virtual Reality solutions that transport you to immersive digital worlds.</p>
+                            <div class="slider_buttons">
+                                <a href="explore-more.html" class="explore">Explore More</a> 
+                                <a href="explore-more.html" class="play"><img src="src/images/play-button-6694069_1280.png" style="width: 60px;height: 60px;"></a> 
+                            </div>
                         </div>
                     </div>
-
-                    <img src="./src/images/png-image.png" alt="slider_image" class="slider_right">
                 </div>
             </div>
-        </div>
-        <div class="slide-arrow slide-left-arrow" id="slide-left-arrow" data-aos="fade-right"><i class="fa-solid fa-angle-left"></i></div>
-        <div class="slide-arrow slide-right-arrow" id="slide-right-arrow" data-aos="fade-left"><i class="fa-solid fa-angle-right"></i></div>
-        <div style="text-align:center">
-            <span class="dot"></span> 
-            <span class="dot"></span>  
+            <div class="slide-arrow slide-left-arrow" id="slide-left-arrow"><i class="fa-solid fa-angle-left"></i></div>
+            <div class="slide-arrow slide-right-arrow" id="slide-right-arrow"><i class="fa-solid fa-angle-right"></i></div>
+            <div style="text-align:center">
+                <span class="dot"></span> 
+                <span class="dot"></span>  
+            </div>
         </div>
     </div>
-    <div class="container">
-        <div class="info">
-            <div class="info_left" data-aos="fade-up">
-                <span class="info_left_main_text"> WHY CHOOSE US ?</span>
-                <span class="info_left_content"> Lorem is simple dummy text of the printing and typesetting</span>
-                <span class="box"> Explore More</span>
-            </div>
-            <div class="info_middle" data-aos="fade-up">
-                <div class="info_middle_content_first">
-                    <figure>
-                        <img src="src/images/service-4.png" class="schedule__image">
-                    </figure>
-                    <div class="info_middle_content">
-                        <span class="logo-link logo-link-ltr" >Modern Technology</span>
-                        <span class="info_left_content">Lorem is simple dummy text of the printing and typesetting</span>
-                    </div>
+    <section class="container4">
+        <div class="container4-section">
+            <div class="info">
+                <div class="info_left" data-aos="fade-up">
+                    <span class="info_left_main_text"> WHY CHOOSE US ?</span>
+                    <span class="info_left_content"> Lorem is simple dummy text of the printing and typesetting</span>
+                    <span class="box"> Explore More</span>
                 </div>
-                <div class="info_middle_content_first">
-                    <figure>
-                        <img src="src/images/service-4.png" class="schedule__image">
-                    </figure>
-                    <div class="info_middle_content">
-                        <span class="logo-link logo-link-ltr">Scability</span>
-                        <span class="info_left_content">Lorem is simple dummy text of the printing and typesetting</span>
-                    </div>
-                </div>
-            </div>
-            <div class="info_right" data-aos="fade-up">
-                <div class="info_middle_content_first">
-                    <figure>
-                        <img src="src/images/service-4.png" class="schedule__image">
-                    </figure>
-                    <div class="info_middle_content">
-                        <span class="logo-link logo-link-ltr">Digital Startegy</span>
-                        <span class="info_left_content">Lorem is simple dummy text of the printing and typesetting</span>
-                    </div>
-                </div>
-                <div class="info_middle_content_first">
-                    <figure>
-                        <img src="src/images/service-4.png" class="schedule__image">
-                    </figure>
-                    <div class="info_middle_content">
-                        <span class="logo-link logo-link-ltr">Versatile Application</span>
-                        <span class="info_left_content">Lorem is simple dummy text of the printing and typesetting</span>
-                    </div>
-                </div>
-                
-            </div>
-    
-        </div> 
-    
-        <div class="experience">
-            <div class="experience-text" data-aos="fade-up">
-                <span class="experience-title">
-                    Experience A New Dimension Of Reality
-                </span>
-                <span class="experience-contents" data-aos="fade-up">
-                    Change the workflow for your WordPress site, control everything from Site editor without using any extra plugins. Improved speed, web vitals score and SEO to get better positions
-                </span>
-            </div>
-            <div class="experience-images" data-aos="fade-up">
-                <div class="experience-content">
-                    <div class="image-container">
-                        <img src="./src/images/hero-1.png" class="hero-image">
-                        <img src="./src/images/hero-2.png" class="hero-image">
-                    </div>
-            
-                    <div class="satisfaction-info" data-aos="fade-up">
-                        <div class="satisfaction-item">
-                            <div class="satisfaction-percentage">
-                                <span>98</span>
-                                <span class="percentage-sign">%</span>
-                            </div>
-                            <span class="info_left_content">Satisfied clients</span>
+                <div class="info_middle" data-aos="fade-up">
+                    <div class="info_middle_content_first">
+                        <figure>
+                            <img src="src/images/service-2.png" class="schedule__image">
+                        </figure>
+                        <div class="info_middle_content">
+                            <span class="logo-link logo-link-ltr" >Modern Technology</span>
+                            <span class="info_left_content">Lorem is simple dummy text of the printing and typesetting</span>
                         </div>
-                        <div class="satisfaction-item">
-                            <div class="satisfaction-percentage">
-                                <span>99</span>
-                                <span class="percentage-sign">+</span>
-                            </div>
-                            <span class="info_left_content">Popular Features</span>
-                        </div>
-                        <div class="satisfaction-item">
-                            <div class="satisfaction-percentage">
-                                <span>10</span>
-                                <span class="percentage-sign">M</span>
-                            </div>
-                            <span class="info_left_content">Clients Worldwide</span>
+                    </div>
+                    <div class="info_middle_content_first">
+                        <figure>
+                            <img src="src/images/service-3.png" class="schedule__image">
+                        </figure>
+                        <div class="info_middle_content">
+                            <span class="logo-link logo-link-ltr">Scability</span>
+                            <span class="info_left_content">Lorem is simple dummy text of the printing and typesetting</span>
                         </div>
                     </div>
                 </div>
+                <div class="info_right" data-aos="fade-up">
+                    <div class="info_middle_content_first">
+                        <figure>
+                            <img src="src/images/service-1.png" class="schedule__image">
+                        </figure>
+                        <div class="info_middle_content">
+                            <span class="logo-link logo-link-ltr">Digital Startegy</span>
+                            <span class="info_left_content">Lorem is simple dummy text of the printing and typesetting</span>
+                        </div>
+                    </div>
+                    <div class="info_middle_content_first">
+                        <figure>
+                            <img src="src/images/service-4.png" class="schedule__image">
+                        </figure>
+                        <div class="info_middle_content">
+                            <span class="logo-link logo-link-ltr">Versatile Application</span>
+                            <span class="info_left_content">Lorem is simple dummy text of the printing and typesetting</span>
+                        </div>
+                    </div>
+                    
+                </div>
+        
+            </div> 
+        </div>
+    </section>
+
     
-                <img src="./src/images/png-image.png" alt="Experience Image" data-aos="fade-up">
+    <div class="experience">
+        <div class="experience-text" data-aos="fade-up">
+            <span class="experience-title">
+                Experience A New Dimension Of Reality
+            </span>
+            <span class="experience-contents" data-aos="fade-up">
+                Change the workflow for your WordPress site, control everything from Site editor without using any extra plugins. Improved speed, web vitals score and SEO to get better positions
+            </span>
+        </div>
+        <div class="experience-images" data-aos="fade-up">
+            <div class="experience-left-content">
+                <div class="image-container">
+                    <img src="./src/images/image-1.jpg" class="hero-image">
+                    <img src="./src/images/image-2.jpg" class="hero-image">
+                </div>
+        
+                <div class="satisfaction-info" data-aos="fade-up">
+                    <div class="satisfaction-item">
+                        <div class="satisfaction-percentage">
+                            <span>98</span>
+                            <span class="percentage-sign">%</span>
+                        </div>
+                        <span class="info_left_content">Satisfied clients</span>
+                    </div>
+                    <div class="satisfaction-item">
+                        <div class="satisfaction-percentage">
+                            <span>99</span>
+                            <span class="percentage-sign">+</span>
+                        </div>
+                        <span class="info_left_content">Popular Features</span>
+                    </div>
+                    <div class="satisfaction-item">
+                        <div class="satisfaction-percentage">
+                            <span>10</span>
+                            <span class="percentage-sign">M</span>
+                        </div>
+                        <span class="info_left_content">Clients Worldwide</span>
+                    </div>
+                </div>
+            </div>
+            <div class="experience-image">
+                <img src="./src/images/hero-img.png" alt="Experience Image" data-aos="fade-up">
             </div>
         </div>
+    </div>
 
-        <section class="container2">
+    <section class="service-section">
+        <div class="container3-section">
             <div class="services-wrapper">
                 <div class="services" data-aos="fade-up">
                     <div class="services-content">
-                        <span class="service-title">_______ Services</span>
-                        <span class="satisfaction-percentage"> Discover Our Latest VR services</span>
+                        <div class="service-title">
+                            <div class="service-text">
+    
+                            </div>
+                            <span > Services</span>
+                        </div>
+                        <span class="satisfaction-percentage">Discover Our Latest VR services</span>
                     </div>
                     
                         <div class="box"> View All Services</div>
                 </div>
             </div>
-    
-            <div class="wrapper" data-aos="fade-up">
-                <i id="left" class="fa-solid fa-angle-left" data-aos="fade-right"></i>
-                <ul class="carousel" data-aos="fade-up">
-                    <li class="card">
-                        <div class="img"><img src="./src/images/hero-1.png" alt="img" draggable="false"></div>
-                        <div class="detail-box">
-                            <span class="service-title">Service</span>
-                            <span class="logo-link logo-link-ltr">Game VR</span>
-                        </div> 
-                    </li>
-                  <li class="card">
-                    <div class="img"><img src="./src/images/hero-1.png" alt="img" draggable="false"></div>
+        </div>
+    </section>
+
+    <section class="container2">
+        <div class="wrapper" data-aos="fade-up">
+            <i id="left" class="fa-solid fa-angle-left"></i>
+            <ul class="carousel" data-aos="fade-up">
+                <li class="card">
+                    <div class="img"><img src="./src/images/image-1.jpg" alt="img" draggable="false"></div>
                     <div class="detail-box">
                         <span class="service-title">Service</span>
                         <span class="logo-link logo-link-ltr">Game VR</span>
                     </div> 
-                  </li>
-                  <li class="card">
-                    <div class="img"><img src="./src/images/hero-1.png" alt="img" draggable="false"></div>
-                    <div class="detail-box">
-                        <span class="service-title">Service</span>
-                        <span class="logo-link logo-link-ltr">Game VR</span>
-                    </div> 
-                  </li>
-                  <li class="card">
-                    <div class="img"><img src="./src/images/hero-1.png" alt="img" draggable="false"></div>
-                    <div class="detail-box">
-                        <span class="service-title">Service</span>
-                        <span class="logo-link logo-link-ltr">Game VR</span>
-                    </div> 
-                  </li>
-                  <li class="card">
-                    <div class="img"><img src="./src/images/hero-1.png" alt="img" draggable="false"></div>
-                    <div class="detail-box">
-                        <span class="service-title">Service</span>
-                        <span class="logo-link logo-link-ltr">Game VR</span>
-                    </div> 
-                  </li>
-                  <li class="card">
-                    <div class="img"><img src="./src/images/hero-1.png" alt="img" draggable="false"></div>
-                    <div class="detail-box">
-                        <span class="service-title">Service</span>
-                        <span class="logo-link logo-link-ltr">Game VR</span>
-                    </div> 
-                  </li>
-                
-                </ul>
-                <i id="right" class="fa-solid fa-angle-right" data-aos="fade-left"></i>
-              </div>
-        </section>
+                </li>
+                <li class="card">
+                <div class="img"><img src="./src/images/image-2.jpg" alt="img" draggable="false"></div>
+                <div class="detail-box">
+                    <span class="service-title">Service</span>
+                    <span class="logo-link logo-link-ltr">Game VR</span>
+                </div> 
+                </li>
+                <li class="card">
+                <div class="img"><img src="./src/images/image-1.jpg" alt="img" draggable="false"></div>
+                <div class="detail-box">
+                    <span class="service-title">Service</span>
+                    <span class="logo-link logo-link-ltr">Game VR</span>
+                </div> 
+                </li>
+                <li class="card">
+                <div class="img"><img src="./src/images/image-2.jpg" alt="img" draggable="false"></div>
+                <div class="detail-box">
+                    <span class="service-title">Service</span>
+                    <span class="logo-link logo-link-ltr">Game VR</span>
+                </div> 
+                </li>
+                <li class="card">
+                <div class="img"><img src="./src/images/image-1.jpg" alt="img" draggable="false"></div>
+                <div class="detail-box">
+                    <span class="service-title">Service</span>
+                    <span class="logo-link logo-link-ltr">Game VR</span>
+                </div> 
+                </li>
+                <li class="card">
+                <div class="img"><img src="./src/images/image-2.jpg" alt="img" draggable="false"></div>
+                <div class="detail-box">
+                    <span class="service-title">Service</span>
+                    <span class="logo-link logo-link-ltr">Game VR</span>
+                </div> 
+                </li>
+            
+            </ul>
+            <i id="right" class="fa-solid fa-angle-right"></i>
+        </div>
+    </section>
 
         
-        <section class="container3">
-            <div class="services-wrapper" data-aos="fade-up">
-                <div class="services">
+    <section class="container3">
+        <div class="container3-section">
+            <div class="services-wrapper">
+                <div class="services" data-aos="fade-up">
                     <div class="services-content">
-                        <span class="service-title">_______ Testimonals</span>
-                        <span class="satisfaction-percentage"> Trusted By Big Companies</span>
+                        <div class="service-title">
+                            <div class="service-text">
+
+                            </div>
+                            <span > Testimonals</span>
+                        </div>
+                        <span class="satisfaction-percentage">Trusted By Big Companies</span>
                     </div>
                     
                         <div class="box"> Give feedback</div>
                 </div>
             </div>
-    
             <div class="profile-slider-container">
                 <div class="profile-slider">
                     <div class="profile-slide">
@@ -336,14 +379,20 @@
                 <div class="arrow left-arrow" onclick="prevSlide()" data-aos="fade-right"><i class="fa-solid fa-angle-left"></i></div>
                 <div class="arrow right-arrow" onclick="nextSlide()" data-aos="fade-left"><i class="fa-solid fa-angle-right"></i></div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <section class="container4">
-
+    <section class="container4">
+        <div class="container4-section">
             <div class="services-wrapper">
                 <div class="services" data-aos="fade-up">
                     <div class="services-content">
-                        <span class="service-title">_______ Our News</span>
+                        <div class="service-title">
+                            <div class="service-text">
+
+                            </div>
+                            <span > Our News</span>
+                        </div>
                         <span class="satisfaction-percentage">Our Latest News and Articles</span>
                     </div>
                     
@@ -366,7 +415,9 @@
                 </div>
                 <div class="fashion-right-container">
                     <div class="fashion-right-content">
-                        <img src="./src/images/social.jpeg" alt="Rating" class="fashion-right-image">
+                        <div class="fashion-right-image">
+                            <img src="./src/images/social.jpeg" alt="Rating" >
+                        </div>
                         <div>
                             <span class="profile-link logo-link-ltr"> Latest Fashion trends in this summer</span>
                             <div>
@@ -377,7 +428,9 @@
                         </div>
                     </div>
                     <div class="fashion-right-content">
-                        <img src="./src/images/social.jpeg" alt="Rating" class="fashion-right-image">
+                        <div class="fashion-right-image">
+                            <img src="./src/images/social.jpeg" alt="Rating" >
+                        </div>
                         <div>
                             <span class="profile-link logo-link-ltr"> Latest Fashion trends in this summer</span>
                             <div>
@@ -388,7 +441,9 @@
                         </div>
                     </div>
                     <div class="fashion-right-content">
-                        <img src="./src/images/social.jpeg" alt="Rating" class="fashion-right-image">
+                        <div class="fashion-right-image">
+                            <img src="./src/images/social.jpeg" alt="Rating" >
+                        </div>
                         <div>
                             <span class="profile-link logo-link-ltr"> Latest Fashion trends in this summer</span>
                             <div>
@@ -401,14 +456,18 @@
                     
                 </div>
             </div>
-        </section>
+        </div>
 
-        <section class="container5">
+
+    </section>
+
+    <section class="container5">
+        <div class="container5-section">
             <div class="plan">
                 <span class="price-title">Pricing table </span>
                 <span class="satisfaction-percentage"> Choose Your Product</span>
             </div>
-
+    
             <div class="prices-choice ">
                 <div class="pricing-card" data-aos="fade-up">
                     <div class="price-header">
@@ -461,7 +520,7 @@
                             <span class="info_left_content">24*7 support </span>
                         </div>
                     </div>
-                    <div class="feature-button">Select Plan</div>
+                    <div class="feature-button-second">Select Plan</div>
                 </div>
             
                 <div class="pricing-card" data-aos="fade-up">
@@ -491,210 +550,188 @@
                     <div class="feature-button" data-aos="fade-up">Select Plan</div>
                 </div>
             </div>
-            
-        </section>
-
-        <div class="services-wrapper">
-            <div class="services" data-aos="fade-up">
-                <div class="services-content">
-                    <span class="service-title">_______ Our Services For Clients</span>
-                    <span class="satisfaction-percentage">Why Choose Us ?</span>
-                </div>
-                
-                    <div class="box"> View All Services</div>
-            </div>
         </div>
-        <section class="container6">
-                <div class="services-choice" data-aos="fade-up">
-                    <div class="services-choice-card">
-                        <img src="./src/images/service-4.png">
-                        <span class="logo-link logo-link-ltr">Digital Startegy</span>
-                        <span class="info_left_content">Lorem ipsum is simply dummy text of the printing and typesetting industry.</span>
-                        <div class="basic-info">View Details</div>
-                    </div>
 
-                    <div class="services-choice-card">
-                        <img src="./src/images/service-4.png">
-                        <span class="logo-link logo-link-ltr">Digital Startegy</span>
-                        <span class="info_left_content">Lorem ipsum is simply dummy text of the printing and typesetting industry.</span>
-                        <div class="basic-info">View Details</div>
-                    </div>
+        
+    </section>
+    <section class="container3">
+        <div class="container3-section">
+            <div class="services-wrapper">
+                <div class="services" data-aos="fade-up">
+                    <div class="services-content">
+                        <div class="service-title">
+                            <div class="service-text">
 
-                    <div class="services-choice-card">
-                        <img src="./src/images/service-4.png">
-                        <span class="logo-link logo-link-ltr">Digital Startegy</span>
-                        <span class="info_left_content">Lorem ipsum is simply dummy text of the printing and typesetting industry.</span>
-                        <div class="basic-info">View Details</div>
+                            </div>
+                            <span > Our Services For Clients</span>
+                        </div>
+                        <span class="satisfaction-percentage">Why Choose Us ?</span>
                     </div>
-
                     
+                        <div class="box"> View All Services</div>
                 </div>
-
-                <div class="services-choice" data-aos="fade-up">
-                    <div class="services-choice-card">
-                        <img src="./src/images/service-4.png">
-                        <span class="logo-link logo-link-ltr">Digital Startegy</span>
-                        <span class="info_left_content">Lorem ipsum is simply dummy text of the printing and typesetting industry.</span>
-                        <div class="basic-info">View Details</div>
-                    </div>
-
-                    <div class="services-choice-card">
-                        <img src="./src/images/service-4.png">
-                        <span class="logo-link logo-link-ltr">Digital Startegy</span>
-                        <span class="info_left_content">Lorem ipsum is simply dummy text of the printing and typesetting industry.</span>
-                        <div class="basic-info">View Details</div>
-                    </div>
-
-                    <div class="services-choice-card">
-                        <img src="./src/images/service-4.png">
-                        <span class="logo-link logo-link-ltr">Digital Startegy</span>
-                        <span class="info_left_content">Lorem ipsum is simply dummy text of the printing and typesetting industry.</span>
-                        <div class="basic-info">View Details</div>
-                    </div>
-
-                    
+            </div>    
+            <div class="services-choice" data-aos="fade-up">
+                <div class="services-choice-card">
+                    <img src="./src/images/service-1.png" class="card-image">
+                    <span class="logo-link logo-link-ltr">Digital Startegy</span>
+                    <span class="info_left_content">Lorem ipsum is simply dummy text of the printing and typesetting industry.</span>
+                    <div class="basic-info">View Details</div>
                 </div>
-
-                <div class="services-choice" data-aos="fade-up">
-                    <div class="services-choice-card">
-                        <img src="./src/images/service-4.png">
-                        <span class="logo-link logo-link-ltr">Digital Startegy</span>
-                        <span class="info_left_content">Lorem ipsum is simply dummy text of the printing and typesetting industry.</span>
-                        <div class="basic-info">View Details</div>
-                    </div>
-
-                    <div class="services-choice-card">
-                        <img src="./src/images/service-4.png">
-                        <span class="logo-link logo-link-ltr">Digital Startegy</span>
-                        <span class="info_left_content">Lorem ipsum is simply dummy text of the printing and typesetting industry.</span>
-                        <div class="basic-info">View Details</div>
-                    </div>
-
-                    <div class="services-choice-card">
-                        <img src="./src/images/service-4.png">
-                        <span class="logo-link logo-link-ltr">Digital Startegy</span>
-                        <span class="info_left_content">Lorem ipsum is simply dummy text of the printing and typesetting industry.</span>
-                        <div class="basic-info">View Details</div>
-                    </div>
-
-                    
+    
+                <div class="services-choice-card">
+                    <img src="./src/images/service-2.png" class="card-image">
+                    <span class="logo-link logo-link-ltr">Modern Technology</span>
+                    <span class="info_left_content">Lorem ipsum is simply dummy text of the printing and typesetting industry.</span>
+                    <div class="basic-info">View Details</div>
                 </div>
-                <div class="services-button"> View More</div>
-            
-        </section>
+    
+                <div class="services-choice-card">
+                    <img src="./src/images/service-3.png" class="card-image">
+                    <span class="logo-link logo-link-ltr">Scability</span>
+                    <span class="info_left_content">Lorem ipsum is simply dummy text of the printing and typesetting industry.</span>
+                    <div class="basic-info">View Details</div>
+                </div>   
+            </div>
+    
+            <div class="services-choice" data-aos="fade-up">
+                <div class="services-choice-card">
+                    <img src="./src/images/service-4.png" class="card-image">
+                    <span class="logo-link logo-link-ltr">Versatile Applications</span>
+                    <span class="info_left_content">Lorem ipsum is simply dummy text of the printing and typesetting industry.</span>
+                    <div class="basic-info">View Details</div>
+                </div>
+    
+                <div class="services-choice-card">
+                    <img src="./src/images/service-5.png" class="card-image">
+                    <span class="logo-link logo-link-ltr">Cost Effective</span>
+                    <span class="info_left_content">Lorem ipsum is simply dummy text of the printing and typesetting industry.</span>
+                    <div class="basic-info">View Details</div>
+                </div>
+    
+                <div class="services-choice-card">
+                    <img src="./src/images/service-6.png" class="card-image">
+                    <span class="logo-link logo-link-ltr">Diverse Approach</span>
+                    <span class="info_left_content">Lorem ipsum is simply dummy text of the printing and typesetting industry.</span>
+                    <div class="basic-info">View Details</div>
+                </div>   
+            </div>
+            <div class="services-button"> View More</div>
+        </div>
+
+        
+    </section>
 
 
-        <div class="brand" data-aos="fade-up">
+    <div class="brand" data-aos="fade-up">
+        <div class="brand-container">
             <img src="./src/images/client1.png">
             <img src="./src/images/client2.png">
             <img src="./src/images/client3.png">
             <img src="./src/images/client4.png">
             <img src="./src/images/client5.png">
         </div>
+    </div>
 
-        <footer>
-            <div class="footer_container">
-                <div class="footer_first_container">
-                    <div class="footer_logo">
-                        <img src="./src/images/logo.png" alt="logo">
-                        <span class="logo-link logo-link-ltr">Virtual Reality</span>
-                    </div>
-                    <span class="info_left_content">Nsectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</span>    
+    <footer>
+        <div class="footer_container">
+            <div class="footer_first_container">
+                <div class="footer_logo">
+                    <img src="./src/images/logo.png" alt="logo">
+                    <span class="logo-link logo-link-ltr">Virtual Reality</span>
                 </div>
-                <div class="">
-                    <h2> Quick Links</h2>
-                    <div class="footer_features">
-                        <div class="footer_news">
-                            <span class="tick">&#10004;</span>
-                            <span class="info_left_content"> Our Services </span>
-                        </div>
-                        <div class="footer_news">
-                            <span class="tick">&#10004;</span>
-                            <span class="info_left_content">Our Portfolio</span>
-                        </div>
-                        <div class="footer_news">
-                            <span class="tick">&#10004;</span> 
-                            <span class="info_left_content"> Contact </span>
-                        </div>
-                        <div class="footer_news">
-                            <span class="tick">&#10004;</span>
-                            <span class="info_left_content">News </span>
-                        </div>
+                <span class="info_left_content">Nsectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</span>    
+            </div>
+            <div class="">
+                <h2> Quick Links</h2>
+                <div class="footer_features">
+                    <div class="footer_news">
+                        <span class="tick">&#10004;</span>
+                        <span class="info_left_content"> Our Services </span>
                     </div>
-                </div>
-
-                <div class="">
-                    <h2> Recent News</h2>
-                    <div class="footer_features">
-                        <div class="footer_news">
-                            <i class="far fa-clock"></i>
-                            <span class="info_left_content">Block(2)</span>
-                        </div>
-                        <div class="footer_news">
-                            <i class="far fa-clock"></i>
-                            <span class="info_left_content">FSE(2)</span>
-                        </div>
-                        <div class="footer_news">
-                            <i class="far fa-clock"></i>
-                            <span class="info_left_content"> Gutenify (2) </span>
-                        </div>
+                    <div class="footer_news">
+                        <span class="tick">&#10004;</span>
+                        <span class="info_left_content">Our Portfolio</span>
                     </div>
-                </div>
-
-                <div class="">
-                    <h2> Quick Contact</h2>
-                    <div class="features">
-                        <p class="info_left_content"> New South Wales, Australia </p>
-                        <p class="info_left_content"> example@example.com </p>
-                        <p class="info_left_content"> 123 3456679 </p>
-                        <p class="info_left_content"> 10 AM – 5 PM </p>
+                    <div class="footer_news">
+                        <span class="tick">&#10004;</span> 
+                        <span class="info_left_content"> Contact </span>
+                    </div>
+                    <div class="footer_news">
+                        <span class="tick">&#10004;</span>
+                        <span class="info_left_content">News </span>
                     </div>
                 </div>
             </div>
 
-            <hr style="color:#2d2f38;width: 60%;">
-
-            <div class="footer_second_container">
-                <div class="follow-section">
-                    <h2>Follow Us</h2>
-                    <div class="social-icon">
-                        <i class="fab fa-youtube"></i>
-                        <i class="fab fa-facebook"></i>
-                        <i class="fab fa-twitter"></i>
-                        <i class="fab fa-linkedin"></i>
+            <div class="">
+                <h2> Recent News</h2>
+                <div class="footer_features">
+                    <div class="footer_news">
+                        <i class="far fa-clock"></i>
+                        <span class="info_left_content">Block(2)</span>
                     </div>
-                </div>
-
-                <div class="social-section">
-                    <div class="subscribe-section">
-                        <h2 style="margin-left: 80px;">Subscribe Our Newsletter</h2>
-                        <div class="mail-payment-section">
-                            <div class="mail">
-                                <input type="text" class="email-input" placeholder="your email address">
-                                <div class="sign-up">Sign up </div>
-                            </div>
-                        </div>
+                    <div class="footer_news">
+                        <i class="far fa-clock"></i>
+                        <span class="info_left_content">FSE(2)</span>
                     </div>
-                    <div class="payment-section">
-                        <h2>Payment</h2>
-                        <div class="payment-icon">
-                            <i class="fab fa-cc-visa"></i>
-                            <i class="fab fa-cc-paypal"></i>
-                            <i class="fab fa-cc-mastercard"></i>
-                            <i class="fab fa-cc-apple-pay"></i>
-                            <i class="fab fa-cc-amex"></i>
-                        </div> 
+                    <div class="footer_news">
+                        <i class="far fa-clock"></i>
+                        <span class="info_left_content"> Gutenify (2) </span>
                     </div>
                 </div>
             </div>
-        </footer>
 
-        <div class="footer-end">
-            <h2 class="info_left_content"> Proudly presented by Glutenfiyu and Wordpress</h2>
+            <div class="">
+                <h2> Quick Contact</h2>
+                <div class="features">
+                    <p class="info_left_content"> New South Wales, Australia </p>
+                    <p class="info_left_content"> example@example.com </p>
+                    <p class="info_left_content"> 123 3456679 </p>
+                    <p class="info_left_content"> 10 AM – 5 PM </p>
+                </div>
+            </div>
         </div>
 
-      
+        <hr class="line">
 
+        <div class="footer_second_container">
+            <div class="follow-section">
+                <h2>Follow Us</h2>
+                <div class="social-icon">
+                    <i class="fab fa-youtube"></i>
+                    <i class="fab fa-facebook"></i>
+                    <i class="fab fa-twitter"></i>
+                    <i class="fab fa-linkedin"></i>
+                </div>
+            </div>
+
+            <div class="social-section">
+                <div class="subscribe-section">
+                    <h2 style="margin-left: 80px;">Subscribe Our Newsletter</h2>
+                    <div class="mail-payment-section">
+                        <div class="mail">
+                            <input type="text" class="email-input" placeholder="your email address">
+                        </div>
+                        <div class="sign-up">Sign up </div>
+                    </div>
+                </div>
+                <div class="payment-section">
+                    <h2>Payment</h2>
+                    <div class="payment-icon">
+                        <i class="fab fa-cc-visa"></i>
+                        <i class="fab fa-cc-paypal"></i>
+                        <i class="fab fa-cc-mastercard"></i>
+                        <i class="fab fa-cc-apple-pay"></i>
+                        <i class="fab fa-cc-amex"></i>
+                    </div> 
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <div class="footer-end">
+        <h2 class="info_left_content"> Proudly presented by Glutenfiyu and Wordpress</h2>
     </div>
     
 </body>
@@ -711,7 +748,6 @@ document.addEventListener('DOMContentLoaded', function () {
     const navMenu = document.getElementById('navMenu');
     const closeIcon = document.getElementById('close-icon');
     menuToggle.addEventListener("click", function () {
-        // Toggle the display of the navigation menu
         navMenu.style.display = navMenu.style.display === "none" ? "flex" : "none";
         navMenu.style.flexDirection="column";
     });
@@ -858,6 +894,4 @@ nextBtn.addEventListener('click', () => {
       });
     });
   </script>
-
-
 </html>

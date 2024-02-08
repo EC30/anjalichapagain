@@ -1,105 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <style>
-        /* Your existing styles for the navbar */
-        /* ... */
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+.container {
+  position: relative;
+  display: inline-block;
+}
 
-        /* New styles for responsive behavior */
-        @media only screen and (max-width: 888px) {
-            #navMenu {
-                width: 60%;
-                height: 100vh;
-                background-color: green;
-                position: absolute;
-                flex-direction: column;
-                display: none;
-            }
+img {
+  display: block;
+  width:50%;
+  height: 50%;
+  border-radius: 50%;
+}
 
-            .header__nav {
-                flex-direction: column;
-                align-items: center;
-            }
+.glowing-light {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+border-radius:50%;
+  background: radial-gradient(circle, rgba(255, 0, 255, 0) 0%, rgba(255, 0, 255, 0.8) 50%, rgba(255, 0, 255, 0.9) 100%);
+  pointer-events: none; /* Ensures the light doesn't interfere with mouse events */
+  animation: pulsate 2s infinite;
+}
 
-            .header__nav li {
-                display: none;
-                width: 100%;
-                text-align: center;
-                padding: 15px;
-            }
-
-            #menuToggle {
-                display: flex;
-                cursor: pointer;
-            }
-
-            #close-icon {
-                display: none;
-                cursor: pointer;
-            }
-
-            #menuToggle:hover #close-icon {
-                display: flex;
-            }
-        }
-    </style>
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            const menuToggle = document.getElementById("menuToggle");
-            const navMenu = document.getElementById("navMenu");
-            const closeIcon = document.getElementById("close-icon");
-
-            menuToggle.addEventListener("click", function () {
-                // Toggle the display of the navigation menu
-                navMenu.style.display = navMenu.style.display === "none" ? "flex" : "none";
-            });
-
-            closeIcon.addEventListener("click", function () {
-                // Close the navigation menu
-                navMenu.style.display = "none";
-            });
-        });
-    </script>
-    <title>Responsive Navbar</title>
+@keyframes pulsate {
+  0% {
+    transform: scale(0.2);
+    opacity: 0.5;
+  }
+  50% {
+    transform: scale(1.2);
+    opacity: 0.2;
+  }
+  100% {
+    transform: scale(0.2);
+    opacity: 0.5;
+  }
+}
+</style>
+  <title>Glowing Light Effect</title>
 </head>
 <body>
-    <header>
-        <div class="logo">
-            <img src="./src/images/logo.png" alt="logo" class="header__logo">
-            <span class="logo-link logo-link-ltr">Virtual Reality</span>
-        </div>
-        <div class="custom-bars" id="menuToggle">
-            <i class="fas fa-bars"></i>
-        </div>
-        <div class="navigation" id="navMenu">
-            <i class="fas fa-close" id="close-icon"></i>
-            <ul class="header__nav">
-                <li class="text active">Home</li>
-                <li class="text has-dropdown">
-                    About us
-                    <i class="fas fa-angle-down dropdown-icon"></i>
-                    <ul class="dropdown-content">
-                        <li><a href="#">Team</a></li>
-                        <li><a href="#">Testimonials</a></li>
-                        <li><a href="#">Faq</a></li>
-                    </ul>
-                </li>
-                <li class="text">Portfolio</li>
-                <li class="text">Contact Us</li>
-                <li class="text">Services</li>
-                <li class="text">News</li>
-            </ul>
-        </div>
-        <div class="header_icon">
-            <div>
-                <i class="fas fa-user"></i> Login
-            </div>
-            <div><i class="fas fa-lock"></i></div>
-            <div class="box"> Get Started</div>
-        </div>
-    </header>
-    <!-- Your page content goes here -->
+  <div class="container">
+    <img src="./src/images/play-button-6694069_1280.png" alt="Your Image">
+    <div class="glowing-light"></div>
+  </div>
 </body>
 </html>
