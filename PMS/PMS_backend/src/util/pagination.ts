@@ -1,5 +1,6 @@
 import { DEFAULT_PAGE, DEFAULT_PAGE_SIZE } from "../constant/pagination";
 
+//This function builds a metadata object that typically represents information about the pagination state.
 export const buildMeta = (total: number, size?: number, page?: number) => {
   return {
     page: page || DEFAULT_PAGE,

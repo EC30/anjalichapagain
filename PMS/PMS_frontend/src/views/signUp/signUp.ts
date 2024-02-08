@@ -20,7 +20,6 @@ const schema = yup.object().shape({
     confirmPassword: yup.string().required().oneOf([yup.ref("password")], "Passwords must match").label("Confirm Password"),
 });
 
-// ...
 signUpButton.addEventListener("click", async (event) => {
     event.preventDefault();
     console.log(errorMessage);

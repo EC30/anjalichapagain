@@ -94,15 +94,8 @@ export default class AssignedProjectsModel extends BaseModel {
       .from({ TABLE_NAME })
       .where({ 'project_id': projectId, 'updated_by': userId });
 
-      // const assignedToArray = [];
-
-      // result.forEach(element => {
-      //   assignedToArray.push(element.assignedTo);
-      // });
-      // console.log(result[0].assignedTo);
       const assignedToArray = result.map(row => parseInt(row.assignedTo));
-      // console.log(assignedToArray);
-      // console.log(assignedToArray);
+
       return assignedToArray;
    
   }

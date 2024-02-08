@@ -5,6 +5,7 @@ import config from "../config";
 
 import UnauthenticatedError from "../error/unauthenticatedError";
 
+//This middleware is responsible for checking the validity of the JWT in the Authorization header and decoding it.
 export const auth = async (req: any, res: Response, next: NextFunction) => {
   try {
     console.log(req.body);

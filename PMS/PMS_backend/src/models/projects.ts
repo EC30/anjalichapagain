@@ -39,6 +39,21 @@ export default class projectsModel extends BaseModel {
       .count({ count: "id" })
       .first();
   }
+  // static async countAll(params: projectsFilterQuery) {
+  //   return this.queryBuilder()
+  //     .table("projects")
+  //     .select({assignedBy:"assignedBy"})  // Select the column you want to count by}
+  //     .where({ assignedBy: params.userId })
+  //     .where(params.status ? { status: params.status } : true)
+  //     .where((builder) => {
+  //       if (params.search) {
+  //         builder.whereRaw("LOWER(t.name) like ?", [`%${params.search.toLowerCase()}%`]);
+  //       }
+  //     })
+  //     .groupBy("assignedBy")  // Group by the assignedBy column
+  //     .count({ count: "assignedBy" })
+  //     .first();
+  // }
 
   static async getprojectsById(id: number, userId: number) {
     return this.queryBuilder()
