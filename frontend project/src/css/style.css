@@ -6,6 +6,7 @@ body {
     box-sizing: border-box;
 }
 
+/* header section css */
 header {
     display: flex;
     justify-content: space-between;
@@ -20,7 +21,7 @@ header {
         gap: 10px;
         justify-content: center;
         padding: 1rem 0;
-        align-items: center;
+        align-items: center; 
         margin: 0 auto;
     }
 }
@@ -70,6 +71,9 @@ header {
 .header_icon{
     display: flex;
     gap:30px;
+    @media only screen and (max-width: 781px) {
+        justify-content: space-between;
+    }
 }
 .header_icon div {
     display: flex;
@@ -150,6 +154,7 @@ header {
     .header__nav{
         flex-direction: column;
         border: 1px solid #2d2f38;
+        margin:40px;
     }
 }
 
@@ -159,7 +164,10 @@ header {
         display: flex;
         flex-direction: column;
         border-bottom: 1px solid #2d2f38;
-        margin: 10px;
+        padding:10px;
+        margin-left:0;
+        margin-right: 0;
+
     }
 }
 header nav {
@@ -695,6 +703,7 @@ header nav {
     position: relative;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     overflow: hidden;
+    text-align: center;
 }
 
 .carousel .card .img {
@@ -721,8 +730,7 @@ header nav {
     flex-direction: column;
     top: 70%;
     left: 30%;
-    text-align: center;
-    justify-content: center;
+    text-align: center
 }
 
 @media screen and (max-width: 900px) {
