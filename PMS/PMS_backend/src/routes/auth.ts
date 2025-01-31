@@ -4,7 +4,6 @@ import { login, refreshToken, signup} from "../controller/auth";
 import { userSchema } from "../schema/user";
 import {auth} from "../middleware/auth";
 import { validateReqBody, validateReqQuery } from "../middleware/validator";
-// import { login } from "../controller/auth";
 
 const router = Router();
 
